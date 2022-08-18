@@ -5,8 +5,6 @@
  */
 package logica;
 
-import logica.Controladores.ControladorUsuario;
-import logica.Interfaces.IControladorUsuario;
 
 /**
  *
@@ -21,10 +19,7 @@ public class Fabrica {
         return instancia;
     }
     
-     public IControladorUsuario getIControladorUsuario() {
-        IControladorUsuario ControladorU = ControladorUsuario.getInstance();
-        return ControladorU; //To change body of generated methods, choose Tools | Templates.
-    }
+     
 
     private Fabrica() {
     }
