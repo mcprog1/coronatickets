@@ -8,7 +8,7 @@ package logica;
 
 /**
  *
- * @author Santiago.S
+ * @author Cristian
  */
 public class Fabrica {
     private static Fabrica instancia;

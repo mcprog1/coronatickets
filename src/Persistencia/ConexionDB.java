@@ -1,35 +1,72 @@
 package Persistencia;
  
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.sql.Connection;
-import java.sql.Driver;
+//import java.io.FileInputStream;
+//import java.io.IOException;
+//import java.io.InputStream;
+//import java.sql.Connection;
+//import java.sql.Driver;
+//import java.util.Properties;
+//import javax.swing.JOptionPane;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.Properties;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javax.swing.JOptionPane;
+
 
 
 public class ConexionDB {
-    private final String host= "127.0.0.1";
-    private final String port= "3306";
-    private final String db= "prueba";
-    private final String user= "root";
-    private final String pass= "";
    
+    private com.mysql.jdbc.Connection conn = null;
+    static String URL = "jdbc:mysql://localhost:3306/bdempleados";
+    static String Usuario = "root";
+    static String Contraseña = "";
+
+    
+    public com.mysql.jdbc.Connection getConexion() {
+        try {
+            Class.forName("com.mysql.jdbc.Driver");//o tambien -> Driver driver = new com.mysql.jdbc.Driver(); DriverManager.registerDriver(driver);
+            conn = (com.mysql.jdbc.Connection)DriverManager.getConnection(URL, Usuario, Contraseña);
+            if (conn != null) {
+                System.out.println("Conexion establecida correctamente");
+            }
+        } catch (ClassNotFoundException | SQLException e) {
+            System.out.println("Error en la conexion" + e);
+        }
+
+        return conn;
+    }
+    
+    public void cerrar(){
+        if (conn != null) {
+            try {
+                conn.close();
+            } catch (SQLException ex) {
+                //ex.printStackTrace();
+                Logger.getLogger(ConexionDB.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }        
+    }
+
+//---------------------------Conexion manual---------------------------------------------------------------------------------------------
+     
+
+     
+     /* private final String host= "127.0.0.1";
+    private final String port= "3306";
+    private final String db= "coronaticket";
+    private final String user= "root";
+    private final String pass= "";*/
+     
     //Para hacer ConexionDB singleton descomentar
     //private static Connection conexion=null;
-    private Connection conexion=null;
+  //  private Connection conexion=null;
     //Para hacer ConexionDB singleton descomentar
     //private ConexionDB(){};
-    public ConexionDB(){};
+   // public ConexionDB(){};
     //Para hacer ConexionDB singleton descomentar
     //public static Connection getConexion() {
     
-    public String LeerProperties(String caso) {
+   /* public String LeerProperties(String caso) {
         
         Properties prop = new Properties();
         InputStream archivo = null;
@@ -57,9 +94,9 @@ public class ConexionDB {
             default: return "";
               
         }     
-    }
+    }*/
    
-    public Connection getConexion() {
+   /* public Connection getConexion() {
            
         if (conexion == null) {
             try {
@@ -72,9 +109,9 @@ public class ConexionDB {
             }
         }
         return conexion;
-    }
+    }*/
     
-    public void cerrar(){
+   /* public void cerrar(){
         if (conexion != null) {
             try {
                 conexion.close();
@@ -83,6 +120,6 @@ public class ConexionDB {
                 Logger.getLogger(ConexionDB.class.getName()).log(Level.SEVERE, null, ex);
             }
         }        
-    }
+    }*/
     
 }
