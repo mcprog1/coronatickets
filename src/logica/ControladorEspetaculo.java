@@ -10,7 +10,7 @@ package logica;
  * @author Cristian
  */
 public class ControladorEspetaculo {
-    
+    //Es una prueba
     public ControladorEspetaculo(){
         
     }
