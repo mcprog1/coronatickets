@@ -9,6 +9,7 @@ package Clases;
  *
  * @author Cristian
  */
+//hola
 public class Espetaculo {
     private String Nombre,ArtistaOrganizador,Descripcion,URL;
     private int Duracion,CapacidadMinima,CapacidadMaxima;

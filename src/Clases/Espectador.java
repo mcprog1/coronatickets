@@ -9,6 +9,7 @@ package Clases;
  *
  * @author Cristian
  */
+//hola
 public class Espectador extends Usuarios {
     
     public Espectador(String Nickname, String Clave, String Nombre, String Apellido, String Mail) {

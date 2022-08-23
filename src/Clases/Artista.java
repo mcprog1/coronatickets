@@ -13,6 +13,7 @@ public class Artista extends Usuarios {
     private String Biografia;
     private String URL;
 //hola
+//hola
     public Artista(String Nickname, String Clave, String Nombre, String Apellido, String Mail,String Descripcion,String Biografia,String URL) {
         super(Nickname,Clave,Nombre,Apellido,Mail);
         this.Descripcion = Descripcion;

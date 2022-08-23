@@ -9,6 +9,7 @@ package Clases;
  *
  * @author Cristian
  */
+//hola
 public class Plataformas {
     private String Nombre,URL;
 

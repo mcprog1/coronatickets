@@ -11,6 +11,7 @@ import java.sql.Date;
  *
  * @author Cristian
  */
+//hola
 public class Funciones {
     private String Nombre;
     private Date Fecha;

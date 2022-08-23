@@ -9,6 +9,7 @@ package Clases;
  *
  * @author Cristian
  */
+//hola
 public class Usuarios {
     private String Nickname,Clave,Nombre,Apellido,Mail;
     private DtFecha fecha;
