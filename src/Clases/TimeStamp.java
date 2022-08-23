@@ -10,6 +10,7 @@ package Clases;
  * @author Cristian
  */
 //hola
+//hola
 class TimeStamp {
     public String dia,mes,anio;
     public int hora,minuto;
