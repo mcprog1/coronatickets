@@ -24,7 +24,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        FrameAltaU = new javax.swing.JFrame();
+        FrameAltaEspectador = new javax.swing.JFrame();
         jLabel1 = new javax.swing.JLabel();
         txtNickname = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
@@ -41,11 +41,51 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         FrameConsultaU = new javax.swing.JFrame();
         FrameEditarU = new javax.swing.JFrame();
-        btnAltaU = new javax.swing.JButton();
-        btnConsularU = new javax.swing.JButton();
-        btnEditarU = new javax.swing.JButton();
+        FrameAltaArtista = new javax.swing.JFrame();
+        txtMail1 = new javax.swing.JTextField();
+        txtFecha1 = new javax.swing.JTextField();
+        jLabel9 = new javax.swing.JLabel();
+        txtClave1 = new javax.swing.JTextField();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
+        jLabel6 = new javax.swing.JLabel();
+        txtNickname1 = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
+        txtNombre1 = new javax.swing.JTextField();
+        txtApellido1 = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        jLabel15 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jTextField2 = new javax.swing.JTextField();
+        jTextField3 = new javax.swing.JTextField();
+        jMenuBar2 = new javax.swing.JMenuBar();
+        Inicio = new javax.swing.JMenu();
+        jMenuItem8 = new javax.swing.JMenuItem();
+        jMenuItem9 = new javax.swing.JMenuItem();
+        jMenuItem10 = new javax.swing.JMenuItem();
+        Registros = new javax.swing.JMenu();
+        RegistroEspectador = new javax.swing.JMenuItem();
+        RegistroArtista = new javax.swing.JMenuItem();
+        RegistroPlataforma = new javax.swing.JMenuItem();
+        RegistroEspetaculo = new javax.swing.JMenuItem();
+        RegistrosPaquetes = new javax.swing.JMenuItem();
+        Modificar = new javax.swing.JMenu();
+        EditarEspectador = new javax.swing.JMenuItem();
+        EditarArtista = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem4 = new javax.swing.JMenuItem();
+        Consular = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenuItem7 = new javax.swing.JMenuItem();
 
-        FrameAltaU.setMinimumSize(new java.awt.Dimension(500, 500));
+        FrameAltaEspectador.setMinimumSize(new java.awt.Dimension(500, 500));
 
         jLabel1.setText("Nickname");
 
@@ -86,76 +126,76 @@ public class VentanaPrincipal extends javax.swing.JFrame {
 
         jButton2.setText("Cancelar");
 
-        javax.swing.GroupLayout FrameAltaULayout = new javax.swing.GroupLayout(FrameAltaU.getContentPane());
-        FrameAltaU.getContentPane().setLayout(FrameAltaULayout);
-        FrameAltaULayout.setHorizontalGroup(
-            FrameAltaULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(FrameAltaULayout.createSequentialGroup()
+        javax.swing.GroupLayout FrameAltaEspectadorLayout = new javax.swing.GroupLayout(FrameAltaEspectador.getContentPane());
+        FrameAltaEspectador.getContentPane().setLayout(FrameAltaEspectadorLayout);
+        FrameAltaEspectadorLayout.setHorizontalGroup(
+            FrameAltaEspectadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameAltaEspectadorLayout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(FrameAltaULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(FrameAltaULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(FrameAltaULayout.createSequentialGroup()
+                .addGroup(FrameAltaEspectadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(FrameAltaEspectadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(FrameAltaEspectadorLayout.createSequentialGroup()
                             .addComponent(jLabel1)
                             .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                             .addComponent(txtNickname, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE))
-                        .addGroup(FrameAltaULayout.createSequentialGroup()
+                        .addGroup(FrameAltaEspectadorLayout.createSequentialGroup()
                             .addComponent(jLabel2)
                             .addGap(18, 18, 18)
                             .addComponent(txtNombre))
-                        .addGroup(FrameAltaULayout.createSequentialGroup()
-                            .addGroup(FrameAltaULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(FrameAltaEspectadorLayout.createSequentialGroup()
+                            .addGroup(FrameAltaEspectadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel3)
                                 .addComponent(jLabel8))
                             .addGap(18, 18, 18)
-                            .addGroup(FrameAltaULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(FrameAltaEspectadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                 .addComponent(txtApellido, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
                                 .addComponent(txtClave)))
-                        .addGroup(FrameAltaULayout.createSequentialGroup()
-                            .addGroup(FrameAltaULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(FrameAltaEspectadorLayout.createSequentialGroup()
+                            .addGroup(FrameAltaEspectadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(jLabel4)
                                 .addComponent(jLabel5))
                             .addGap(26, 26, 26)
-                            .addGroup(FrameAltaULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(FrameAltaEspectadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(txtMail)
                                 .addComponent(txtFecha))))
-                    .addGroup(FrameAltaULayout.createSequentialGroup()
+                    .addGroup(FrameAltaEspectadorLayout.createSequentialGroup()
                         .addComponent(jButton1)
                         .addGap(30, 30, 30)
                         .addComponent(jButton2)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        FrameAltaULayout.setVerticalGroup(
-            FrameAltaULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(FrameAltaULayout.createSequentialGroup()
-                .addGroup(FrameAltaULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(FrameAltaULayout.createSequentialGroup()
+        FrameAltaEspectadorLayout.setVerticalGroup(
+            FrameAltaEspectadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameAltaEspectadorLayout.createSequentialGroup()
+                .addGroup(FrameAltaEspectadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(FrameAltaEspectadorLayout.createSequentialGroup()
                         .addGap(24, 24, 24)
                         .addComponent(txtNickname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FrameAltaULayout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FrameAltaEspectadorLayout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jLabel1)))
                 .addGap(18, 18, 18)
-                .addGroup(FrameAltaULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(FrameAltaEspectadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel2)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(FrameAltaULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(FrameAltaEspectadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(16, 16, 16)
-                .addGroup(FrameAltaULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(FrameAltaEspectadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(FrameAltaULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(FrameAltaEspectadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
-                .addGroup(FrameAltaULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(FrameAltaEspectadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(FrameAltaULayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(FrameAltaEspectadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2))
                 .addContainerGap())
@@ -187,72 +227,267 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGap(0, 300, Short.MAX_VALUE)
         );
 
+        FrameAltaArtista.setMinimumSize(new java.awt.Dimension(500, 500));
+
+        jLabel9.setText("Clave");
+
+        txtClave1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtClave1ActionPerformed(evt);
+            }
+        });
+
+        jButton3.setText("Aceptar");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+
+        jButton4.setText("Cancelar");
+
+        jLabel6.setText("Nickname");
+
+        txtNickname1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNickname1ActionPerformed(evt);
+            }
+        });
+
+        jLabel7.setText("Nombre");
+
+        jLabel10.setText("Apellido");
+
+        jLabel11.setText("Mail");
+
+        jLabel12.setText("Fecha");
+
+        txtNombre1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombre1ActionPerformed(evt);
+            }
+        });
+
+        jLabel13.setText("Descripcion");
+
+        jLabel14.setText("Biografia");
+
+        jLabel15.setText("URL");
+
+        jTextField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout FrameAltaArtistaLayout = new javax.swing.GroupLayout(FrameAltaArtista.getContentPane());
+        FrameAltaArtista.getContentPane().setLayout(FrameAltaArtistaLayout);
+        FrameAltaArtistaLayout.setHorizontalGroup(
+            FrameAltaArtistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameAltaArtistaLayout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(FrameAltaArtistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(FrameAltaArtistaLayout.createSequentialGroup()
+                        .addComponent(jLabel6)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(txtNickname1))
+                    .addGroup(FrameAltaArtistaLayout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(18, 18, 18)
+                        .addComponent(txtNombre1))
+                    .addGroup(FrameAltaArtistaLayout.createSequentialGroup()
+                        .addGroup(FrameAltaArtistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel10)
+                            .addComponent(jLabel9))
+                        .addGap(18, 18, 18)
+                        .addGroup(FrameAltaArtistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(txtApellido1, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
+                            .addComponent(txtClave1)))
+                    .addGroup(FrameAltaArtistaLayout.createSequentialGroup()
+                        .addGroup(FrameAltaArtistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel11)
+                            .addComponent(jLabel12))
+                        .addGap(26, 26, 26)
+                        .addGroup(FrameAltaArtistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(txtMail1)
+                            .addComponent(txtFecha1)))
+                    .addGroup(FrameAltaArtistaLayout.createSequentialGroup()
+                        .addComponent(jButton3)
+                        .addGap(30, 30, 30)
+                        .addComponent(jButton4))
+                    .addGroup(FrameAltaArtistaLayout.createSequentialGroup()
+                        .addComponent(jLabel13)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jTextField1))
+                    .addGroup(FrameAltaArtistaLayout.createSequentialGroup()
+                        .addComponent(jLabel14)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 16, Short.MAX_VALUE)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 138, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(FrameAltaArtistaLayout.createSequentialGroup()
+                        .addComponent(jLabel15)
+                        .addGap(27, 27, 27)
+                        .addComponent(jTextField3)))
+                .addContainerGap(49, Short.MAX_VALUE))
+        );
+        FrameAltaArtistaLayout.setVerticalGroup(
+            FrameAltaArtistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(FrameAltaArtistaLayout.createSequentialGroup()
+                .addGroup(FrameAltaArtistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(FrameAltaArtistaLayout.createSequentialGroup()
+                        .addGap(24, 24, 24)
+                        .addComponent(txtNickname1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FrameAltaArtistaLayout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jLabel6)))
+                .addGap(18, 18, 18)
+                .addGroup(FrameAltaArtistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel7)
+                    .addComponent(txtNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(FrameAltaArtistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel10)
+                    .addComponent(txtApellido1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(16, 16, 16)
+                .addGroup(FrameAltaArtistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel9)
+                    .addComponent(txtClave1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(FrameAltaArtistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel11)
+                    .addComponent(txtMail1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(FrameAltaArtistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel12)
+                    .addComponent(txtFecha1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(FrameAltaArtistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel13)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addGroup(FrameAltaArtistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel14)
+                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(FrameAltaArtistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel15)
+                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addGroup(FrameAltaArtistaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton3)
+                    .addComponent(jButton4))
+                .addContainerGap())
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(500, 500));
 
-        btnAltaU.setText("Alta Usuario");
-        btnAltaU.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAltaUActionPerformed(evt);
-            }
-        });
+        Inicio.setText("Inscripciones");
 
-        btnConsularU.setText("Consultar Usuario");
-        btnConsularU.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem8.setText("Paquetes");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnConsularUActionPerformed(evt);
+                jMenuItem8ActionPerformed(evt);
             }
         });
+        Inicio.add(jMenuItem8);
 
-        btnEditarU.setText("Editar Usuario");
-        btnEditarU.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem9.setText("Espetaculos");
+        Inicio.add(jMenuItem9);
+
+        jMenuItem10.setText("Funciones");
+        jMenuItem10.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnEditarUActionPerformed(evt);
+                jMenuItem10ActionPerformed(evt);
             }
         });
+        Inicio.add(jMenuItem10);
+
+        jMenuBar2.add(Inicio);
+
+        Registros.setText("Registros");
+
+        RegistroEspectador.setText("Registrar Espectador");
+        RegistroEspectador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegistroEspectadorActionPerformed(evt);
+            }
+        });
+        Registros.add(RegistroEspectador);
+
+        RegistroArtista.setText("Registrar Artista");
+        RegistroArtista.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegistroArtistaActionPerformed(evt);
+            }
+        });
+        Registros.add(RegistroArtista);
+
+        RegistroPlataforma.setText("Registrar Plataforma");
+        Registros.add(RegistroPlataforma);
+
+        RegistroEspetaculo.setText("Registrar Espetaculo");
+        Registros.add(RegistroEspetaculo);
+
+        RegistrosPaquetes.setText("Registrar Paquetes");
+        Registros.add(RegistrosPaquetes);
+
+        jMenuBar2.add(Registros);
+
+        Modificar.setText("Modificar");
+
+        EditarEspectador.setText("Editar Espectador");
+        EditarEspectador.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                EditarEspectadorActionPerformed(evt);
+            }
+        });
+        Modificar.add(EditarEspectador);
+
+        EditarArtista.setText("Editar Artista");
+        Modificar.add(EditarArtista);
+
+        jMenuItem2.setText("Editar Plataforma");
+        Modificar.add(jMenuItem2);
+
+        jMenuItem3.setText("Editar Espetaculo");
+        Modificar.add(jMenuItem3);
+
+        jMenuItem4.setText("Editar Paquetes");
+        Modificar.add(jMenuItem4);
+
+        jMenuBar2.add(Modificar);
+
+        Consular.setText("Consultar");
+
+        jMenuItem1.setText("Espetaculos disponibles");
+        Consular.add(jMenuItem1);
+
+        jMenuItem5.setText("Plataformas");
+        Consular.add(jMenuItem5);
+
+        jMenuItem6.setText("Funciones disponibles");
+        Consular.add(jMenuItem6);
+
+        jMenuItem7.setText("Paquetes disponibles");
+        Consular.add(jMenuItem7);
+
+        jMenuBar2.add(Consular);
+
+        setJMenuBar(jMenuBar2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(btnAltaU)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnConsularU)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(btnEditarU))
+            .addGap(0, 319, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAltaU)
-                    .addComponent(btnConsularU)
-                    .addComponent(btnEditarU))
-                .addGap(0, 106, Short.MAX_VALUE))
+            .addGap(0, 108, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void btnAltaUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAltaUActionPerformed
-        FrameAltaU.setVisible(true);
-        FrameAltaU.setLocationRelativeTo(this);
-        FrameAltaU.setTitle("Registrar Usuario");
-    }//GEN-LAST:event_btnAltaUActionPerformed
-
-    private void btnConsularUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConsularUActionPerformed
-     FrameConsultaU.setVisible(true);
-     FrameConsultaU.setLocationRelativeTo(this);
-     FrameConsultaU.setTitle("Consultar Usuario");
-     
-    }//GEN-LAST:event_btnConsularUActionPerformed
-
-    private void btnEditarUActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditarUActionPerformed
-        FrameEditarU.setVisible(true);
-        FrameEditarU.setLocationRelativeTo(this);
-        FrameEditarU.setTitle("Editar Usuario");
-    }//GEN-LAST:event_btnEditarUActionPerformed
 
     private void txtClaveActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClaveActionPerformed
         // TODO add your handling code here:
@@ -269,6 +504,51 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void RegistroEspectadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistroEspectadorActionPerformed
+        FrameAltaEspectador.setVisible(true);
+        FrameAltaEspectador.setLocationRelativeTo(this);
+        FrameAltaEspectador.setTitle("Registrar Espectador");
+    }//GEN-LAST:event_RegistroEspectadorActionPerformed
+
+    private void EditarEspectadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarEspectadorActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_EditarEspectadorActionPerformed
+
+    private void RegistroArtistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistroArtistaActionPerformed
+        FrameAltaArtista.setVisible(true);
+        FrameAltaArtista.setLocationRelativeTo(this);
+        FrameAltaArtista.setTitle("Registrar Artista");
+        
+    }//GEN-LAST:event_RegistroArtistaActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
+
+    private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem10ActionPerformed
+
+    private void txtClave1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClave1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtClave1ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void txtNickname1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNickname1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNickname1ActionPerformed
+
+    private void txtNombre1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombre1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombre1ActionPerformed
+
+    private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField1ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -303,25 +583,65 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JFrame FrameAltaU;
+    private javax.swing.JMenu Consular;
+    private javax.swing.JMenuItem EditarArtista;
+    private javax.swing.JMenuItem EditarEspectador;
+    private javax.swing.JFrame FrameAltaArtista;
+    private javax.swing.JFrame FrameAltaEspectador;
     private javax.swing.JFrame FrameConsultaU;
     private javax.swing.JFrame FrameEditarU;
-    private javax.swing.JButton btnAltaU;
-    private javax.swing.JButton btnConsularU;
-    private javax.swing.JButton btnEditarU;
+    private javax.swing.JMenu Inicio;
+    private javax.swing.JMenu Modificar;
+    private javax.swing.JMenuItem RegistroArtista;
+    private javax.swing.JMenuItem RegistroEspectador;
+    private javax.swing.JMenuItem RegistroEspetaculo;
+    private javax.swing.JMenuItem RegistroPlataforma;
+    private javax.swing.JMenu Registros;
+    private javax.swing.JMenuItem RegistrosPaquetes;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem10;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem jMenuItem9;
+    private javax.swing.JTextField jTextField1;
+    private javax.swing.JTextField jTextField2;
+    private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField txtApellido;
+    private javax.swing.JTextField txtApellido1;
     private javax.swing.JTextField txtClave;
+    private javax.swing.JTextField txtClave1;
     private javax.swing.JTextField txtFecha;
+    private javax.swing.JTextField txtFecha1;
     private javax.swing.JTextField txtMail;
+    private javax.swing.JTextField txtMail1;
     private javax.swing.JTextField txtNickname;
+    private javax.swing.JTextField txtNickname1;
     private javax.swing.JTextField txtNombre;
+    private javax.swing.JTextField txtNombre1;
     // End of variables declaration//GEN-END:variables
 }
