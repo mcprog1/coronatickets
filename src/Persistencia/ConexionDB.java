@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
 public class ConexionDB {
     private final String host= "127.0.0.1";
     private final String port= "3306";
-    private final String db= "prueba";
+    private final String db= "coronatickets";
     private final String user= "root";
     private final String pass= "";
    

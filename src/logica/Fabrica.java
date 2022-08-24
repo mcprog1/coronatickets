@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package logica;
-
+import logica.interfaz.IControladorEspetaculo;
+import logica.ControladorEspetaculo;
 
 /**
  *
@@ -22,6 +23,11 @@ public class Fabrica {
      
 
     private Fabrica() {
+    }
+    
+    public IControladorEspetaculo getIControladorEspectaculo() {
+        IControladorEspetaculo ControladorE = ControladorEspetaculo.getInstance();
+        return ControladorE; //To change body of generated methods, choose Tools | Templates.
     }
     
 }

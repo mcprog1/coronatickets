@@ -2,3 +2,4 @@
 /nbproject/
 *.properties
 .env
+/dist/
