@@ -3,3 +3,4 @@
 *.properties
 .env
 /dist/
+/src/Persistencia/ConexionDB.java

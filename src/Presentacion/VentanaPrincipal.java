@@ -4,15 +4,18 @@
  */
 package Presentacion;
 
+import Interface.IControladorUsuario;
+import logica.Fabrica;
+
 
 
 public class VentanaPrincipal extends javax.swing.JFrame {
 
   
-    
-
+    private final IControladorUsuario ICU;
     public VentanaPrincipal() {
         initComponents();
+        this.ICU = Fabrica.getInstance().getIControladorUsuario();
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         setTitle("CoronaTickets");
         setLocationRelativeTo(null);
@@ -37,8 +40,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         txtFecha = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         txtClave = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        btnAceptarAltaEspectador = new javax.swing.JButton();
+        btnCancelarAltaEspectador = new javax.swing.JButton();
+        jLabel16 = new javax.swing.JLabel();
+        txtIdentificador = new javax.swing.JTextField();
         FrameConsultaU = new javax.swing.JFrame();
         FrameEditarU = new javax.swing.JFrame();
         FrameAltaArtista = new javax.swing.JFrame();
@@ -109,6 +114,12 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        txtMail.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtMailActionPerformed(evt);
+            }
+        });
+
         jLabel8.setText("Clave");
 
         txtClave.addActionListener(new java.awt.event.ActionListener() {
@@ -117,14 +128,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setText("Aceptar");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        btnAceptarAltaEspectador.setText("Aceptar");
+        btnAceptarAltaEspectador.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                btnAceptarAltaEspectadorActionPerformed(evt);
             }
         });
 
-        jButton2.setText("Cancelar");
+        btnCancelarAltaEspectador.setText("Cancelar");
+
+        jLabel16.setText("identificador");
 
         javax.swing.GroupLayout FrameAltaEspectadorLayout = new javax.swing.GroupLayout(FrameAltaEspectador.getContentPane());
         FrameAltaEspectador.getContentPane().setLayout(FrameAltaEspectadorLayout);
@@ -133,71 +146,80 @@ public class VentanaPrincipal extends javax.swing.JFrame {
             .addGroup(FrameAltaEspectadorLayout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(FrameAltaEspectadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(FrameAltaEspectadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                        .addGroup(FrameAltaEspectadorLayout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                            .addComponent(txtNickname, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE))
-                        .addGroup(FrameAltaEspectadorLayout.createSequentialGroup()
-                            .addComponent(jLabel2)
-                            .addGap(18, 18, 18)
-                            .addComponent(txtNombre))
-                        .addGroup(FrameAltaEspectadorLayout.createSequentialGroup()
-                            .addGroup(FrameAltaEspectadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3)
-                                .addComponent(jLabel8))
-                            .addGap(18, 18, 18)
-                            .addGroup(FrameAltaEspectadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(txtApellido, javax.swing.GroupLayout.DEFAULT_SIZE, 129, Short.MAX_VALUE)
-                                .addComponent(txtClave)))
-                        .addGroup(FrameAltaEspectadorLayout.createSequentialGroup()
-                            .addGroup(FrameAltaEspectadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel4)
-                                .addComponent(jLabel5))
-                            .addGap(26, 26, 26)
-                            .addGroup(FrameAltaEspectadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(txtMail)
-                                .addComponent(txtFecha))))
                     .addGroup(FrameAltaEspectadorLayout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addGap(30, 30, 30)
-                        .addComponent(jButton2)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addComponent(jLabel16)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addGroup(FrameAltaEspectadorLayout.createSequentialGroup()
+                        .addGroup(FrameAltaEspectadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(FrameAltaEspectadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(FrameAltaEspectadorLayout.createSequentialGroup()
+                                    .addComponent(jLabel8)
+                                    .addGap(22, 22, 22)
+                                    .addComponent(txtClave))
+                                .addGroup(FrameAltaEspectadorLayout.createSequentialGroup()
+                                    .addComponent(jLabel1)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(txtNickname))
+                                .addGroup(FrameAltaEspectadorLayout.createSequentialGroup()
+                                    .addComponent(jLabel2)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(FrameAltaEspectadorLayout.createSequentialGroup()
+                                    .addComponent(jLabel3)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGroup(FrameAltaEspectadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, FrameAltaEspectadorLayout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(txtFecha))
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, FrameAltaEspectadorLayout.createSequentialGroup()
+                                        .addComponent(btnAceptarAltaEspectador)
+                                        .addGap(30, 30, 30)
+                                        .addComponent(btnCancelarAltaEspectador))))
+                            .addGroup(FrameAltaEspectadorLayout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addGap(29, 29, 29)
+                                .addComponent(txtMail, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
         );
         FrameAltaEspectadorLayout.setVerticalGroup(
             FrameAltaEspectadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(FrameAltaEspectadorLayout.createSequentialGroup()
-                .addGroup(FrameAltaEspectadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(FrameAltaEspectadorLayout.createSequentialGroup()
-                        .addGap(24, 24, 24)
-                        .addComponent(txtNickname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, FrameAltaEspectadorLayout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jLabel1)))
-                .addGap(18, 18, 18)
-                .addGroup(FrameAltaEspectadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addContainerGap()
+                .addGroup(FrameAltaEspectadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtNickname, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(FrameAltaEspectadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel2)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(18, 18, 18)
                 .addGroup(FrameAltaEspectadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel3)
                     .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(16, 16, 16)
+                .addGap(18, 18, 18)
                 .addGroup(FrameAltaEspectadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(txtClave, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(FrameAltaEspectadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(txtMail, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(FrameAltaEspectadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
                     .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
                 .addGroup(FrameAltaEspectadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2))
+                    .addComponent(jLabel16)
+                    .addComponent(txtIdentificador, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 15, Short.MAX_VALUE)
+                .addGroup(FrameAltaEspectadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnAceptarAltaEspectador)
+                    .addComponent(btnCancelarAltaEspectador))
                 .addContainerGap())
         );
 
@@ -501,14 +523,20 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtNicknameActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton1ActionPerformed
+    private void btnAceptarAltaEspectadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarAltaEspectadorActionPerformed
+        
+        
+        ICU.addEspectador(txtNickname.getText(),txtNombre.getText(),txtApellido.getText(),txtClave.getText(),txtMail.getText(),txtFecha.getText(),txtIdentificador.getText());
+    }//GEN-LAST:event_btnAceptarAltaEspectadorActionPerformed
 
     private void RegistroEspectadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistroEspectadorActionPerformed
         FrameAltaEspectador.setVisible(true);
         FrameAltaEspectador.setLocationRelativeTo(this);
         FrameAltaEspectador.setTitle("Registrar Espectador");
+        
+        
+       
+        
     }//GEN-LAST:event_RegistroEspectadorActionPerformed
 
     private void EditarEspectadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarEspectadorActionPerformed
@@ -549,6 +577,10 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void jTextField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField1ActionPerformed
+
+    private void txtMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMailActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtMailActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -598,8 +630,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem RegistroPlataforma;
     private javax.swing.JMenu Registros;
     private javax.swing.JMenuItem RegistrosPaquetes;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
+    private javax.swing.JButton btnAceptarAltaEspectador;
+    private javax.swing.JButton btnCancelarAltaEspectador;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
@@ -609,6 +641,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
+    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -637,6 +670,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JTextField txtClave1;
     private javax.swing.JTextField txtFecha;
     private javax.swing.JTextField txtFecha1;
+    private javax.swing.JTextField txtIdentificador;
     private javax.swing.JTextField txtMail;
     private javax.swing.JTextField txtMail1;
     private javax.swing.JTextField txtNickname;

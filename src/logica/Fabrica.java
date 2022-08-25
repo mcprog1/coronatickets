@@ -5,13 +5,17 @@
  */
 package logica;
 
+import Interface.IControladorUsuario;
+
 
 /**
  *
  * @author Cristian
  */
 public class Fabrica {
+    
     private static Fabrica instancia;
+    
     public static Fabrica getInstance() {
         if (instancia == null) {
             instancia = new Fabrica();
@@ -20,7 +24,11 @@ public class Fabrica {
     }
     
      
-
+     public IControladorUsuario getIControladorUsuario() {
+        IControladorUsuario Controlador = ControladorUsuario.getinstancia();
+        return Controlador;
+        
+    }
     private Fabrica() {
     }
     
