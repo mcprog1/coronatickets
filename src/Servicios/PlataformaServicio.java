@@ -35,7 +35,7 @@ public class PlataformaServicio {
     
     public boolean crearPlataforma(String nombre, String desc, String url)
     {
-        try { // Creo la plataforma en "Valores_tipo" una vez ya obtenido el ID
+        try { // Creo la plataforma - Probando el GitIgnore jeje 
             PreparedStatement status = conexion.prepareStatement("INSERT INTO plataforma (plat_nombre, plat_descripcion , plat_url) VALUES (?,?,?)");
             status.setString(1, nombre);
             status.setString(2, desc);
