@@ -7,25 +7,25 @@ package logica;
 
 import Servicios.Servicios;
 import Clases.Usuarios;
-import java.util.Map;
+import Interface.IControladorUsuario;
+import java.sql.SQLException;
 
 /**
  *
  * @author Cristian
  */
-public class ControladorUsuario {
-    
-    private Map<String,Usuarios> Usuarios;
-    private final  Servicios serviciosUsuarios;
-            
-    public ControladorUsuario(){
-       this.serviciosUsuarios = new Servicios();
+public class ControladorUsuario implements IControladorUsuario {
+
+    private final Servicios serviciosUsuarios;
+
+    public ControladorUsuario() {
+        this.serviciosUsuarios = new Servicios();
     }
-    
+
     private static ControladorUsuario instancia;
-   
-    public ControladorUsuario getinstancia(){
-        if(instancia == null){
+
+    public static ControladorUsuario getinstancia() {
+        if (instancia == null) {
             instancia = new ControladorUsuario();
         }
         return instancia;
@@ -35,16 +35,33 @@ public class ControladorUsuario {
     public boolean ValidarUsuario(String Nickname, String Gmail) {
         
         return false;
-     
-  }
-    public void AltadeUsuario(){
-        
-        
-        
+
     }
     
-    
-    
-    
-    
+    @Override
+    public void addEspectador(String nick, String nombre, String apellido, String clave, String mail,String f,String i) {
+        
+   
+            Usuarios u = new Usuarios(nick, nombre, apellido, clave, mail,f,i);
+            String add = String.format("INSERT INTO usuarios (usu_nick,usu_nombre,usu_apellido,usu_clave,usu_mail,usu_tipo_usuario,usu_fecha_nacimiento) "
+                    + "VALUE ('%s','%s','%s','%s','%s','%s','%s')", u.getNickname(), u.getNombre(), u.getApellido(), u.getClave(), u.getMail(),u.getFechai(),u.getIdentificador());
+            serviciosUsuarios.UpdateBD(add);
+        
+    }
+
+    /*
+    @Override
+    public void addArtista(String nick,String nombre,String apellido,String clave,String gmail,String Descripcion,String bio,String url){
+        
+    }
+
+    public void addEspectador(String nick, String nombre, String apellido, String clave, String gmail,String descripcion,String bio) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+     */
+
+   
+    public void addEspectador(String nick, String nombre, String apellido, String clave, String gmail, int f, int i) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }

@@ -11,8 +11,8 @@ package Clases;
  */
 public class Espectador extends Usuarios {
     
-    public Espectador(String Nickname, String Clave, String Nombre, String Apellido, String Mail) {
-        super(Nickname, Clave, Nombre, Apellido, Mail);
+    public Espectador(String Nickname, String Clave, String Nombre, String Apellido, String Mail,String f,String i) {
+        super(Nickname, Nombre, Apellido, Clave , Mail, f, i);
     }
     
 }

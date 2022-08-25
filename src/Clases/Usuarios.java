@@ -11,14 +11,35 @@ package Clases;
  */
 public class Usuarios {
     private String Nickname,Clave,Nombre,Apellido,Mail;
+    String fechai,identificador;
     private DtFecha fecha;
-    
-    public Usuarios (String Nickname,String Clave,String Nombre,String Apellido,String Mail){
+    public Usuarios(){
+        
+    }
+    public Usuarios (String Nickname,String Clave,String Nombre,String Apellido,String Mail,String f,String i){
         this.Nickname = Nickname;
         this.Clave = Clave;
         this.Nombre = Nombre;
         this.Apellido = Apellido;
         this.Mail = Mail;
+        this.fechai = f;
+        this.identificador = i;
+    }
+
+    public String getFechai() {
+        return fechai;
+    }
+
+    public void setFechai(String fechai) {
+        this.fechai = fechai;
+    }
+
+    public String getIdentificador() {
+        return identificador;
+    }
+
+    public void setIdentificador(String identificador) {
+        this.identificador = identificador;
     }
 
     public String getNickname() {
