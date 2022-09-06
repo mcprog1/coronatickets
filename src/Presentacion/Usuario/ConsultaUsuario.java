@@ -202,7 +202,11 @@ public class ConsultaUsuario extends javax.swing.JFrame {
           datosArtista.show(true);
         
       }else if(ICUC.Artista_o_Espectador(nickname) == 2){
-          System.out.println("Aca van los datos del espectador y sus registros");
+          TablaEspectador datosEspectador = new TablaEspectador();
+          datosEspectador.DatosDeEspectador(nickname);
+          datosEspectador.DatosFunciones(nickname);
+          datosEspectador.show(true);
+          
       }else{
           System.out.println("A ocurrido un error");
       }

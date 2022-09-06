@@ -6,10 +6,12 @@
 package logica;
 
 import Clases.Artista;
-import Clases.Espetaculo;
+import Clases.Espectaculo;
+import Clases.Funciones;
 import Clases.Plataformas;
 import Servicios.ServiciosUsuarios;
 import Clases.Usuarios;
+import Servicios.ServiciosRegistros;
 import java.io.IOException;
 import logica.interfaz.IControladorUsuario;
 import java.sql.SQLException;
@@ -24,9 +26,11 @@ import java.util.logging.Logger;
 public class ControladorUsuario implements IControladorUsuario {
 
     private final ServiciosUsuarios serviciosUsuarios;
+    
 
     public ControladorUsuario() {
         this.serviciosUsuarios = new ServiciosUsuarios();
+       
     }
 
     private static ControladorUsuario instancia;
@@ -130,5 +134,23 @@ public class ControladorUsuario implements IControladorUsuario {
         }
 
     }
+    
+    
+    public Usuarios Consultar_un_Espectador_particular(String nick) {
+        Usuarios E = new Usuarios();
+        try {
+            E = serviciosUsuarios.consultar_Un_Espectador_Particular(nick);
+            return E;
+        } catch (SQLException e) {
+            System.out.println("Error en buscar el Espectador por el nombre");
+            return E;
+        }
+        
+    }
+    
+    
+    
+    
+
 
 }

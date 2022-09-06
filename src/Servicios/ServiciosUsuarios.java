@@ -6,7 +6,8 @@
 package Servicios;
 
 import Clases.Artista;
-import Clases.Espetaculo;
+import Clases.Espectaculo;
+import Clases.Funciones;
 import Clases.Plataformas;
 import Clases.Usuarios;
 import Persistencia.ConexionDB;
@@ -228,5 +229,29 @@ public class ServiciosUsuarios {
         return 3;//error
 
     }
+    
+     public Usuarios consultar_Un_Espectador_Particular(String nick) throws SQLException {
+        Usuarios E = null;
+        try {
+            PreparedStatement consulta = conn.prepareStatement("SELECT * FROM usuarios WHERE usu_nick = ?");
+            consulta.setString(1, nick);
+            ResultSet resultadoConsulta = consulta.executeQuery();
+            while (resultadoConsulta.next()) {
+                E = new Usuarios();
+                E.setNickname(resultadoConsulta.getString("usu_nick"));
+                E.setNombre(resultadoConsulta.getString("usu_nombre"));
+                E.setApellido(resultadoConsulta.getString("usu_apellido"));
+                E.setClave(resultadoConsulta.getString("usu_clave"));
+                E.setMail(resultadoConsulta.getString("usu_mail"));
+                return E;
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return E;
+    }
+     
+     
+    
 
 }

@@ -6,7 +6,8 @@
 package logica.interfaz;
 
 import Clases.Artista;
-import Clases.Espetaculo;
+import Clases.Espectaculo;
+import Clases.Funciones;
 import Clases.Usuarios;
 import java.util.ArrayList;
 
@@ -20,10 +21,10 @@ public interface IControladorUsuario {
     public abstract String addArtista(String nick,String nombre,String apellido,String clave,String gmail,String f,String i,String Descripcion,String bio,String url);
     public abstract ArrayList<Usuarios> tablaUsuarios();//consulto todos los usuarios
     public abstract ArrayList<Artista> tablaArtistas();//consulto todos los artistas
-    
+    public abstract Usuarios Consultar_un_Espectador_particular(String nick);
     public abstract int Artista_o_Espectador(String nick);//consulto si es artista(1) o espectador (2) con el nickname
     public abstract Artista Consultar_un_artista_particular(String nick);//consulto un artista identificado con el nick
-
+   
 
 
 

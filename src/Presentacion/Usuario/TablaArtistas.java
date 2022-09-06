@@ -6,7 +6,7 @@
 package Presentacion.Usuario;
 
 import Clases.Artista;
-import Clases.Espetaculo;
+import Clases.Espectaculo;
 import Persistencia.ConexionDB;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -42,7 +42,7 @@ public class TablaArtistas extends javax.swing.JFrame {
         tablaEspectaculo.addColumn("Descripcion");
         tablaEspectaculo.addColumn("URL");
          int i;
-        ArrayList<Espetaculo> ListaE;
+        ArrayList<Espectaculo> ListaE;
         ListaE = this.ICUE.tablaespetaculo(nick);
         for (i = 0; i < ListaE.size(); i++) {
             //datosEspectaculo[0] = ListaE.get(i).getArtistaOrganizador().toString();

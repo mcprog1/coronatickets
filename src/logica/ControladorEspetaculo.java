@@ -1,22 +1,26 @@
 package logica;
-import Clases.Espetaculo;
+import Clases.Espectaculo;
+import Clases.Funciones;
 import logica.interfaz.IControladorEspetaculo;
-import Servicios.EspetaculoServicio;
+import Servicios.EspectaculoServicio;
 import Servicios.PlataformaServicio;
 import java.util.ArrayList;
 import Clases.Plataformas;
+import Servicios.ServiciosRegistros;
 /**
  *
  * @author Cristian
  */
 public class ControladorEspetaculo implements IControladorEspetaculo{
-    private EspetaculoServicio espetaculoServicio;
+    private EspectaculoServicio espectaculoServicio;
     private PlataformaServicio plataformaServicio;
+    private ServiciosRegistros servicioRegistro;
     private static ControladorEspetaculo instancia;
     
     public ControladorEspetaculo(){
-        this.espetaculoServicio = new EspetaculoServicio();
+        this.espectaculoServicio = new EspectaculoServicio();
         this.plataformaServicio = new PlataformaServicio();
+        this.servicioRegistro = new ServiciosRegistros();
     }
     
     public static ControladorEspetaculo getInstance() {
@@ -55,13 +59,26 @@ public class ControladorEspetaculo implements IControladorEspetaculo{
         return datos;
     }
     
-    public ArrayList<Espetaculo> tablaespetaculo(String nom) {
-        ArrayList<Espetaculo> espetaculos = new ArrayList<>();
+    public ArrayList<Espectaculo> tablaespetaculo(String nom) {
+        ArrayList<Espectaculo> espectaculos = new ArrayList<>();
         try {
-            espetaculos = espetaculoServicio.consultarOrganizadorEspetaculo(nom);
+            espectaculos = espectaculoServicio.consultarOrganizadorEspetaculo(nom);
         } catch (Exception e) {
             System.out.println("Error en buscar el nombre de los espetaculos por el nombre del artista");
         }
-        return espetaculos;
+        return espectaculos;
+    }
+    
+   
+   public ArrayList<Funciones> ListaFuncionesEspectador(String nick){
+        ArrayList<Funciones> f = new ArrayList<>();
+        try {
+            f = servicioRegistro.funcionesEspectador(nick);
+            return f;
+        } catch (Exception e) {
+            System.out.println("Error al buscar funciones de un espectador");
+        }
+        return f;
+    
     }
 }
