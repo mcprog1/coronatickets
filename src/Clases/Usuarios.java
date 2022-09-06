@@ -12,16 +12,16 @@ package Clases;
 public class Usuarios {
     private String Nickname,Clave,Nombre,Apellido,Mail;
     String fechai,identificador;
-    private DtFecha fecha;
+    //private DtFecha fecha;
     public Usuarios(){
         
     }
-    public Usuarios (String Nickname,String Clave,String Nombre,String Apellido,String Mail,String f,String i){
-        this.Nickname = Nickname;
-        this.Clave = Clave;
-        this.Nombre = Nombre;
-        this.Apellido = Apellido;
-        this.Mail = Mail;
+    public Usuarios (String Nickname_,String Nombre_,String Apellido_,String Clave_,String Mail_,String f,String i){
+        this.Nickname = Nickname_;
+        this.Nombre = Nombre_;
+        this.Apellido = Apellido_;
+        this.Clave = Clave_;
+        this.Mail = Mail_;
         this.fechai = f;
         this.identificador = i;
     }

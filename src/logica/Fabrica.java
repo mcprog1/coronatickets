@@ -7,7 +7,7 @@ package logica;
 import logica.interfaz.IControladorEspetaculo;
 import logica.ControladorEspetaculo;
 
-import Interface.IControladorUsuario;
+import logica.interfaz.IControladorUsuario;
 
 /**
  *

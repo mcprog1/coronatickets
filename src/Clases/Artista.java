@@ -13,8 +13,11 @@ public class Artista extends Usuarios {
     private String Biografia;
     private String URL;
 
-    public Artista(String Nickname, String Clave, String Nombre, String Apellido, String Mail,String f,String i,String Descripcion,String Biografia,String URL) {
-        super(Nickname,Clave,Nombre,Apellido,Mail, f, i);
+    public Artista(){
+        
+    }
+    public Artista(String Nickname, String Nombre, String Apellido, String Clave, String Mail,String f,String i,String Descripcion,String Biografia,String URL) {
+        super(Nickname,Nombre,Apellido,Clave,Mail, f, i);
         this.Descripcion = Descripcion;
         this.Biografia = Biografia;
         this.URL = URL;

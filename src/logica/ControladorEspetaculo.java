@@ -1,4 +1,5 @@
 package logica;
+import Clases.Espetaculo;
 import logica.interfaz.IControladorEspetaculo;
 import Servicios.EspetaculoServicio;
 import Servicios.PlataformaServicio;
@@ -54,4 +55,13 @@ public class ControladorEspetaculo implements IControladorEspetaculo{
         return datos;
     }
     
+    public ArrayList<Espetaculo> tablaespetaculo(String nom) {
+        ArrayList<Espetaculo> espetaculos = new ArrayList<>();
+        try {
+            espetaculos = espetaculoServicio.consultarOrganizadorEspetaculo(nom);
+        } catch (Exception e) {
+            System.out.println("Error en buscar el nombre de los espetaculos por el nombre del artista");
+        }
+        return espetaculos;
+    }
 }
