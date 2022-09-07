@@ -202,6 +202,7 @@ public class ServiciosUsuarios {
                 A.setApellido(resultadoConsulta.getString("usu_apellido"));
                 A.setClave(resultadoConsulta.getString("usu_clave"));
                 A.setMail(resultadoConsulta.getString("usu_mail"));
+                A.setFechai(resultadoConsulta.getString("usu_fecha_nacimiento"));
                 A.setBiografia(resultadoConsulta.getString("art_biografia"));
                 A.setURL(resultadoConsulta.getString("art_url"));
                 A.setDescripcion(resultadoConsulta.getString("art_descripcion"));
@@ -230,7 +231,7 @@ public class ServiciosUsuarios {
 
     }
     
-     public Usuarios consultar_Un_Espectador_Particular(String nick) throws SQLException {
+    public Usuarios consultar_Un_Espectador_Particular(String nick) throws SQLException {
         Usuarios E = null;
         try {
             PreparedStatement consulta = conn.prepareStatement("SELECT * FROM usuarios WHERE usu_nick = ?");
@@ -243,6 +244,7 @@ public class ServiciosUsuarios {
                 E.setApellido(resultadoConsulta.getString("usu_apellido"));
                 E.setClave(resultadoConsulta.getString("usu_clave"));
                 E.setMail(resultadoConsulta.getString("usu_mail"));
+                E.setFechai(resultadoConsulta.getString("usu_fecha_nacimiento"));
                 return E;
             }
         } catch (SQLException e) {
@@ -250,7 +252,43 @@ public class ServiciosUsuarios {
         }
         return E;
     }
-     
+    
+    public boolean editarEspectador(String nick ,String nombre,String apellido,String clave ,String fecha){
+        try {
+             PreparedStatement sn = conn.prepareStatement("UPDATE usuarios SET usu_nombre = ? ,usu_apellido = ? ,usu_clave = ? ,usu_fecha_nacimiento = ?   WHERE usu_nick = ?");
+             sn.setString(1, nombre);
+             sn.setString(2,apellido);
+             sn.setString(3, clave);
+             sn.setString(4, fecha);
+             sn.setString(5, nick);
+             sn.executeUpdate();
+             return true;
+        
+        } catch (SQLException e) {
+            System.out.println("Ocurrio un error al editar el espectador");
+        }
+        return false;
+    }
+    
+    public boolean editarArtista(String nick ,String nombre,String apellido,String clave ,String fecha,String descripcion ,String url,String biografia){
+        try {
+             PreparedStatement sn = conn.prepareStatement("UPDATE usuarios AS u,artistas AS a SET u.usu_nombre=? ,u.usu_apellido=? ,u.usu_clave=? ,u.usu_fecha_nacimiento=? ,a.art_descripcion=? ,a.art_biografia=?,a.art_url=?   WHERE u.usu_nick = ?  AND a.art_usu_nick = u.usu_nick ");
+             sn.setString(1, nombre);
+             sn.setString(2,apellido);
+             sn.setString(3, clave);
+             sn.setString(4, fecha);
+             sn.setString(5,descripcion);
+             sn.setString(6, biografia);
+             sn.setString(7, url);
+             sn.setString(8, nick);
+             sn.executeUpdate();
+             return true;
+        
+        } catch (SQLException e) {
+            System.out.println("Ocurrio un error al editar al artista");
+        }
+        return false;
+    }
      
     
 

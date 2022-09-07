@@ -148,7 +148,36 @@ public class ControladorUsuario implements IControladorUsuario {
         
     }
     
-    
+    public boolean EdiarEspectador(String nick,String nombre,String apellido,String clave ,String fecha){
+        boolean verificar = false;
+        try {
+            verificar  = serviciosUsuarios.editarEspectador(nick, nombre, apellido, clave, fecha);
+            if(verificar == true){
+                return true;
+            }else{
+                return false;
+                
+            }
+        } catch (Exception e) {
+            System.out.println("ocurrio un error al ediar al especador : "+nombre+" "+apellido);
+        }
+        return false;
+    }
+    public boolean editarArtistas(String nick ,String nombre,String apellido,String clave ,String fecha,String descripcion ,String url,String biografia){
+        boolean verificar = false;
+        try {
+            verificar  = serviciosUsuarios.editarArtista(nick, nombre, apellido, clave, fecha, descripcion, url, biografia);
+            if(verificar == true){
+                return true;
+            }else{
+                return false;
+                
+            }
+        } catch (Exception e) {
+            System.out.println("ocurrio un error al ediar al especador : "+nombre+" "+apellido);
+        }
+        return false;
+    }
     
     
 

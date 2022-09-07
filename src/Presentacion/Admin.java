@@ -5,6 +5,7 @@
 package Presentacion;
 
 import Presentacion.Usuario.ConsultaUsuario;
+import Presentacion.Usuario.EditarUsuario;
 import logica.interfaz.IControladorUsuario;
 import Presentacion.Usuario.RegistrarArtista;
 import Presentacion.Usuario.RegistrarEspectador;
@@ -38,8 +39,7 @@ public class Admin extends javax.swing.JFrame {
         RegistroEspectador = new javax.swing.JMenuItem();
         RegistroArtista = new javax.swing.JMenuItem();
         Modificar = new javax.swing.JMenu();
-        EditarEspectador = new javax.swing.JMenuItem();
-        EditarArtista = new javax.swing.JMenuItem();
+        EditarUsuario = new javax.swing.JMenuItem();
         Consular = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
 
@@ -94,21 +94,13 @@ public class Admin extends javax.swing.JFrame {
 
         Modificar.setText("Modificar");
 
-        EditarEspectador.setText("Editar Espectador");
-        EditarEspectador.addActionListener(new java.awt.event.ActionListener() {
+        EditarUsuario.setText("Modifar Usuario");
+        EditarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EditarEspectadorActionPerformed(evt);
+                EditarUsuarioActionPerformed(evt);
             }
         });
-        Modificar.add(EditarEspectador);
-
-        EditarArtista.setText("Editar Artista");
-        EditarArtista.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                EditarArtistaActionPerformed(evt);
-            }
-        });
-        Modificar.add(EditarArtista);
+        Modificar.add(EditarUsuario);
 
         jMenuBar2.add(Modificar);
 
@@ -158,21 +150,19 @@ public class Admin extends javax.swing.JFrame {
         
     }//GEN-LAST:event_RegistroArtistaActionPerformed
 
-    private void EditarEspectadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarEspectadorActionPerformed
-        
-    }//GEN-LAST:event_EditarEspectadorActionPerformed
-
     private void jMenuItem11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem11ActionPerformed
         ConsultaUsuario consultar = new ConsultaUsuario();
         consultar.show(true);
         consultar.DatosUsuarios();
+        
     }//GEN-LAST:event_jMenuItem11ActionPerformed
 
-    private void EditarArtistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarArtistaActionPerformed
-        RegistrarArtista registrarA = new RegistrarArtista();
-        registrarA.show(true);
+    private void EditarUsuarioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarUsuarioActionPerformed
+        EditarUsuario editar = new EditarUsuario();
+        editar.setLocationRelativeTo(null);
+        editar.show(true);
         
-    }//GEN-LAST:event_EditarArtistaActionPerformed
+    }//GEN-LAST:event_EditarUsuarioActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -209,8 +199,7 @@ public class Admin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu Consular;
-    private javax.swing.JMenuItem EditarArtista;
-    private javax.swing.JMenuItem EditarEspectador;
+    private javax.swing.JMenuItem EditarUsuario;
     private javax.swing.JFrame FrameConsultaU;
     private javax.swing.JFrame FrameEditarU;
     private javax.swing.JMenu Modificar;

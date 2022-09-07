@@ -24,8 +24,8 @@ public interface IControladorUsuario {
     public abstract Usuarios Consultar_un_Espectador_particular(String nick);
     public abstract int Artista_o_Espectador(String nick);//consulto si es artista(1) o espectador (2) con el nickname
     public abstract Artista Consultar_un_artista_particular(String nick);//consulto un artista identificado con el nick
-   
-
+    public abstract boolean EdiarEspectador(String nick,String nombre,String apellido,String clave ,String fecha);
+    public boolean editarArtistas(String nick ,String nombre,String apellido,String clave ,String fecha,String descripcion ,String url,String biografia);
 
 
 }

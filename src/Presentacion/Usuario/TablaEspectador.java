@@ -41,11 +41,13 @@ public class TablaEspectador extends javax.swing.JFrame {
     public void DatosDeEspectador(String nick) {
         //Creo la tabla para el Espectador
         DefaultTableModel tablaEspectador = new DefaultTableModel();
-        String[] datosEspectador = new String[4];
+        String[] datosEspectador = new String[5];
         tablaEspectador.addColumn("Nickname");
         tablaEspectador.addColumn("Nombre");
-        tablaEspectador.addColumn("Apellido");
+        tablaEspectador.addColumn("Apellido");       
         tablaEspectador.addColumn("Mail");
+        tablaEspectador.addColumn("Fecha de nacimiento");
+        
        
         Usuarios Espectador = null;
         Espectador = this.ICUE.Consultar_un_Espectador_particular(nick);
@@ -54,6 +56,7 @@ public class TablaEspectador extends javax.swing.JFrame {
         datosEspectador[1] = Espectador.getNombre().toString();
         datosEspectador[2] = Espectador.getApellido().toString();
         datosEspectador[3] = Espectador.getMail().toString(); // Me genera problemas el Mail
+        datosEspectador[4] = Espectador.getFechai().toString();
         
         
         tablaEspectador.addRow(datosEspectador);

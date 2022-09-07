@@ -39,22 +39,11 @@ public class ConsultaUsuario extends javax.swing.JFrame {
             datos[1] = Lista.get(i).getMail().toString();
 
             tabla.addRow(datos);
+            
         }
         tablaConsulta2.setModel(tabla);
         
     }
-    
-    
-   
-        
-    
-    
-    
-    
-    
-    
-    
-    
     
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents

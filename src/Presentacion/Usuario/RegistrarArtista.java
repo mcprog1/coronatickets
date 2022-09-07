@@ -25,6 +25,19 @@ public class RegistrarArtista extends javax.swing.JFrame {
         initComponents();
         
     }
+    
+    public void Limpiar(){
+        txtNicknameA.setText("");
+        txtNombreA.setText("");
+        txtApellidoA.setText("");
+        txtClaveA.setText("");
+        txtMailA.setText("");
+        txtFechaA.setText("");
+        txtIdentificadorA.setText("");
+        txtDescripcionA.setText("");
+        txtBiografiaA.setText("");
+        txtUrlA.setText("");
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -260,6 +273,7 @@ public class RegistrarArtista extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Artista ya existente , intente otro Nickname o Mail ");
         }else if (validar  == "V"){
             JOptionPane.showMessageDialog(this,"Artista Registrado");
+            Limpiar();
         }else {
             JOptionPane.showMessageDialog(this,"Error desconocido , vuelva a intentarlo");
         }
