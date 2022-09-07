@@ -5,18 +5,20 @@
  */
 package Clases;
 
+import java.sql.Timestamp;
+
 /**
  *
  * @author Cristian
  */
 public class Usuarios {
     private String Nickname,Clave,Nombre,Apellido,Mail;
-    String fechai,identificador;
-    private DtFecha fecha;
+    private String identificador;
+    private Timestamp fechai;
     public Usuarios(){
         
     }
-    public Usuarios (String Nickname,String Clave,String Nombre,String Apellido,String Mail,String f,String i){
+    public Usuarios (String Nickname,String Clave,String Nombre,String Apellido,String Mail,Timestamp f,String i){
         this.Nickname = Nickname;
         this.Clave = Clave;
         this.Nombre = Nombre;
@@ -26,11 +28,11 @@ public class Usuarios {
         this.identificador = i;
     }
 
-    public String getFechai() {
+    public Timestamp getFechai() {
         return fechai;
     }
 
-    public void setFechai(String fechai) {
+    public void setFechai(Timestamp fechai) {
         this.fechai = fechai;
     }
 

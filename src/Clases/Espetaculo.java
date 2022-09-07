@@ -5,15 +5,30 @@
  */
 package Clases;
 
+import java.sql.Timestamp;
+
 /**
  *
  * @author Cristian
  */
 public class Espetaculo {
-    private String Nombre,ArtistaOrganizador,Descripcion,URL;
-    private int Duracion,CapacidadMinima,CapacidadMaxima;
+
+    private String Nombre, ArtistaOrganizador, Descripcion, URL;
+    private int Duracion, CapacidadMinima, CapacidadMaxima;
     private float Costo;
-    private TimeStamp FechaCreado; 
+    private Timestamp FechaCreado;
+
+    public Espetaculo(String nombre, String artistaOrganizador, String descripcion, String url, int duracion, int capacidadMinima, int capacidadMaxima, float costo, Timestamp fechaCreado){
+        this.Nombre = nombre;
+        this.ArtistaOrganizador = artistaOrganizador;
+        this.Descripcion = descripcion;
+        this.URL = url;
+        this.Duracion = duracion;
+        this.CapacidadMinima = capacidadMinima;
+        this.CapacidadMaxima = capacidadMaxima;
+        this.Costo = costo;
+        this.FechaCreado = fechaCreado;
+    }
 
     public String getNombre() {
         return Nombre;
@@ -79,13 +94,12 @@ public class Espetaculo {
         this.Costo = Costo;
     }
 
-    public TimeStamp getFechaCreado() {
+    public Timestamp getFechaCreado() {
         return FechaCreado;
     }
 
-    public void setFechaCreado(TimeStamp FechaCreado) {
+    public void setFechaCreado(Timestamp FechaCreado) {
         this.FechaCreado = FechaCreado;
     }
-    
-    
+
 }

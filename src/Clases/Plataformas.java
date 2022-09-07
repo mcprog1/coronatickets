@@ -10,7 +10,14 @@ package Clases;
  * @author Cristian
  */
 public class Plataformas {
-    private String Nombre,URL, Descripcion;
+
+    private String Nombre, Descripcion, URL;
+
+    public Plataformas(String nombre, String descripcion, String url) {
+        this.Nombre = nombre;
+        this.Descripcion = descripcion;
+        this.URL = url;
+    }
 
     public String getNombre() {
         return Nombre;
@@ -27,7 +34,7 @@ public class Plataformas {
     public void setURL(String URL) {
         this.URL = URL;
     }
-    
+
     public String getDescripcion() {
         return Descripcion;
     }
@@ -35,5 +42,5 @@ public class Plataformas {
     public void setDescripcion(String Descripcion) {
         this.Descripcion = Descripcion;
     }
-    
+
 }

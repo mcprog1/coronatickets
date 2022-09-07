@@ -55,7 +55,7 @@ public class Servicios {
                     String apellido = rs.getString("usu_apellido");
                     String mail = rs.getString("usu_mail");
                     String password = rs.getString("usu_clave");
-                    String fecha = rs.getString("usu_fecha_nacimiento");
+                    Timestamp fecha = rs.getTimestamp("usu_fecha_nacimiento");
                     String id = rs.getString("usu_tipo_usuario");
                     if (mail.equals(nickname))//Si existe email
                     {

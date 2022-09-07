@@ -4,6 +4,9 @@
  * and open the template in the editor.
  */
 package Clases;
+
+import java.sql.Timestamp;
+
 /**
  *
  * @author Cristian
@@ -13,7 +16,7 @@ public class Artista extends Usuarios {
     private String Biografia;
     private String URL;
 
-    public Artista(String Nickname, String Clave, String Nombre, String Apellido, String Mail,String f,String i,String Descripcion,String Biografia,String URL) {
+    public Artista(String Nickname, String Clave, String Nombre, String Apellido, String Mail,Timestamp f,String i,String Descripcion,String Biografia,String URL) {
         super(Nickname,Clave,Nombre,Apellido,Mail, f, i);
         this.Descripcion = Descripcion;
         this.Biografia = Biografia;

@@ -5,14 +5,17 @@
 package Presentacion;
 
 import Interface.IControladorUsuario;
+import Presentacion.CU6.SeleccionarPlataformaCU6;
+import Presentacion.CU7.SeleccionarPlataformaCU7;
+import Presentacion.CU8.SeleccionarPlataformaCU8;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import logica.Fabrica;
-
-
 
 public class VentanaPrincipal extends javax.swing.JFrame {
 
-  
     private final IControladorUsuario ICU;
+
     public VentanaPrincipal() {
         initComponents();
         this.ICU = Fabrica.getInstance().getIControladorUsuario();
@@ -21,7 +24,6 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         setLocationRelativeTo(null);
 
     }
-
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -78,6 +80,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         RegistroPlataforma = new javax.swing.JMenuItem();
         RegistroEspetaculo = new javax.swing.JMenuItem();
         RegistrosPaquetes = new javax.swing.JMenuItem();
+        RegistroFuncion = new javax.swing.JMenuItem();
         Modificar = new javax.swing.JMenu();
         EditarEspectador = new javax.swing.JMenuItem();
         EditarArtista = new javax.swing.JMenuItem();
@@ -170,15 +173,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
                                     .addComponent(jLabel3)
                                     .addGap(18, 18, 18)
                                     .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                .addGroup(FrameAltaEspectadorLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, FrameAltaEspectadorLayout.createSequentialGroup()
-                                        .addComponent(jLabel5)
-                                        .addGap(18, 18, 18)
-                                        .addComponent(txtFecha))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, FrameAltaEspectadorLayout.createSequentialGroup()
-                                        .addComponent(btnAceptarAltaEspectador)
-                                        .addGap(30, 30, 30)
-                                        .addComponent(btnCancelarAltaEspectador))))
+                                .addGroup(FrameAltaEspectadorLayout.createSequentialGroup()
+                                    .addComponent(jLabel5)
+                                    .addGap(18, 18, 18)
+                                    .addComponent(txtFecha))
+                                .addGroup(FrameAltaEspectadorLayout.createSequentialGroup()
+                                    .addComponent(btnAceptarAltaEspectador)
+                                    .addGap(30, 30, 30)
+                                    .addComponent(btnCancelarAltaEspectador)))
                             .addGroup(FrameAltaEspectadorLayout.createSequentialGroup()
                                 .addComponent(jLabel4)
                                 .addGap(29, 29, 29)
@@ -453,6 +455,14 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         RegistrosPaquetes.setText("Registrar Paquetes");
         Registros.add(RegistrosPaquetes);
 
+        RegistroFuncion.setText("Registrar Función");
+        RegistroFuncion.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RegistroFuncionActionPerformed(evt);
+            }
+        });
+        Registros.add(RegistroFuncion);
+
         jMenuBar2.add(Registros);
 
         Modificar.setText("Modificar");
@@ -488,6 +498,11 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         Consular.add(jMenuItem5);
 
         jMenuItem6.setText("Funciones disponibles");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
         Consular.add(jMenuItem6);
 
         jMenuItem7.setText("Paquetes disponibles");
@@ -524,19 +539,15 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNicknameActionPerformed
 
     private void btnAceptarAltaEspectadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarAltaEspectadorActionPerformed
-        
-        
-        ICU.addEspectador(txtNickname.getText(),txtNombre.getText(),txtApellido.getText(),txtClave.getText(),txtMail.getText(),txtFecha.getText(),txtIdentificador.getText());
+       ICU.addEspectador(txtNickname.getText(), txtNombre.getText(), txtApellido.getText(), txtClave.getText(), txtMail.getText(), Timestamp.valueOf(txtFecha.getText()), txtIdentificador.getText());
     }//GEN-LAST:event_btnAceptarAltaEspectadorActionPerformed
 
     private void RegistroEspectadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistroEspectadorActionPerformed
         FrameAltaEspectador.setVisible(true);
         FrameAltaEspectador.setLocationRelativeTo(this);
         FrameAltaEspectador.setTitle("Registrar Espectador");
-        
-        
-       
-        
+
+
     }//GEN-LAST:event_RegistroEspectadorActionPerformed
 
     private void EditarEspectadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_EditarEspectadorActionPerformed
@@ -547,7 +558,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
         FrameAltaArtista.setVisible(true);
         FrameAltaArtista.setLocationRelativeTo(this);
         FrameAltaArtista.setTitle("Registrar Artista");
-        
+
     }//GEN-LAST:event_RegistroArtistaActionPerformed
 
     private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
@@ -555,7 +566,8 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     private void jMenuItem10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem10ActionPerformed
-        // TODO add your handling code here:
+        SeleccionarPlataformaCU8 newframe = new SeleccionarPlataformaCU8();
+        newframe.setVisible(true);
     }//GEN-LAST:event_jMenuItem10ActionPerformed
 
     private void txtClave1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtClave1ActionPerformed
@@ -581,6 +593,16 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private void txtMailActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtMailActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtMailActionPerformed
+
+    private void RegistroFuncionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistroFuncionActionPerformed
+        SeleccionarPlataformaCU6 newframe = new SeleccionarPlataformaCU6();
+        newframe.setVisible(true);
+    }//GEN-LAST:event_RegistroFuncionActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        SeleccionarPlataformaCU7 newframe = new SeleccionarPlataformaCU7();
+        newframe.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -627,6 +649,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     private javax.swing.JMenuItem RegistroArtista;
     private javax.swing.JMenuItem RegistroEspectador;
     private javax.swing.JMenuItem RegistroEspetaculo;
+    private javax.swing.JMenuItem RegistroFuncion;
     private javax.swing.JMenuItem RegistroPlataforma;
     private javax.swing.JMenu Registros;
     private javax.swing.JMenuItem RegistrosPaquetes;

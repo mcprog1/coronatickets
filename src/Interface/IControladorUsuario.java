@@ -5,13 +5,15 @@
  */
 package Interface;
 
+import java.sql.Timestamp;
+
 /**
  *
  * @author laptopwin
  */
 public interface IControladorUsuario {
     
-    public abstract void addEspectador(String nick,String nombre,String apellido,String clave,String gmail,String f,String i);
+    public abstract void addEspectador(String nick,String nombre,String apellido,String clave,String gmail,Timestamp f,String i);
     //public abstract void addArtista(String nick,String nombre,String apellido,String clave,String gmail,String Descripcion,String bio,String url);
     
 }

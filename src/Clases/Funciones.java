@@ -6,40 +6,56 @@
 package Clases;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 /**
  *
  * @author Cristian
  */
 public class Funciones {
+
     private String Nombre;
-    private Date Fecha;
-    private TimeStamp FechaCreado;
-    //privete Time HoradeInicio;
+    private Timestamp Fecha;
+    private Timestamp FechaCreado;
+    private Timestamp HoraDeInicio;
     
-    public String getNombre(){
-        return Nombre;
-        
-    }
-    
-    public void setNombre(String Nombre_){
-         this.Nombre = Nombre_;
+    public Funciones(String nombre, Timestamp fecha,  Timestamp horaDeInicio, Timestamp fechaCreado){
+        this.Nombre = nombre;
+        this.Fecha = fecha;
+        this.FechaCreado = fechaCreado;
+        this.HoraDeInicio = horaDeInicio;
     }
 
-    public Date getFecha() {
+    public String getNombre() {
+        return Nombre;
+    }
+
+    public void setNombre(String Nombre_) {
+        this.Nombre = Nombre_;
+    }
+
+    public Timestamp getFecha() {
         return Fecha;
     }
 
-    public void setFecha(Date Fecha) {
+    public void setFecha(Timestamp Fecha) {
         this.Fecha = Fecha;
     }
 
-    public TimeStamp getFechaCreado() {
+    public Timestamp getFechaCreado() {
         return FechaCreado;
     }
 
-    public void setFechaCreado(TimeStamp FechaCreado) {
+    public void setFechaCreado(Timestamp FechaCreado) {
         this.FechaCreado = FechaCreado;
     }
-    
+
+    public Timestamp getHoraDeInicio() {
+        return HoraDeInicio;
+    }
+
+    public void setHoraDeInicio(Timestamp HoraDeInicio) {
+        this.HoraDeInicio = HoraDeInicio;
+    }
+
 }
