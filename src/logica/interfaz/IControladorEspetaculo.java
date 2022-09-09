@@ -3,6 +3,8 @@ package logica.interfaz;
 import Clases.Espectaculo;
 import Clases.Funciones;
 import Clases.Plataformas;
+import Clases.TimeStamp;
+import java.sql.Time;
 import java.util.ArrayList;
 /**
  *
@@ -14,4 +16,7 @@ public interface IControladorEspetaculo {
     public abstract void crearEspetaculo();
     public abstract ArrayList<Espectaculo> tablaespetaculo(String nom);//Busco espetaculo a traves del nickname del artista
     public abstract ArrayList<Funciones> ListaFuncionesEspectador(String nick);//funciones que esta registrado el Espectador
+    
+    
+   
 }

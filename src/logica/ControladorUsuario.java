@@ -15,6 +15,7 @@ import Servicios.ServiciosRegistros;
 import java.io.IOException;
 import logica.interfaz.IControladorUsuario;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -42,8 +43,8 @@ public class ControladorUsuario implements IControladorUsuario {
         return instancia;
     }
 
-    @Override
-    public String addEspectador(String nick, String nombre, String apellido, String clave, String mail, String f, String i) {
+    
+    public String addEspectador(String nick, String nombre, String apellido, String clave, String mail, /*Timestamp*/String f, String i) {
 
         boolean verificaNick = true;
         boolean verificaMail = true;
@@ -66,7 +67,7 @@ public class ControladorUsuario implements IControladorUsuario {
 
     }
 
-    public String addArtista(String Nickname, String Nombre, String Apellido, String Clave, String Mail, String f, String i, String Descripcion, String Biografia, String URL) {
+    public String addArtista(String Nickname, String Nombre, String Apellido, String Clave, String Mail, /*Timestamp*/String f, String i, String Descripcion, String Biografia, String URL) {
         boolean verificaNick = true;
         boolean verificaMail = true;
         String valido = "E";//Error si es que no se ejecuta
@@ -163,7 +164,7 @@ public class ControladorUsuario implements IControladorUsuario {
         }
         return false;
     }
-    public boolean editarArtistas(String nick ,String nombre,String apellido,String clave ,String fecha,String descripcion ,String url,String biografia){
+    public boolean editarArtistas(String nick ,String nombre,String apellido,String clave ,/*Timestamp*/String fecha,String descripcion ,String url,String biografia){
         boolean verificar = false;
         try {
             verificar  = serviciosUsuarios.editarArtista(nick, nombre, apellido, clave, fecha, descripcion, url, biografia);

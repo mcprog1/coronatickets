@@ -6,9 +6,6 @@
 package Servicios;
 
 import Clases.Artista;
-import Clases.Espectaculo;
-import Clases.Funciones;
-import Clases.Plataformas;
 import Clases.Usuarios;
 import Persistencia.ConexionDB;
 import java.sql.*;
@@ -84,7 +81,7 @@ public class ServiciosUsuarios {
                     String apellido = rs.getString("usu_apellido");
                     String password = rs.getString("usu_clave");
                     String mail = rs.getString("usu_mail");
-                    String fecha = rs.getString("usu_fecha_nacimiento");
+                    /*Timestamp*/String fecha = rs.getString("usu_fecha_nacimiento");
                     String id = rs.getString("usu_tipo_usuario");
                     if (mail.equals(correo) & nick.equals(nickname)) {
                         resultado = new Usuarios(nick, nombre, apellido, password, mail, fecha, id);
@@ -155,8 +152,8 @@ public class ServiciosUsuarios {
                 usu.setNombre(resultadoConsulta.getString("usu_nombre"));
                 usu.setClave(resultadoConsulta.getString("usu_clave"));
                 usu.setMail(resultadoConsulta.getString("usu_mail"));
-                usu.setFechai(resultadoConsulta.getString("usu_tipo_usuario"));
-                usu.setIdentificador(resultadoConsulta.getString("usu_fecha_nacimiento"));
+                usu.setFechai(resultadoConsulta.getString("usu_fecha_nacimiento"));
+                usu.setIdentificador(resultadoConsulta.getString("usu_tipo_usuario"));
                 listaUsu.add(usu);
             }
             return listaUsu;
@@ -253,7 +250,7 @@ public class ServiciosUsuarios {
         return E;
     }
     
-    public boolean editarEspectador(String nick ,String nombre,String apellido,String clave ,String fecha){
+    public boolean editarEspectador(String nick ,String nombre,String apellido,String clave ,/*Timestamp*/String fecha){
         try {
              PreparedStatement sn = conn.prepareStatement("UPDATE usuarios SET usu_nombre = ? ,usu_apellido = ? ,usu_clave = ? ,usu_fecha_nacimiento = ?   WHERE usu_nick = ?");
              sn.setString(1, nombre);
@@ -270,7 +267,7 @@ public class ServiciosUsuarios {
         return false;
     }
     
-    public boolean editarArtista(String nick ,String nombre,String apellido,String clave ,String fecha,String descripcion ,String url,String biografia){
+    public boolean editarArtista(String nick ,String nombre,String apellido,String clave ,/*Timestamp*/String fecha,String descripcion ,String url,String biografia){
         try {
              PreparedStatement sn = conn.prepareStatement("UPDATE usuarios AS u,artistas AS a SET u.usu_nombre=? ,u.usu_apellido=? ,u.usu_clave=? ,u.usu_fecha_nacimiento=? ,a.art_descripcion=? ,a.art_biografia=?,a.art_url=?   WHERE u.usu_nick = ?  AND a.art_usu_nick = u.usu_nick ");
              sn.setString(1, nombre);

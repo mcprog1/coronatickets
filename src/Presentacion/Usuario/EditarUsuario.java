@@ -7,6 +7,7 @@ package Presentacion.Usuario;
 
 import Clases.Artista;
 import Clases.Usuarios;
+import java.sql.Timestamp;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -348,7 +349,7 @@ public class EditarUsuario extends javax.swing.JFrame {
         String nom = nombre.getText();
         String apell = apellido.getText();
         String clav = clave.getText();
-        String fech = fecha.getText();
+        /*Timestamp*/String fech = fecha.getText();
         boolean op;
         boolean continuar = true;
         if(nom.isEmpty())

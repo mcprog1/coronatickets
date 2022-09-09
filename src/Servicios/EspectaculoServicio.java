@@ -5,6 +5,7 @@
  */
 package Servicios;
 import Clases.Espectaculo;
+import Clases.Paquetes;
 import Persistencia.ConexionDB;
 import java.sql.*;
 import java.util.ArrayList;
@@ -46,6 +47,46 @@ public class EspectaculoServicio {
             System.out.println("Error al buscar Espetaculos");
         }
         return organizador;
+    }
+    
+    //Crear paquetes
+    
+    public boolean addPaquetes(Paquetes p) throws SQLException{
+      
+        try {
+            PreparedStatement result = conn.prepareStatement("INSERT INTO paquetes (paq_nombre ,paq_descripcion ,paq_fecha_inicio, paq_fecha_fin, paq_descuento,paq_fecha_creado ) VALUE (?,?,?,?,?,?)");
+            
+            result.setString(1, p.getNombre());
+            result.setString(2, p.getDescripcion());
+            result.setTime(3,p.getFechaInicio());
+            result.setTime(4, p.getFechafinalizado());
+            result.setFloat(5, p.getDescuento());
+            result.setString(6,p.getFechaCreada());
+   
+            result.execute();
+            return true;
+        } catch (Exception e) {
+            System.out.println("Ocurrio un error al crear un paquete");
+        }
+        
+
+        return false;
+    }
+        
+    public boolean validarPaquetes(String nombre) {
+        try {
+            PreparedStatement status = conn.prepareStatement("SELECT * FROM paquetes WHERE paq_nombre= ?");
+            status.setString(1, nombre);
+            ResultSet ResultadoConsulta = status.executeQuery();
+            if (ResultadoConsulta.first()) {
+                return true;
+            } else {
+                return false;// existe el usuario
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return false; // No existe el usuario
+        }
     }
     
     
