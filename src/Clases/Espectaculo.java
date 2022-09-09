@@ -9,7 +9,7 @@ import java.sql.*;
  *
  * @author Cristian
  */
-public class Espetaculo {
+public class Espectaculo {
     private String Nombre,ArtistaOrganizador,Descripcion,URL, Plataforma;
     private int Duracion,CapacidadMinima,CapacidadMaxima;
     private float Costo;

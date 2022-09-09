@@ -5,7 +5,7 @@
 Aaca ava a ir los espetaculos
  */
 package coronatickets.espetaculos;
-import Clases.Espetaculo;
+import Clases.Espectaculo;
 import coronatickets.espetaculos.create;
 import java.util.ArrayList;
 import javax.swing.JTable;
@@ -33,7 +33,7 @@ public class admin extends javax.swing.JFrame {
     public void cargarTabla()
     {
         DefaultTableModel table = new DefaultTableModel();
-        ArrayList<Espetaculo> datos;
+        ArrayList<Espectaculo> datos;
         String[] filas = new String[5];
         table.addColumn("Nombre");
         table.addColumn("Artista");
@@ -154,7 +154,7 @@ public class admin extends javax.swing.JFrame {
     
     public void datosEspectaculo(String nombre)
     {
-        Espetaculo esp = ICE.obtenerDato(nombre);
+        Espectaculo esp = ICE.obtenerDato(nombre);
         /*this.nombre.setText(esp.getNombre());
         this.artista.setText(esp.getArtistaOrganizador());
         this.plataforma.setText(esp.getPLataforma());

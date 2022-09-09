@@ -5,32 +5,35 @@
  */
 package Clases;
 
+import java.sql.Timestamp;
+
 /**
  *
  * @author Cristian
  */
 public class Usuarios {
     private String Nickname,Clave,Nombre,Apellido,Mail;
-    String fechai,identificador;
-    private DtFecha fecha;
+    String identificador;
+    /*Timestamp*/String fechai;//Lo tengo en mayuscula y lucho lo tiene en minuscula
+    //private DtFecha fecha;
     public Usuarios(){
         
     }
-    public Usuarios (String Nickname,String Clave,String Nombre,String Apellido,String Mail,String f,String i){
-        this.Nickname = Nickname;
-        this.Clave = Clave;
-        this.Nombre = Nombre;
-        this.Apellido = Apellido;
-        this.Mail = Mail;
+    public Usuarios (String Nickname_,String Nombre_,String Apellido_,String Clave_,String Mail_,/*Timestamp*/String f,String i){
+        this.Nickname = Nickname_;
+        this.Nombre = Nombre_;
+        this.Apellido = Apellido_;
+        this.Clave = Clave_;
+        this.Mail = Mail_;
         this.fechai = f;
         this.identificador = i;
     }
 
-    public String getFechai() {
+    public /*Timestamp*/String getFechai() {
         return fechai;
     }
 
-    public void setFechai(String fechai) {
+    public void setFechai(/*Timestamp*/String fechai) {
         this.fechai = fechai;
     }
 

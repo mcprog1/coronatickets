@@ -5,7 +5,7 @@
  */
 package coronatickets.paquetes;
 
-import Clases.Espetaculo;
+import Clases.Espectaculo;
 import Clases.Plataformas;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -45,7 +45,7 @@ public class agregarEspectaculo extends javax.swing.JFrame {
     public void cargarTabla(String plataforma)
     {
         DefaultTableModel table = new DefaultTableModel();
-        ArrayList<Espetaculo> datos;
+        ArrayList<Espectaculo> datos;
         String[] filas = new String[4];
         table.addColumn("Nombre");
         table.addColumn("Artista");

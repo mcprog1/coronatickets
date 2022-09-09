@@ -6,6 +6,7 @@
 package Clases;
 
 import java.sql.Time;
+import java.sql.Timestamp;
 
 /**
  *
@@ -15,7 +16,17 @@ public class Paquetes {
     private String Nombre,Descripcion;
     private DtFecha FechaInicio,Fechafinalizado;
     private float Descuento;
-    private TimeStamp  FechaCreada;
+    private /*Timestamp*/String  FechaCreada;
+    
+     public Paquetes (String nom ,String Descripcion,DtFecha FechaInicio ,DtFecha Fechafinalizado,float Descuento,/*Timestamp*/String FechaCreada){
+        this.Nombre = nom;
+        this.Descripcion = Descripcion;
+        this.FechaInicio = FechaInicio;
+        this.Fechafinalizado = Fechafinalizado;
+        this.Descuento = Descuento;
+        this.FechaCreada = FechaCreada;
+        
+    }
 
     
     public Paquetes(String nombre_, String Descripcion_, DtFecha Fecha_Inicio_, DtFecha Fecha_Fin_,Float Descuento_) {
@@ -68,11 +79,11 @@ public class Paquetes {
         this.Descuento = Descuento;
     }
 
-    public TimeStamp getFechaCreada() {
+    public /*Timestamp*/String getFechaCreada() {
         return FechaCreada;
     }
 
-    public void setFechaCreada(TimeStamp FechaCreada) {
+    public void setFechaCreada(/*Timestamp*/String FechaCreada) {
         this.FechaCreada = FechaCreada;
     }
     

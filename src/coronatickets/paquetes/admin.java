@@ -5,7 +5,7 @@
  */
 package coronatickets.paquetes;
 import Clases.DtFecha;
-import Clases.Espetaculo;
+import Clases.Espectaculo;
 import Clases.Paquetes;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
@@ -70,7 +70,7 @@ public class admin extends javax.swing.JFrame {
         
          /** Cargo los paquetes */
         DefaultTableModel tableE = new DefaultTableModel();
-        ArrayList<Espetaculo> datosE;
+        ArrayList<Espectaculo> datosE;
         String[] filasP = new String[1];
         tableE.addColumn("Espectaculos");
         datosE = ICP.obtenerEspectaculosPaquetes(nombre);

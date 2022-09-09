@@ -6,7 +6,7 @@
 package coronatickets;
 
 
-import Presentacion.VentanaPrincipal;
+import Presentacion.Admin;
 
 /**
  *
@@ -18,7 +18,7 @@ public class Coronatickets {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        VentanaPrincipal ventana = new VentanaPrincipal();
+        Admin ventana = new Admin();
         ventana.setVisible(true);
     }
     

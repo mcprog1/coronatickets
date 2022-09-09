@@ -6,8 +6,11 @@
 package logica;
 import logica.interfaz.*;
 import logica.*;
+import logica.interfaz.IControladorEspetaculo;
+import logica.ControladorEspetaculo;
+import logica.interfaz.IControladorPaquetes;
 
-import Interface.IControladorUsuario;
+import logica.interfaz.IControladorUsuario;
 
 /**
  *
@@ -25,7 +28,7 @@ public class Fabrica {
     }
     
      
-     public IControladorUsuario getIControladorUsuario() {
+    public IControladorUsuario getIControladorUsuario() {
         IControladorUsuario Controlador = ControladorUsuario.getinstancia();
         return Controlador;
         
@@ -35,7 +38,14 @@ public class Fabrica {
     
     public IControladorEspetaculo getIControladorEspectaculo() {
         IControladorEspetaculo ControladorE = ControladorEspetaculo.getInstance();
-        return ControladorE; //To change body of generated methods, choose Tools | Templates.
+        return ControladorE; 
+    }
+    
+    public IControladorPaquetes getIControladorpaquetes() {
+        IControladorPaquetes ControladorP = ControladoraPaquetes.getInstance();
+        return ControladorP;
+        
+        
     }
     
      public IControladorPaquetes getIControladorPaquete() {

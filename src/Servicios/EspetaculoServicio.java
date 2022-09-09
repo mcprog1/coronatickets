@@ -83,9 +83,9 @@ public class EspetaculoServicio {
     }
     
     
-    public ArrayList<Espetaculo> datosLista(){
-        Espetaculo model;
-        ArrayList<Espetaculo> datos = new ArrayList<>();
+    public ArrayList<Espectaculo> datosLista(){
+        Espectaculo model;
+        ArrayList<Espectaculo> datos = new ArrayList<>();
         ResultSet rs;
         PreparedStatement ps;
         try{
@@ -93,7 +93,7 @@ public class EspetaculoServicio {
             rs = ps.executeQuery();
             while(rs.next())
             {
-                model = new Espetaculo();
+                model = new Espectaculo();
                 model.setNombre(rs.getString("esp_nombre"));
                 model.setPLataforma(rs.getString("esp_plat_nombre"));
                 model.setArtistaOrganizador(rs.getString("esp_art_organizador"));
@@ -115,9 +115,9 @@ public class EspetaculoServicio {
         return datos;
     }
     
-    public ArrayList<Espetaculo> datosListaPlataforma(String plataforma){
-        Espetaculo model;
-        ArrayList<Espetaculo> datos = new ArrayList<>();
+    public ArrayList<Espectaculo> datosListaPlataforma(String plataforma){
+        Espectaculo model;
+        ArrayList<Espectaculo> datos = new ArrayList<>();
         ResultSet rs;
         PreparedStatement ps;
         try{
@@ -126,7 +126,7 @@ public class EspetaculoServicio {
             rs = ps.executeQuery();
             while(rs.next())
             {
-                model = new Espetaculo();
+                model = new Espectaculo();
                 model.setNombre(rs.getString("esp_nombre"));
                 model.setPLataforma(rs.getString("esp_plat_nombre"));
                 model.setArtistaOrganizador(rs.getString("esp_art_organizador"));
@@ -148,9 +148,9 @@ public class EspetaculoServicio {
         return datos;
     }
     
-    public Espetaculo obtenerDato(String nombre)
+    public Espectaculo obtenerDato(String nombre)
     {
-        Espetaculo esp = new Espetaculo();
+        Espectaculo esp = new Espectaculo();
         ResultSet rs;
         PreparedStatement ps;
         try{
@@ -180,9 +180,9 @@ public class EspetaculoServicio {
     }
     
     
-    public ArrayList<Espetaculo> espectaculosLibresPaquete(String paquete,String plataforma){
-        Espetaculo model;
-        ArrayList<Espetaculo> datos = new ArrayList<>();
+    public ArrayList<Espectaculo> espectaculosLibresPaquete(String paquete,String plataforma){
+        Espectaculo model;
+        ArrayList<Espectaculo> datos = new ArrayList<>();
         ResultSet rs;
         PreparedStatement ps;
         try{
@@ -192,7 +192,7 @@ public class EspetaculoServicio {
             rs = ps.executeQuery();
             while(rs.next())
             {
-                model = new Espetaculo();
+                model = new Espectaculo();
                 model.setNombre(rs.getString("esp_nombre"));
                 model.setPLataforma(rs.getString("esp_plat_nombre"));
                 model.setArtistaOrganizador(rs.getString("esp_art_organizador"));

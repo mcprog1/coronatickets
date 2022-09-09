@@ -9,7 +9,7 @@ package Clases;
  *
  * @author Cristian
  */
-class TimeStamp {
+public class TimeStamp {
     public String dia,mes,anio;
     public int hora,minuto;
 

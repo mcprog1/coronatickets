@@ -5,7 +5,7 @@
  */
 package coronatickets.espetaculos;
 
-import Clases.Espetaculo;
+import Clases.Espectaculo;
 import Clases.Paquetes;
 import Clases.Plataformas;
 import java.util.ArrayList;
@@ -42,7 +42,7 @@ public class consultaEspetaculo extends javax.swing.JFrame {
     public void cargarTabla(String plataforma)
     {
         DefaultTableModel table = new DefaultTableModel();
-        ArrayList<Espetaculo> datos;
+        ArrayList<Espectaculo> datos;
         String[] filas = new String[5];
         table.addColumn("Nombre");
         table.addColumn("Artista");
@@ -68,7 +68,7 @@ public class consultaEspetaculo extends javax.swing.JFrame {
     
     public void datosEspectaculo(String nombre)
     {
-        Espetaculo esp = ICE.obtenerDato(nombre);
+        Espectaculo esp = ICE.obtenerDato(nombre);
         this.nombre.setText(esp.getNombre());
         this.artista.setText(esp.getArtistaOrganizador());
         this.descripcion.setText(esp.getDescripcion());
