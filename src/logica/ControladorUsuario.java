@@ -122,6 +122,13 @@ public class ControladorUsuario implements IControladorUsuario {
             System.out.println("Error en buscar el artista por el nombre");
             return A;
         }
+    @Override
+    public void addEspectador(String nick, String nombre, String apellido, String clave, String mail, Timestamp f,String i) {
+        
+            Usuarios u = new Usuarios(nick, nombre, apellido, clave, mail,f,i);
+            String add = String.format("INSERT INTO usuarios (usu_nick,usu_nombre,usu_apellido,usu_clave,usu_mail,usu_tipo_usuario,usu_fecha_nacimiento) "
+                    + "VALUE ('%s','%s','%s','%s','%s','%s','%s')", u.getNickname(), u.getNombre(), u.getApellido(), u.getClave(), u.getMail(),u.getFechai(),u.getIdentificador());
+            serviciosUsuarios.UpdateBD(add);
         
     }
 

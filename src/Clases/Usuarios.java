@@ -13,8 +13,8 @@ import java.sql.Timestamp;
  */
 public class Usuarios {
     private String Nickname,Clave,Nombre,Apellido,Mail;
-    String identificador;
-    /*Timestamp*/String fechai;//Lo tengo en mayuscula y lucho lo tiene en minuscula
+    private String identificador;
+    private /*Timestamp*/String fechai;//Lo tengo en mayuscula y lucho lo tiene en minuscula
     //private DtFecha fecha;
     public Usuarios(){
         
