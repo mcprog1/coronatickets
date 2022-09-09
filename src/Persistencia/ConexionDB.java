@@ -12,7 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
-
+//Prueba
 public class ConexionDB {
     private final String host= "127.0.0.1";
     private final String port= "3306";

@@ -4,6 +4,14 @@
  * and open the template in the editor.
  */
 package coronatickets.paquetes;
+import Clases.DtFecha;
+import Clases.Espetaculo;
+import Clases.Paquetes;
+import java.util.ArrayList;
+import javax.swing.table.DefaultTableModel;
+import logica.Fabrica;
+import logica.interfaz.*;
+import coronatickets.paquetes.agregarEspectaculo;
 
 /**
  *
@@ -11,13 +19,70 @@ package coronatickets.paquetes;
  */
 public class admin extends javax.swing.JFrame {
 
+    private IControladorEspetaculo ICE;
+    private IControladorPaquetes ICP;
     /**
      * Creates new form admin
      */
     public admin() {
+        this.ICE = Fabrica.getInstance().getIControladorEspectaculo();
+        this.ICP = Fabrica.getInstance().getIControladorPaquete();
         initComponents();
+        cargarTabla();
     }
-
+    
+    public void cargarTabla()
+    {
+        DefaultTableModel table = new DefaultTableModel();
+        ArrayList<Paquetes> datos;
+        String[] filas = new String[5];
+        table.addColumn("Nombre");
+        table.addColumn("Descripcion");
+        table.addColumn("Descuento");
+        table.addColumn("Fecha inicio");
+        table.addColumn("Fecha fin");
+        datos = ICP.obtenerPaquetes();
+        for(int i = 0; i<datos.size(); i++)
+        {
+            filas[0] = datos.get(i).getNombre().toString();
+            filas[1] = datos.get(i).getDescripcion().toString();
+            filas[2] = String.valueOf(datos.get(i).getDescuento());
+            filas[3] = DtFechaToString(datos.get(i).getFechaInicio());
+            filas[4] = DtFechaToString(datos.get(i).getFechafinalizado());
+            table.addRow(filas);
+        }
+        tablaPaquetes.setModel(table);
+    }
+    
+    public String DtFechaToString(DtFecha f)
+    {
+        return f.getDia()+"/"+f.getMes()+"/"+f.getAnio();
+    }
+    
+    public void datosPaquetes(String nombre)
+    {
+        Paquetes paq = ICP.obtenerDato(nombre);
+        this.nombre.setText(paq.getNombre());
+        this.descripcion.setText(paq.getDescripcion());
+        this.descuento.setText(String.valueOf(paq.getDescuento()));
+        this.inicio.setText(DtFechaToString(paq.getFechaInicio()));
+        this.fin.setText(DtFechaToString(paq.getFechafinalizado()));
+        
+         /** Cargo los paquetes */
+        DefaultTableModel tableE = new DefaultTableModel();
+        ArrayList<Espetaculo> datosE;
+        String[] filasP = new String[1];
+        tableE.addColumn("Espectaculos");
+        datosE = ICP.obtenerEspectaculosPaquetes(nombre);
+        for(int i = 0; i<datosE.size(); i++)
+        {
+            filasP[0] = datosE.get(i).getNombre().toString();
+            tableE.addRow(filasP);
+        }
+        espectaculos.setModel(tableE);
+        
+    }
+    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,21 +92,258 @@ public class admin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaEspetaculos = new javax.swing.JTable();
+        jScrollPane4 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel1 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tablaPaquetes = new javax.swing.JTable();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
+        nombre = new javax.swing.JTextField();
+        jLabel4 = new javax.swing.JLabel();
+        descuento = new javax.swing.JTextField();
+        inicio = new javax.swing.JTextField();
+        jLabel5 = new javax.swing.JLabel();
+        fin = new javax.swing.JTextField();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jScrollPane3 = new javax.swing.JScrollPane();
+        descripcion = new javax.swing.JTextArea();
+        jScrollPane5 = new javax.swing.JScrollPane();
+        espectaculos = new javax.swing.JTable();
+        jLabel8 = new javax.swing.JLabel();
+        btnAgregarEspectaculo = new javax.swing.JButton();
+
+        tablaEspetaculos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        tablaEspetaculos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaEspetaculosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tablaEspetaculos);
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        jScrollPane4.setViewportView(jTable1);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowActivated(java.awt.event.WindowEvent evt) {
+                formWindowActivated(evt);
+            }
+        });
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setText("Paquete espetaculos");
+
+        tablaPaquetes.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        tablaPaquetes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaPaquetesMouseClicked(evt);
+            }
+        });
+        jScrollPane2.setViewportView(tablaPaquetes);
+
+        jLabel2.setText("Nombre:");
+
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel3.setText("Informacion paquete");
+
+        nombre.setEditable(false);
+
+        jLabel4.setText("D:escuento");
+
+        descuento.setEditable(false);
+
+        inicio.setEditable(false);
+
+        jLabel5.setText("Inicio:");
+
+        fin.setEditable(false);
+
+        jLabel6.setText("Fin:");
+
+        jLabel9.setText("Descripcion");
+
+        descripcion.setEditable(false);
+        descripcion.setColumns(20);
+        descripcion.setRows(5);
+        jScrollPane3.setViewportView(descripcion);
+
+        espectaculos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane5.setViewportView(espectaculos);
+
+        jLabel8.setText("Espectaculos");
+
+        btnAgregarEspectaculo.setText("Agregar espectaculo");
+        btnAgregarEspectaculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarEspectaculoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(21, 21, 21)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addGap(183, 183, 183)
+                        .addComponent(jLabel3)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGap(33, 33, 33)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel4)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(descuento, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(fin, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel9)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(jScrollPane3)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(btnAgregarEspectaculo)))
+                        .addGap(37, 37, 37))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 265, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel2)
+                                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel4)
+                                    .addComponent(descuento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jLabel5)
+                                    .addComponent(inicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel6)
+                                    .addComponent(fin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel9)))))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel8)
+                            .addComponent(btnAgregarEspectaculo))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(31, 31, 31))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void tablaEspetaculosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaEspetaculosMouseClicked
+       /* int fila = tablaEspetaculos.getSelectedRow();
+        String nombre = (String) tablaEspetaculos.getValueAt(fila,0);//selecciono de la fila seleccionada la primera
+*/
+        //datosEspectaculo(nombre);
+    }//GEN-LAST:event_tablaEspetaculosMouseClicked
+
+    private void tablaPaquetesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaPaquetesMouseClicked
+        int fila = tablaPaquetes.getSelectedRow();
+        String nombre = (String) tablaPaquetes.getValueAt(fila,0);//selecciono de la fila seleccionada la primera
+
+        datosPaquetes(nombre);
+    }//GEN-LAST:event_tablaPaquetesMouseClicked
+
+    private void btnAgregarEspectaculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarEspectaculoActionPerformed
+        int fila = tablaPaquetes.getSelectedRow();
+        String nombre = (String) tablaPaquetes.getValueAt(fila,0);//selecciono de la fila seleccionada la primera
+        agregarEspectaculo frame = new agregarEspectaculo(nombre);
+        frame.setVisible(true);
+    }//GEN-LAST:event_btnAgregarEspectaculoActionPerformed
+
+    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
+        int fila = tablaPaquetes.getSelectedRow();
+        System.err.println(fila);
+        if(fila >= 0)
+        {
+            String nombre = (String) tablaPaquetes.getValueAt(fila,0);//selecciono de la fila seleccionada la primera
+            datosPaquetes(nombre);
+        }
+        
+    }//GEN-LAST:event_formWindowActivated
 
     /**
      * @param args the command line arguments
@@ -79,5 +381,28 @@ public class admin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnAgregarEspectaculo;
+    private javax.swing.JTextArea descripcion;
+    private javax.swing.JTextField descuento;
+    private javax.swing.JTable espectaculos;
+    private javax.swing.JTextField fin;
+    private javax.swing.JTextField inicio;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JScrollPane jScrollPane4;
+    private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField nombre;
+    private javax.swing.JTable tablaEspetaculos;
+    private javax.swing.JTable tablaPaquetes;
     // End of variables declaration//GEN-END:variables
 }

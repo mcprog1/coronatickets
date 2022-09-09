@@ -1,4 +1,5 @@
 package logica;
+import Clases.Espetaculo;
 import logica.interfaz.IControladorEspetaculo;
 import Servicios.EspetaculoServicio;
 import Servicios.PlataformaServicio;
@@ -25,9 +26,9 @@ public class ControladorEspetaculo implements IControladorEspetaculo{
         return instancia;
     }
         
-    public void crearEspetaculo()
+    public void crearEspetaculo(String plataforma, String artista, String nombre, int duracion, int maximo, int minimo, String url, float costo)
     {
-        
+        this.espetaculoServicio.crearActualizarEspetaculo(nombre, plataforma, artista, url, duracion, minimo, minimo, url, costo);
     }
     
     public String crearPlataforma(String nombre, String desc, String url)
@@ -54,4 +55,28 @@ public class ControladorEspetaculo implements IControladorEspetaculo{
         return datos;
     }
     
+     public ArrayList<Espetaculo> tblEspectaculo(){
+        ArrayList<Espetaculo> datos = new ArrayList<>();
+        datos = this.espetaculoServicio.datosLista();
+        return datos;
+    }
+    
+      public ArrayList<Espetaculo> tblEspectaculoPlataforma(String plataforma){
+        ArrayList<Espetaculo> datos = new ArrayList<>();
+        datos = this.espetaculoServicio.datosListaPlataforma(plataforma);
+        return datos;
+    }
+    
+    public ArrayList<Espetaculo> tblEspectaculoNoPaquete(String paquete, String plataforma){
+        ArrayList<Espetaculo> datos = new ArrayList<>();
+        datos = this.espetaculoServicio.espectaculosLibresPaquete(paquete, plataforma);
+        return datos;
+    }
+    
+    public Espetaculo obtenerDato(String nombre){
+        Espetaculo esp ;
+        esp = this.espetaculoServicio.obtenerDato(nombre);
+        return esp;
+    }
+     
 }

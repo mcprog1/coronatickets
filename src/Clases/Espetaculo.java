@@ -4,16 +4,16 @@
  * and open the template in the editor.
  */
 package Clases;
-
+import java.sql.*;
 /**
  *
  * @author Cristian
  */
 public class Espetaculo {
-    private String Nombre,ArtistaOrganizador,Descripcion,URL;
+    private String Nombre,ArtistaOrganizador,Descripcion,URL, Plataforma;
     private int Duracion,CapacidadMinima,CapacidadMaxima;
     private float Costo;
-    private TimeStamp FechaCreado; 
+    private Timestamp FechaCreado; 
 
     public String getNombre() {
         return Nombre;
@@ -21,6 +21,14 @@ public class Espetaculo {
 
     public void setNombre(String Nombre) {
         this.Nombre = Nombre;
+    }
+    
+    public String getPLataforma() {
+        return Plataforma;
+    }
+
+    public void setPLataforma(String Plataforma) {
+        this.Plataforma = Plataforma;
     }
 
     public String getArtistaOrganizador() {
@@ -79,11 +87,11 @@ public class Espetaculo {
         this.Costo = Costo;
     }
 
-    public TimeStamp getFechaCreado() {
+    public Timestamp getFechaCreado() {
         return FechaCreado;
     }
 
-    public void setFechaCreado(TimeStamp FechaCreado) {
+    public void setFechaCreado(Timestamp FechaCreado) {
         this.FechaCreado = FechaCreado;
     }
     
