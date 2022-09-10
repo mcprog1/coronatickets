@@ -6,9 +6,11 @@
 package Servicios;
 
 import Clases.Artista;
-import Clases.Usuarios;
+import Clases.*;
 import Persistencia.ConexionDB;
 import java.sql.*;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -34,7 +36,7 @@ public class ServiciosUsuarios {
             result.setString(3, u.getApellido());
             result.setString(4, u.getClave());
             result.setString(5, u.getMail());
-            result.setString(6, u.getFechai());
+            result.setDate(6, dtFechaToDate(u.getFechai()));
             result.setString(7, u.getIdentificador());
             result.execute();
             return true;
@@ -81,10 +83,10 @@ public class ServiciosUsuarios {
                     String apellido = rs.getString("usu_apellido");
                     String password = rs.getString("usu_clave");
                     String mail = rs.getString("usu_mail");
-                    /*Timestamp*/String fecha = rs.getString("usu_fecha_nacimiento");
+                    Date fecha = rs.getDate("usu_fecha_nacimiento");
                     String id = rs.getString("usu_tipo_usuario");
                     if (mail.equals(correo) & nick.equals(nickname)) {
-                        resultado = new Usuarios(nick, nombre, apellido, password, mail, fecha, id);
+                        resultado = new Usuarios(nick, nombre, apellido, password, mail, dateToDTFecha(fecha), id);
                     };
                 }
             }
@@ -152,7 +154,7 @@ public class ServiciosUsuarios {
                 usu.setNombre(resultadoConsulta.getString("usu_nombre"));
                 usu.setClave(resultadoConsulta.getString("usu_clave"));
                 usu.setMail(resultadoConsulta.getString("usu_mail"));
-                usu.setFechai(resultadoConsulta.getString("usu_fecha_nacimiento"));
+                usu.setFechai(dateToDTFecha(resultadoConsulta.getDate("usu_fecha_nacimiento")));
                 usu.setIdentificador(resultadoConsulta.getString("usu_tipo_usuario"));
                 listaUsu.add(usu);
             }
@@ -199,7 +201,7 @@ public class ServiciosUsuarios {
                 A.setApellido(resultadoConsulta.getString("usu_apellido"));
                 A.setClave(resultadoConsulta.getString("usu_clave"));
                 A.setMail(resultadoConsulta.getString("usu_mail"));
-                A.setFechai(resultadoConsulta.getString("usu_fecha_nacimiento"));
+                A.setFechai(dateToDTFecha(resultadoConsulta.getDate("usu_fecha_nacimiento")));
                 A.setBiografia(resultadoConsulta.getString("art_biografia"));
                 A.setURL(resultadoConsulta.getString("art_url"));
                 A.setDescripcion(resultadoConsulta.getString("art_descripcion"));
@@ -241,7 +243,7 @@ public class ServiciosUsuarios {
                 E.setApellido(resultadoConsulta.getString("usu_apellido"));
                 E.setClave(resultadoConsulta.getString("usu_clave"));
                 E.setMail(resultadoConsulta.getString("usu_mail"));
-                E.setFechai(resultadoConsulta.getString("usu_fecha_nacimiento"));
+                E.setFechai(dateToDTFecha(resultadoConsulta.getDate("usu_fecha_nacimiento")));
                 return E;
             }
         } catch (SQLException e) {
@@ -250,13 +252,35 @@ public class ServiciosUsuarios {
         return E;
     }
     
-    public boolean editarEspectador(String nick ,String nombre,String apellido,String clave ,/*Timestamp*/String fecha){
+     public Clases.DtFecha dateToDTFecha(Date fecha){
+        if(fecha != null){
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String fechaDB = dateFormat.format(fecha);
+            String[] partes = fechaDB.split("-");
+            return new Clases.DtFecha(partes[2],partes[1],partes[0]);
+        }
+        else{
+            return new Clases.DtFecha("0","0","0");
+        }
+    }
+    
+    public String DtFechaToString(Clases.DtFecha f)
+    {
+        return f.getDia()+"/"+f.getMes()+"/"+f.getAnio();
+    }
+     public Date dtFechaToDate(Clases.DtFecha fecha){
+         
+        Date fechaFinal = Date.valueOf(DtFechaToString(fecha));
+        return fechaFinal;
+    }
+     
+    public boolean editarEspectador(String nick ,String nombre,String apellido,String clave ,Clases.DtFecha fecha){
         try {
              PreparedStatement sn = conn.prepareStatement("UPDATE usuarios SET usu_nombre = ? ,usu_apellido = ? ,usu_clave = ? ,usu_fecha_nacimiento = ?   WHERE usu_nick = ?");
              sn.setString(1, nombre);
              sn.setString(2,apellido);
              sn.setString(3, clave);
-             sn.setString(4, fecha);
+             sn.setDate(4, dtFechaToDate(fecha));
              sn.setString(5, nick);
              sn.executeUpdate();
              return true;
@@ -267,13 +291,13 @@ public class ServiciosUsuarios {
         return false;
     }
     
-    public boolean editarArtista(String nick ,String nombre,String apellido,String clave ,/*Timestamp*/String fecha,String descripcion ,String url,String biografia){
+    public boolean editarArtista(String nick ,String nombre,String apellido,String clave ,Clases.DtFecha fecha,String descripcion ,String url,String biografia){
         try {
              PreparedStatement sn = conn.prepareStatement("UPDATE usuarios AS u,artistas AS a SET u.usu_nombre=? ,u.usu_apellido=? ,u.usu_clave=? ,u.usu_fecha_nacimiento=? ,a.art_descripcion=? ,a.art_biografia=?,a.art_url=?   WHERE u.usu_nick = ?  AND a.art_usu_nick = u.usu_nick ");
              sn.setString(1, nombre);
              sn.setString(2,apellido);
              sn.setString(3, clave);
-             sn.setString(4, fecha);
+             sn.setDate(4, dtFechaToDate(fecha));
              sn.setString(5,descripcion);
              sn.setString(6, biografia);
              sn.setString(7, url);

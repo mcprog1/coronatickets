@@ -47,21 +47,25 @@ public class PlataformaServicio {
         }
     }
 
-    public ArrayList<Plataformas> datosList() {
+    public ArrayList<Plataformas> datosList(){
         Plataformas model;
         ArrayList<Plataformas> plat = new ArrayList<>();
         ResultSet rs;
         PreparedStatement ps;
-        try {
+        try{
             ps = conexion.prepareStatement("SELECT * FROM plataforma");
             rs = ps.executeQuery();
-            while (rs.next()) {
-                model = new Plataformas("plat_nombre", "plat_url", "plat_descripcion");
+            while(rs.next())
+            {
+                model = new Plataformas();
+                model.setNombre(rs.getString("plat_nombre"));
+                model.setDescripcion(rs.getString("plat_descripcion"));
+                model.setURL(rs.getString("plat_url"));
                 plat.add(model);
             }
             rs.close();
             ps.close();
-        } catch (SQLException ex) {
+        }catch (SQLException ex) {
             ex.printStackTrace();
         }
         return plat;

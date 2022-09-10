@@ -5,6 +5,9 @@
  */
 package Presentacion.Usuario;
 
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import logica.interfaz.IControladorUsuario;
 import logica.Fabrica;
@@ -191,19 +194,29 @@ public class RegistrarEspectador extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    public Clases.DtFecha dateToDTFecha(Date fecha){
+        if(fecha != null){
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String fechaDB = dateFormat.format(fecha);
+            String[] partes = fechaDB.split("-");
+            return new Clases.DtFecha(partes[2],partes[1],partes[0]);
+        }
+        else{
+            return new Clases.DtFecha("0","0","0");
+        }
+    }
     private void btnAceptarAltaEspectadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarAltaEspectadorActionPerformed
         String nick = txtNickname.getText();
         String nombre = txtNombre.getText();
         String apellido = txtApellido.getText();
         String clave = txtClave.getText();
         String mail = txtMail.getText();
-        String fecha = txtFecha.getText();
+        Date fecha = Date.valueOf(txtFecha.getText());
         String id = txtIdentificador.getText();
         
         
         String Validar;
-        Validar = ICUE.addEspectador(nick, nombre, apellido, clave, mail, fecha, id);
+        Validar = ICUE.addEspectador(nick, nombre, apellido, clave, mail, dateToDTFecha(fecha), id);
         if(Validar == "I"){
             JOptionPane.showMessageDialog(this, "Espectador ya existente , intente otro Nickname o Mail ");
         }else if (Validar  == "V"){

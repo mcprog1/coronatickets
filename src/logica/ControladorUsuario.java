@@ -16,6 +16,7 @@ import java.io.IOException;
 import logica.interfaz.IControladorUsuario;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import Clases.*;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -44,7 +45,7 @@ public class ControladorUsuario implements IControladorUsuario {
     }
 
     
-    public String addEspectador(String nick, String nombre, String apellido, String clave, String mail, /*Timestamp*/String f, String i) {
+    public String addEspectador(String nick, String nombre, String apellido, String clave, String mail, DtFecha f, String i) {
 
         boolean verificaNick = true;
         boolean verificaMail = true;
@@ -67,7 +68,7 @@ public class ControladorUsuario implements IControladorUsuario {
 
     }
 
-    public String addArtista(String Nickname, String Nombre, String Apellido, String Clave, String Mail, /*Timestamp*/String f, String i, String Descripcion, String Biografia, String URL) {
+    public String addArtista(String Nickname, String Nombre, String Apellido, String Clave, String Mail, DtFecha f, String i, String Descripcion, String Biografia, String URL) {
         boolean verificaNick = true;
         boolean verificaMail = true;
         String valido = "E";//Error si es que no se ejecuta
@@ -125,14 +126,14 @@ public class ControladorUsuario implements IControladorUsuario {
     }
         
     
-    public void addEspectador(String nick, String nombre, String apellido, String clave, String mail, Timestamp f,String i) {
+    /*public void addEspectador(String nick, String nombre, String apellido, String clave, String mail, Timestamp f,String i) {
         
             Usuarios u = new Usuarios(nick, nombre, apellido, clave, mail,f,i);
             String add = String.format("INSERT INTO usuarios (usu_nick,usu_nombre,usu_apellido,usu_clave,usu_mail,usu_tipo_usuario,usu_fecha_nacimiento) "
                     + "VALUE ('%s','%s','%s','%s','%s','%s','%s')", u.getNickname(), u.getNombre(), u.getApellido(), u.getClave(), u.getMail(),u.getFechai(),u.getIdentificador());
             serviciosUsuarios.UpdateBD(add);
         
-    }
+    }*/
 
     public int Artista_o_Espectador(String nick) {
         if (serviciosUsuarios.EsArtistaoEspectador(nick) == 1) {
@@ -158,7 +159,7 @@ public class ControladorUsuario implements IControladorUsuario {
         
     }
     
-    public boolean EdiarEspectador(String nick,String nombre,String apellido,String clave ,String fecha){
+    public boolean EdiarEspectador(String nick,String nombre,String apellido,String clave ,DtFecha fecha){
         boolean verificar = false;
         try {
             verificar  = serviciosUsuarios.editarEspectador(nick, nombre, apellido, clave, fecha);
@@ -173,7 +174,7 @@ public class ControladorUsuario implements IControladorUsuario {
         }
         return false;
     }
-    public boolean editarArtistas(String nick ,String nombre,String apellido,String clave ,/*Timestamp*/String fecha,String descripcion ,String url,String biografia){
+    public boolean editarArtistas(String nick ,String nombre,String apellido,String clave ,DtFecha fecha,String descripcion ,String url,String biografia){
         boolean verificar = false;
         try {
             verificar  = serviciosUsuarios.editarArtista(nick, nombre, apellido, clave, fecha, descripcion, url, biografia);

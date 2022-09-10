@@ -13,6 +13,17 @@ public class TimeStamp {
     public String dia,mes,anio;
     public int hora,minuto;
 
+    public TimeStamp(){}
+    
+    public TimeStamp(String dia, String mes, String anio, int hora, int minuto){
+        this.dia = dia;
+        this.mes = mes;
+        this.anio = anio;
+        this.hora = hora;
+        this.minuto = minuto;
+    }
+    
+    
     public String getDia() {
         return dia;
     }

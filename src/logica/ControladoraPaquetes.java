@@ -10,7 +10,10 @@ import Servicios.*;
 import java.util.ArrayList;
 import Clases.TimeStamp;
 import Servicios.EspectaculoServicio;
+import java.sql.Date;
 import java.sql.Time;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import logica.interfaz.IControladorPaquetes;
 
 /**
@@ -72,12 +75,24 @@ public class ControladoraPaquetes implements IControladorPaquetes{
         this.paquetesServicio.agregarPaqueteEspectaculo(espectaculo, paquete);
     }
     
-    public String crearpaquete(String nom ,String Descripcion,Time FechaInicio ,Time Fechafinalizado,float Descuento,/*Timestamp*/String FechaCreada){
+    public Clases.DtFecha dateToDTFecha(Date fecha){
+        if(fecha != null){
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String fechaDB = dateFormat.format(fecha);
+            String[] partes = fechaDB.split("-");
+            return new Clases.DtFecha(partes[2],partes[1],partes[0]);
+        }
+        else{
+            return new Clases.DtFecha("0","0","0");
+        }
+    }
+    
+    public String crearpaquete(String nom ,String Descripcion,Date FechaInicio ,Date Fechafinalizado,float Descuento,/*Timestamp*/String FechaCreada){
         
         boolean i = false;
         String info;
         boolean verificar = false;
-        Paquetes p = new Paquetes(nom , Descripcion, FechaInicio , Fechafinalizado, Descuento, FechaCreada);
+        Paquetes p = new Paquetes(nom , Descripcion, dateToDTFecha(FechaInicio), dateToDTFecha(Fechafinalizado), Descuento, FechaCreada);
         
         
         verificar = serviciosP.validarPaquetes(nom) ;

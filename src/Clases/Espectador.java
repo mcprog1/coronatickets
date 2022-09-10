@@ -6,6 +6,7 @@
 package Clases;
 
 import java.sql.Timestamp;
+import Clases.TimeStamp;
 
 /**
  *
@@ -13,7 +14,7 @@ import java.sql.Timestamp;
  */
 public class Espectador extends Usuarios {
     
-    public Espectador(String Nickname, String Clave, String Nombre, String Apellido, String Mail,/*Timestamp*/String f,String i) {
+    public Espectador(String Nickname, String Clave, String Nombre, String Apellido, String Mail,DtFecha f,String i) {
         super(Nickname, Nombre, Apellido, Clave , Mail, f, i);
     }
     

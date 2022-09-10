@@ -32,7 +32,7 @@ public class ControladorEspectaculo implements IControladorEspetaculo{
         
     public void crearEspetaculo(String plataforma, String artista, String nombre, int duracion, int maximo, int minimo, String url, float costo)
     {
-        this.espetaculoServicio.crearActualizarEspetaculo(nombre, plataforma, artista, url, duracion, minimo, minimo, url, costo);
+        this.espectaculoServicio.crearActualizarEspetaculo(nombre, plataforma, artista, url, duracion, minimo, minimo, url, costo);
     }
     
     public String crearPlataforma(String nombre, String desc, String url)
@@ -61,25 +61,25 @@ public class ControladorEspectaculo implements IControladorEspetaculo{
     
      public ArrayList<Espectaculo> tblEspectaculo(){
         ArrayList<Espectaculo> datos = new ArrayList<>();
-        datos = this.espetaculoServicio.datosLista();
+        datos = this.espectaculoServicio.datosLista();
         return datos;
     }
     
       public ArrayList<Espectaculo> tblEspectaculoPlataforma(String plataforma){
         ArrayList<Espectaculo> datos = new ArrayList<>();
-        datos = this.espetaculoServicio.datosListaPlataforma(plataforma);
+        datos = this.espectaculoServicio.datosListaPlataforma(plataforma);
         return datos;
     }
     
     public ArrayList<Espectaculo> tblEspectaculoNoPaquete(String paquete, String plataforma){
         ArrayList<Espectaculo> datos = new ArrayList<>();
-        datos = this.espetaculoServicio.espectaculosLibresPaquete(paquete, plataforma);
+        datos = this.espectaculoServicio.espectaculosLibresPaquete(paquete, plataforma);
         return datos;
     }
     
     public Espectaculo obtenerDato(String nombre){
         Espectaculo esp ;
-        esp = this.espetaculoServicio.obtenerDato(nombre);
+        esp = this.espectaculoServicio.obtenerDato(nombre);
         return esp;
     }
      

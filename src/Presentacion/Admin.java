@@ -4,11 +4,16 @@
  */
 package Presentacion;
 
+import Presentacion.CU6.SeleccionarPlataformaCU6;
+import Presentacion.CU7.SeleccionarPlataformaCU7;
+import Presentacion.CU8.SeleccionarPlataformaCU8;
 import Presentacion.Usuario.ConsultaUsuario;
 import Presentacion.Usuario.EditarUsuario;
+import Presentacion.Usuario.*;
 import logica.interfaz.IControladorUsuario;
 import Presentacion.Usuario.RegistrarArtista;
 import Presentacion.Usuario.RegistrarEspectador;
+import coronatickets.*;
 //import javax.swing.JFrame;
 import logica.Fabrica;
 
@@ -35,13 +40,24 @@ public class Admin extends javax.swing.JFrame {
         FrameConsultaU = new javax.swing.JFrame();
         FrameEditarU = new javax.swing.JFrame();
         jMenuBar2 = new javax.swing.JMenuBar();
-        Registros = new javax.swing.JMenu();
+        jMenu1 = new javax.swing.JMenu();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        Modificar = new javax.swing.JMenu();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        Consular = new javax.swing.JMenu();
+        menuCE = new javax.swing.JMenuItem();
+        menuCee = new javax.swing.JMenuItem();
+        jMenu2 = new javax.swing.JMenu();
+        jMenuItem11 = new javax.swing.JMenuItem();
         RegistroEspectador = new javax.swing.JMenuItem();
         RegistroArtista = new javax.swing.JMenuItem();
-        Modificar = new javax.swing.JMenu();
         EditarUsuario = new javax.swing.JMenuItem();
-        Consular = new javax.swing.JMenu();
-        jMenuItem11 = new javax.swing.JMenuItem();
+        jMenu3 = new javax.swing.JMenu();
+        jMenuItem7 = new javax.swing.JMenuItem();
+        jMenuItem6 = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
+        jMenuItem8 = new javax.swing.JMenuItem();
 
         FrameConsultaU.setMinimumSize(new java.awt.Dimension(500, 500));
 
@@ -72,7 +88,67 @@ public class Admin extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(500, 500));
 
-        Registros.setText("Registros");
+        jMenu1.setText("Inscripciones");
+
+        jMenuItem3.setText("Inscribir usuario a función");
+        jMenuItem3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem3ActionPerformed(evt);
+            }
+        });
+        jMenu1.add(jMenuItem3);
+
+        jMenuBar2.add(jMenu1);
+
+        Modificar.setText("Función");
+
+        jMenuItem2.setText("Consultar función");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        Modificar.add(jMenuItem2);
+
+        jMenuItem1.setText("Registrar Función");
+        jMenuItem1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem1ActionPerformed(evt);
+            }
+        });
+        Modificar.add(jMenuItem1);
+
+        jMenuBar2.add(Modificar);
+
+        Consular.setText("Espectaculos");
+
+        menuCE.setText("Crear espectaculo");
+        menuCE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCEActionPerformed(evt);
+            }
+        });
+        Consular.add(menuCE);
+
+        menuCee.setText("Consultar espectaculo");
+        menuCee.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                menuCeeActionPerformed(evt);
+            }
+        });
+        Consular.add(menuCee);
+
+        jMenuBar2.add(Consular);
+
+        jMenu2.setText("Usuarios");
+
+        jMenuItem11.setText("Consultar usuario");
+        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem11ActionPerformed(evt);
+            }
+        });
+        jMenu2.add(jMenuItem11);
 
         RegistroEspectador.setText("Registrar Espectador");
         RegistroEspectador.addActionListener(new java.awt.event.ActionListener() {
@@ -80,7 +156,7 @@ public class Admin extends javax.swing.JFrame {
                 RegistroEspectadorActionPerformed(evt);
             }
         });
-        Registros.add(RegistroEspectador);
+        jMenu2.add(RegistroEspectador);
 
         RegistroArtista.setText("Registrar Artista");
         RegistroArtista.addActionListener(new java.awt.event.ActionListener() {
@@ -88,33 +164,49 @@ public class Admin extends javax.swing.JFrame {
                 RegistroArtistaActionPerformed(evt);
             }
         });
-        Registros.add(RegistroArtista);
+        jMenu2.add(RegistroArtista);
 
-        jMenuBar2.add(Registros);
-
-        Modificar.setText("Modificar");
-
-        EditarUsuario.setText("Modifar Usuario");
+        EditarUsuario.setText("Modifcar Usuario");
         EditarUsuario.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 EditarUsuarioActionPerformed(evt);
             }
         });
-        Modificar.add(EditarUsuario);
+        jMenu2.add(EditarUsuario);
 
-        jMenuBar2.add(Modificar);
+        jMenuBar2.add(jMenu2);
 
-        Consular.setText("Consultar");
+        jMenu3.setText("Paquetes");
 
-        jMenuItem11.setText("consular Usuario");
-        jMenuItem11.addActionListener(new java.awt.event.ActionListener() {
+        jMenuItem7.setText("Crear paquete");
+        jMenuItem7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jMenuItem11ActionPerformed(evt);
+                jMenuItem7ActionPerformed(evt);
             }
         });
-        Consular.add(jMenuItem11);
+        jMenu3.add(jMenuItem7);
 
-        jMenuBar2.add(Consular);
+        jMenuItem6.setText("Consultar paquete");
+        jMenuItem6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem6ActionPerformed(evt);
+            }
+        });
+        jMenu3.add(jMenuItem6);
+
+        jMenuBar2.add(jMenu3);
+
+        jMenu4.setText("Plataformas");
+
+        jMenuItem8.setText("Consultar plataformas");
+        jMenuItem8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem8ActionPerformed(evt);
+            }
+        });
+        jMenu4.add(jMenuItem8);
+
+        jMenuBar2.add(jMenu4);
 
         setJMenuBar(jMenuBar2);
 
@@ -122,11 +214,11 @@ public class Admin extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 319, Short.MAX_VALUE)
+            .addGap(0, 452, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 108, Short.MAX_VALUE)
+            .addGap(0, 174, Short.MAX_VALUE)
         );
 
         pack();
@@ -163,6 +255,46 @@ public class Admin extends javax.swing.JFrame {
         editar.show(true);
         
     }//GEN-LAST:event_EditarUsuarioActionPerformed
+
+    private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
+        SeleccionarPlataformaCU6 newframe = new SeleccionarPlataformaCU6();
+        newframe.setVisible(true);
+    }//GEN-LAST:event_jMenuItem1ActionPerformed
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        SeleccionarPlataformaCU7 newframe = new SeleccionarPlataformaCU7();
+        newframe.setVisible(true);
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
+
+    private void jMenuItem3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem3ActionPerformed
+        SeleccionarPlataformaCU8 newframe = new SeleccionarPlataformaCU8();
+        newframe.setVisible(true);
+    }//GEN-LAST:event_jMenuItem3ActionPerformed
+
+    private void menuCEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCEActionPerformed
+        coronatickets.espetaculos.create newFrame = new coronatickets.espetaculos.create();
+        newFrame.setVisible(true);
+    }//GEN-LAST:event_menuCEActionPerformed
+
+    private void menuCeeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_menuCeeActionPerformed
+        coronatickets.espetaculos.consultaEspetaculo newFrame = new coronatickets.espetaculos.consultaEspetaculo();
+        newFrame.setVisible(true);
+    }//GEN-LAST:event_menuCeeActionPerformed
+
+    private void jMenuItem7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem7ActionPerformed
+        Presentacion.Usuario.CrearPaquete newFrame = new Presentacion.Usuario.CrearPaquete();
+        newFrame.setVisible(true);
+    }//GEN-LAST:event_jMenuItem7ActionPerformed
+
+    private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
+        coronatickets.paquetes.admin newFrame = new coronatickets.paquetes.admin();
+        newFrame.setVisible(true);
+    }//GEN-LAST:event_jMenuItem6ActionPerformed
+
+    private void jMenuItem8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem8ActionPerformed
+        coronatickets.plataformas.admin newFrame = new coronatickets.plataformas.admin();
+        newFrame.setVisible(true);
+    }//GEN-LAST:event_jMenuItem8ActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
@@ -205,8 +337,19 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JMenu Modificar;
     private javax.swing.JMenuItem RegistroArtista;
     private javax.swing.JMenuItem RegistroEspectador;
-    private javax.swing.JMenu Registros;
+    private javax.swing.JMenu jMenu1;
+    private javax.swing.JMenu jMenu2;
+    private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JMenuBar jMenuBar2;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem11;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JMenuItem jMenuItem6;
+    private javax.swing.JMenuItem jMenuItem7;
+    private javax.swing.JMenuItem jMenuItem8;
+    private javax.swing.JMenuItem menuCE;
+    private javax.swing.JMenuItem menuCee;
     // End of variables declaration//GEN-END:variables
 }

@@ -5,6 +5,9 @@
  */
 package Presentacion.Usuario;
 
+import java.sql.Date;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import logica.interfaz.IControladorUsuario;
 import logica.Fabrica;
@@ -255,6 +258,18 @@ public class RegistrarArtista extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_txtClaveAActionPerformed
 
+    public Clases.DtFecha dateToDTFecha(Date fecha){
+        if(fecha != null){
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String fechaDB = dateFormat.format(fecha);
+            String[] partes = fechaDB.split("-");
+            return new Clases.DtFecha(partes[2],partes[1],partes[0]);
+        }
+        else{
+            return new Clases.DtFecha("0","0","0");
+        }
+    }
+    
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         
         String nick = txtNicknameA.getText();
@@ -262,13 +277,13 @@ public class RegistrarArtista extends javax.swing.JFrame {
         String apellido = txtApellidoA.getText();
         String clave = txtClaveA.getText();
         String mail = txtMailA.getText();
-        String fecha = txtFechaA.getText();
+        Date fecha = Date.valueOf(txtFechaA.getText());
         String id = txtIdentificadorA.getText();
         String descripcion = txtDescripcionA.getText();
         String bio = txtBiografiaA.getText();
         String url = txtUrlA.getText();
         String validar;
-        validar = ICUA.addArtista(nick, nombre, apellido, clave, mail, fecha, id, descripcion, bio, url);
+        validar = ICUA.addArtista(nick, nombre, apellido, clave, mail, dateToDTFecha(fecha), id, descripcion, bio, url);
        if(validar == "I"){
             JOptionPane.showMessageDialog(this, "Artista ya existente , intente otro Nickname o Mail ");
         }else if (validar  == "V"){

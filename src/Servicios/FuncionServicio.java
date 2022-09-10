@@ -7,15 +7,18 @@ package Servicios;
 
 import Clases.Artista;
 import Clases.Espectador;
-import Clases.Espetaculo;
+import Clases.Espectaculo;
 import Clases.Funciones;
 import Clases.Plataformas;
+import Clases.TimeStamp;
 import Persistencia.ConexionDB;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
@@ -25,6 +28,8 @@ import java.util.List;
  * @author Luciano
  */
 public class FuncionServicio {
+
+
 //------------------------------------------------------------------------------
 
     public ArrayList ListarPlataformas() throws SQLException {
@@ -56,9 +61,9 @@ public class FuncionServicio {
         st = con.createStatement();
         ResultSet rs = st.executeQuery("select * from Espetaculos where esp_plat_nombre = '" + URL + "'");
 
-        ArrayList<Espetaculo> lista = new ArrayList();
+        ArrayList<Espectaculo> lista = new ArrayList();
         while (rs.next()) {
-            Espetaculo espetaculo = new Espetaculo(rs.getString(1), rs.getString(3), rs.getString(4), rs.getString(8), rs.getInt(5), rs.getInt(6), rs.getInt(7), rs.getFloat(9), rs.getTimestamp(10));
+            Espectaculo espetaculo = new Espectaculo(rs.getString(1), rs.getString(3), rs.getString(4), rs.getString(8), rs.getInt(5), rs.getInt(6), rs.getInt(7), rs.getFloat(9), rs.getTimestamp(10));
             lista.add(espetaculo);
         }
         conexion.cerrar();
@@ -67,6 +72,58 @@ public class FuncionServicio {
     }
 //------------------------------------------------------------------------------
 
+      public TimeStamp timestampToDTFecha(Timestamp fecha){
+        if(fecha != null){
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm");
+            /*
+            yyyy-mm-dd hh:mm => (-) 
+            yyyy
+            mm
+            dd hh:mm
+            */
+            String fechaDB = dateFormat.format(fecha);
+            String[] partes = fechaDB.split("-");
+            String[] partesDiaHora = partes[2].split(" ");
+            /*
+                dd hh:mm => ( )
+                dd
+                   hh:mm
+            */
+            String[] parteHora = partesDiaHora[1].split(":");
+            /*
+            hh:mm => (:)
+                hh
+            mm
+            */
+            return new TimeStamp(partesDiaHora[0],partes[1],partes[0], Integer.parseInt(parteHora[0]), Integer.parseInt(parteHora[1]));
+        }
+        else{
+            return new TimeStamp("0","0","0",0,0);
+        }
+    }
+      
+    public String DtFechaToString(Clases.DtFecha f)
+    {
+        return f.getDia()+"/"+f.getMes()+"/"+f.getAnio();
+    }
+    
+    public Date dtFechaToDate(Clases.DtFecha fecha){
+         
+        Date fechaFinal = Date.valueOf(DtFechaToString(fecha));
+        return fechaFinal;
+    }
+  
+    public Clases.DtFecha dateToDTFecha(Date fecha){
+        if(fecha != null){
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String fechaDB = dateFormat.format(fecha);
+            String[] partes = fechaDB.split("-");
+            return new Clases.DtFecha(partes[2],partes[1],partes[0]);
+        }
+        else{
+            return new Clases.DtFecha("0","0","0");
+        }
+    }
     public ArrayList ListarArtistas() throws SQLException {
 
         ConexionDB conexion = new ConexionDB();
@@ -85,7 +142,7 @@ public class FuncionServicio {
             ResultSet rs2 = st2.executeQuery("select * from Usuarios where usu_nick ='" + rs.getString(1) + "'");
 
             while (rs2.next()) {
-                Artista artista = new Artista(rs2.getString(1), rs2.getString(2), rs2.getString(3), rs2.getString(4), rs2.getString(5), rs2.getTimestamp(7), rs2.getString(6), rs.getString(2), rs.getString(3), rs.getString(4));
+                Artista artista = new Artista(rs2.getString(1), rs2.getString(2), rs2.getString(3), rs2.getString(4), rs2.getString(5), dateToDTFecha(rs2.getDate(7)), rs2.getString(6), rs.getString(2), rs.getString(3), rs.getString(4));
                 lista.add(artista);
             }
         }
@@ -198,7 +255,7 @@ public class FuncionServicio {
 
         ArrayList<Espectador> lista = new ArrayList();
         while (rs.next()) {
-            Espectador espectador = new Espectador(rs.getString(1), rs.getString(4), rs.getString(2), rs.getString(3), rs.getString(5), rs.getTimestamp(7), rs.getString(6));
+            Espectador espectador = new Espectador(rs.getString(1), rs.getString(4), rs.getString(2), rs.getString(3), rs.getString(5), dateToDTFecha(rs.getDate(7)), rs.getString(6));
             lista.add(espectador);
         }
         conexion.cerrar();

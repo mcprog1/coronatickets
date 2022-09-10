@@ -7,7 +7,10 @@ package Presentacion.Usuario;
 
 import Clases.Artista;
 import Clases.Usuarios;
+import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
@@ -373,9 +376,12 @@ public class EditarUsuario extends javax.swing.JFrame {
         {
             JOptionPane.showMessageDialog(this, "La Fecha es obligatoria.");
             continuar = false;
-        }
+        } 
+                
+        Date fechaD = Date.valueOf(fecha.getText());
+        
         if(continuar){
-            op = ICUEditar.EdiarEspectador(nick, nom, apell, clav, fech);
+            op = ICUEditar.EdiarEspectador(nick, nom, apell, clav, dateToDTFecha(fechaD));
             
             if(op == true){
                 JOptionPane.showMessageDialog(this, "Modificacion Exitosa.");
@@ -418,6 +424,18 @@ public class EditarUsuario extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_tablaUsuarioMouseClicked
 
+    public Clases.DtFecha dateToDTFecha(Date fecha){
+        if(fecha != null){
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String fechaDB = dateFormat.format(fecha);
+            String[] partes = fechaDB.split("-");
+            return new Clases.DtFecha(partes[2],partes[1],partes[0]);
+        }
+        else{
+            return new Clases.DtFecha("0","0","0");
+        }
+    }
+    
     private void modificarArtistaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_modificarArtistaActionPerformed
        
         String nick = nickname.getText();
@@ -469,8 +487,10 @@ public class EditarUsuario extends javax.swing.JFrame {
             continuar = false;
         }
         
+        Date fechaD = Date.valueOf(fecha.getText());
+        
         if(continuar){
-            op = ICUEditar.editarArtistas(nick, nom, apell, clav, fech, des, Url, bio);
+            op = ICUEditar.editarArtistas(nick, nom, apell, clav, dateToDTFecha(fechaD), des, Url, bio);
            
             
             if(op == true){

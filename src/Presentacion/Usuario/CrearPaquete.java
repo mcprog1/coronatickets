@@ -7,6 +7,7 @@ package Presentacion.Usuario;
 
 import java.sql.Time;
 import java.sql.Timestamp;
+import java.sql.Date;
 import java.text.SimpleDateFormat;
 import javax.swing.JOptionPane;
 import logica.Fabrica;
@@ -164,8 +165,8 @@ public class CrearPaquete extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String Nombre = txtNombre.getText();
         String Descripcion = txtDescripcion.getText();
-        Time FechaInicio = Time.valueOf(txtFechaInicio.getText());
-        Time FechaFinal = Time.valueOf(txtFechaFinal.getText());
+        Date FechaInicio =  Date.valueOf(txtFechaInicio.getText());
+        Date FechaFinal = Date.valueOf(txtFechaFinal.getText());
         String FechaAlta = txtFechaAlta.getText();
         float Descuento = Float.valueOf(txtDescuento.getText());
 
