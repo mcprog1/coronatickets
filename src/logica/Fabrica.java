@@ -9,7 +9,7 @@ import logica.*;
 
 import Interface.IControladorFuncion;
 import logica.interfaz.IControladorEspetaculo;
-import logica.ControladorEspetaculo;
+import logica.ControladorEspectaculo;
 import logica.interfaz.IControladorPaquetes;
 
 import logica.interfaz.IControladorUsuario;
@@ -41,7 +41,7 @@ public class Fabrica {
     }
 
     public IControladorEspetaculo getIControladorEspectaculo() {
-        IControladorEspetaculo ControladorE = ControladorEspetaculo.getInstance();
+        IControladorEspetaculo ControladorE = ControladorEspectaculo.getInstance();
         return ControladorE; 
     }
     

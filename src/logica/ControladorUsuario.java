@@ -122,7 +122,9 @@ public class ControladorUsuario implements IControladorUsuario {
             System.out.println("Error en buscar el artista por el nombre");
             return A;
         }
-    @Override
+    }
+        
+    
     public void addEspectador(String nick, String nombre, String apellido, String clave, String mail, Timestamp f,String i) {
         
             Usuarios u = new Usuarios(nick, nombre, apellido, clave, mail,f,i);

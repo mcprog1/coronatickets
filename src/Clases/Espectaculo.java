@@ -30,6 +30,9 @@ public class Espectaculo {
         this.Costo = costo;
         this.FechaCreado = fechaCreado;
     }
+    
+    
+    public Espectaculo() {}
 
     public String getNombre() {
         return Nombre;

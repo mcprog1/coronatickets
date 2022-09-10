@@ -11,21 +11,21 @@ import Servicios.ServiciosRegistros;
  *
  * @author Cristian
  */
-public class ControladorEspetaculo implements IControladorEspetaculo{
+public class ControladorEspectaculo implements IControladorEspetaculo{
     private EspectaculoServicio espectaculoServicio;
     private PlataformaServicio plataformaServicio;
     private ServiciosRegistros servicioRegistro;
-    private static ControladorEspetaculo instancia;
+    private static ControladorEspectaculo instancia;
     
-    public ControladorEspetaculo(){
+    public ControladorEspectaculo(){
         this.espectaculoServicio = new EspectaculoServicio();
         this.plataformaServicio = new PlataformaServicio();
         this.servicioRegistro = new ServiciosRegistros();
     }
     
-    public static ControladorEspetaculo getInstance() {
+    public static ControladorEspectaculo getInstance() {
         if (instancia == null) {
-            instancia = new ControladorEspetaculo();
+            instancia = new ControladorEspectaculo();
         }
         return instancia;
     }
@@ -59,26 +59,26 @@ public class ControladorEspetaculo implements IControladorEspetaculo{
         return datos;
     }
     
-     public ArrayList<Espetaculo> tblEspectaculo(){
-        ArrayList<Espetaculo> datos = new ArrayList<>();
+     public ArrayList<Espectaculo> tblEspectaculo(){
+        ArrayList<Espectaculo> datos = new ArrayList<>();
         datos = this.espetaculoServicio.datosLista();
         return datos;
     }
     
-      public ArrayList<Espetaculo> tblEspectaculoPlataforma(String plataforma){
-        ArrayList<Espetaculo> datos = new ArrayList<>();
+      public ArrayList<Espectaculo> tblEspectaculoPlataforma(String plataforma){
+        ArrayList<Espectaculo> datos = new ArrayList<>();
         datos = this.espetaculoServicio.datosListaPlataforma(plataforma);
         return datos;
     }
     
-    public ArrayList<Espetaculo> tblEspectaculoNoPaquete(String paquete, String plataforma){
-        ArrayList<Espetaculo> datos = new ArrayList<>();
+    public ArrayList<Espectaculo> tblEspectaculoNoPaquete(String paquete, String plataforma){
+        ArrayList<Espectaculo> datos = new ArrayList<>();
         datos = this.espetaculoServicio.espectaculosLibresPaquete(paquete, plataforma);
         return datos;
     }
     
-    public Espetaculo obtenerDato(String nombre){
-        Espetaculo esp ;
+    public Espectaculo obtenerDato(String nombre){
+        Espectaculo esp ;
         esp = this.espetaculoServicio.obtenerDato(nombre);
         return esp;
     }

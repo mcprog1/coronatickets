@@ -114,9 +114,9 @@ public class PaquetesServicio {
     }
     
     
-    public ArrayList<Espetaculo> obtenerEspectaculoPaquetes(String nombre){
-        Espetaculo model;
-        ArrayList<Espetaculo> datos = new ArrayList<>();
+    public ArrayList<Espectaculo> obtenerEspectaculoPaquetes(String nombre){
+        Espectaculo model;
+        ArrayList<Espectaculo> datos = new ArrayList<>();
         ResultSet rs;
         PreparedStatement ps;
         try{
@@ -125,7 +125,7 @@ public class PaquetesServicio {
             rs = ps.executeQuery();
             while(rs.next())
             {
-                model = new Espetaculo();
+                model = new Espectaculo();
                 model.setNombre(rs.getString("paqesp_esp_nombre"));
                 datos.add(model);
             }

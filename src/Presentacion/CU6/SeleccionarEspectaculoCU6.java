@@ -5,7 +5,7 @@
  */
 package Presentacion.CU6;
 
-import Clases.Espetaculo;
+import Clases.Espectaculo;
 import Interface.IControladorFuncion;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -124,38 +124,7 @@ public class SeleccionarEspectaculoCU6 extends javax.swing.JFrame {
         } catch (javax.swing.UnsupportedLookAndFeelException ex) {
             java.util.logging.Logger.getLogger(SeleccionarEspectaculoCU6.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -173,7 +142,7 @@ public class SeleccionarEspectaculoCU6 extends javax.swing.JFrame {
 
     private void CargarDatos() throws SQLException, ClassNotFoundException, IOException {
 
-        ArrayList<Espetaculo> lista = new ArrayList();
+        ArrayList<Espectaculo> lista = new ArrayList();
 
         lista = ICF.ListarEspectaculosPlataforma(SeleccionarPlataformaCU6.lstPlataformas.getSelectedValue());
 

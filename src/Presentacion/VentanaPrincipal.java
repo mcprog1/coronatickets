@@ -4,7 +4,7 @@
  */
 package Presentacion;
 
-import Interface.IControladorUsuario;
+import logica.interfaz.IControladorUsuario;
 import Presentacion.CU6.SeleccionarPlataformaCU6;
 import Presentacion.CU7.SeleccionarPlataformaCU7;
 import Presentacion.CU8.SeleccionarPlataformaCU8;
