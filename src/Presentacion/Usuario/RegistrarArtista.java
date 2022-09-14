@@ -77,6 +77,7 @@ public class RegistrarArtista extends javax.swing.JFrame {
         ModificarUsuario = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Registrar Artista");
 
         jLabel7.setText("Nombre");
 

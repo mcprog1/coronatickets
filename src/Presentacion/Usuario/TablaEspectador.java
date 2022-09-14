@@ -100,6 +100,7 @@ public class TablaEspectador extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Datos espectador");
 
         TablaEspectador.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

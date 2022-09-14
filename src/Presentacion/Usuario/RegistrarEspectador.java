@@ -61,6 +61,7 @@ public class RegistrarEspectador extends javax.swing.JFrame {
         jFormattedTextField1.setText("jFormattedTextField1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Registar Espectador");
 
         btnAceptarAltaEspectador.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/acepatar.png"))); // NOI18N
         btnAceptarAltaEspectador.setText("Aceptar");
