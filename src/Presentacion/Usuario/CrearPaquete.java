@@ -170,20 +170,64 @@ public class CrearPaquete extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String Nombre = txtNombre.getText();
         String Descripcion = txtDescripcion.getText();
-        Date FechaInicio =  Date.valueOf(txtFechaInicio.getText());
-        Date FechaFinal = Date.valueOf(txtFechaFinal.getText());
-        String FechaAlta = txtFechaAlta.getText();
+        Date FechaInicio =null;  
+        Date FechaFinal =null; 
+        //String FechaAlta = txtFechaAlta.getText();
         float Descuento = Float.valueOf(txtDescuento.getText());
-
-        String Validar;
-        Validar = ICUP.crearpaquete(Nombre, Descripcion, FechaInicio, FechaFinal, Descuento, FechaAlta);
-        if(Validar == "D"){
-            JOptionPane.showMessageDialog(this, "Espectador ya existente , intente otro Nickname o Mail ");
-        }else if (Validar  == "B"){
-            JOptionPane.showMessageDialog(this,"Espectador Registrado!!"); 
-        }else {
-            JOptionPane.showMessageDialog(this,"Error desconocido , vuelva a intentarlo");
+        boolean continuar = true;
+        
+        if(Nombre.isEmpty() )
+        {
+            JOptionPane.showMessageDialog(this, "El nombre es obligatorio.");
+            continuar = false;
         }
+        if(Descripcion.isEmpty() && continuar == true)
+        {
+            JOptionPane.showMessageDialog(this, "La descripcion es obligatoria.");
+            continuar = false;
+        }
+        if(txtFechaInicio.getText().isEmpty() && continuar == true)
+        {
+            JOptionPane.showMessageDialog(this, "La fecha de inicio es obligatoria.");
+            continuar = false;
+        }
+        if(txtFechaFinal.getText().isEmpty() && continuar == true)
+        {
+            JOptionPane.showMessageDialog(this, "La fecha de fin es obligatoria.");
+            continuar = false;
+        }else{
+            
+            FechaInicio =  Date.valueOf(txtFechaInicio.getText());
+            FechaFinal =  Date.valueOf(txtFechaFinal.getText());
+        }
+        
+        if(FechaFinal.before(FechaInicio) && continuar == true)
+        {
+            JOptionPane.showMessageDialog(this, "La fecha de inicio tiene que ser menor a la de fehca de fin.");
+            continuar = false;
+        }
+        
+        if(Descuento < 0)
+        {
+            JOptionPane.showMessageDialog(this, "El nombre es obligatorio.");
+            continuar = false;
+        }
+        
+        if(continuar)
+        {
+           String Validar;
+            Validar = ICUP.crearpaquete(Nombre, Descripcion, FechaInicio, FechaFinal, Descuento, "2022-09-01");
+            System.err.println(Validar);
+            if(Validar == "D"){
+                JOptionPane.showMessageDialog(this, "Ya existe un paquete con ese nombre.");
+            }else if (Validar  == "B"){
+                JOptionPane.showMessageDialog(this,"Paquete creado con exito"); 
+                dispose();
+            }else {
+                JOptionPane.showMessageDialog(this,"Error desconocido , vuelva a intentarlo");
+            } 
+        }
+        
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

@@ -19,9 +19,9 @@ public class EspectaculoServicio {
     
     private Connection conn = new ConexionDB().getConexion();
 
-    public EspectaculoServicio() {
+    /*public EspectaculoServicio() {
 
-    }
+    }*/
     //Consulto los Espetaculos de un Artista con "NomArtista" , este arista puede tener 1 o mas espetaculos
     //Esta funcion tendria que estar en servicios espetaculos
     public ArrayList<Espectaculo> consultarOrganizadorEspetaculo(String NomArtista) {
@@ -68,9 +68,14 @@ public class EspectaculoServicio {
     {
         return f.getDia()+"/"+f.getMes()+"/"+f.getAnio();
     }
+    public String DtFechaToStringSql(Clases.DtFecha f)
+    {
+        return f.getAnio()+"-"+f.getMes()+"-"+f.getDia();
+    }
+    
      public Date dtFechaToDate(Clases.DtFecha fecha){
          
-        Date fechaFinal = Date.valueOf(DtFechaToString(fecha));
+        Date fechaFinal = Date.valueOf(DtFechaToStringSql(fecha));
         return fechaFinal;
     }
      
@@ -89,8 +94,8 @@ public class EspectaculoServicio {
    
             result.execute();
             return true;
-        } catch (Exception e) {
-            System.out.println("Ocurrio un error al crear un paquete");
+        } catch (SQLException ex) {
+            ex.printStackTrace();
         }
         
 
@@ -98,19 +103,22 @@ public class EspectaculoServicio {
     }
         
     public boolean validarPaquetes(String nombre) {
+        boolean v = true;
         try {
             PreparedStatement status = conn.prepareStatement("SELECT * FROM paquetes WHERE paq_nombre= ?");
             status.setString(1, nombre);
+            
             ResultSet ResultadoConsulta = status.executeQuery();
-            if (ResultadoConsulta.first()) {
-                return true;
-            } else {
-                return false;// existe el usuario
-            }
+            
+            System.err.println(ResultadoConsulta.next());
+            
+            if (ResultadoConsulta.next()){
+                v =  false;
+            } 
         } catch (SQLException ex) {
             ex.printStackTrace();
-            return false; // No existe el usuario
         }
+        return v; // No existe el usuario
     }
     
     public boolean checkEspectaculo(String nombre) {

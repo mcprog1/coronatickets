@@ -11,6 +11,7 @@ import java.util.ArrayList;
 import Clases.TimeStamp;
 import Servicios.EspectaculoServicio;
 import java.sql.Date;
+import java.sql.SQLException;
 import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
@@ -95,21 +96,23 @@ public class ControladoraPaquetes implements IControladorPaquetes{
         Paquetes p = new Paquetes(nom , Descripcion, dateToDTFecha(FechaInicio), dateToDTFecha(Fechafinalizado), Descuento, FechaCreada);
         
         
+        System.out.println(nom);
         verificar = serviciosP.validarPaquetes(nom) ;
-        
+        System.out.println(verificar);
         try {
             if(verificar == true){
                 serviciosP.addPaquetes(p);
-                info = "B";//bien
-                return info;
-                
-                
-            }else return info = "D";//denegado
+                //info = "B";//bien
+                return "B";
+            }else{
+                return "D";//denegado
+            }
             
-        } catch (Exception e) {
-            System.out.println("Error al crear el paquete");
+            
+        }  catch (SQLException ex) {
+            ex.printStackTrace();
+                return "F";//denegado
         }
-        return info = "F";//fallo
     }
     
     
