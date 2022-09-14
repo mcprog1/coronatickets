@@ -53,7 +53,7 @@ public class ConsultaFuncionCU7 extends javax.swing.JFrame {
         jLabel7 = new javax.swing.JLabel();
         btnVolver = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         txtNombre.setEditable(false);
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -102,6 +102,11 @@ public class ConsultaFuncionCU7 extends javax.swing.JFrame {
         btnVolver.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 btnVolverMouseClicked(evt);
+            }
+        });
+        btnVolver.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnVolverActionPerformed(evt);
             }
         });
 
@@ -194,6 +199,10 @@ public class ConsultaFuncionCU7 extends javax.swing.JFrame {
     private void btnVolverMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnVolverMouseClicked
         this.dispose();
     }//GEN-LAST:event_btnVolverMouseClicked
+
+    private void btnVolverActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnVolverActionPerformed
+        dispose();
+    }//GEN-LAST:event_btnVolverActionPerformed
 
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */

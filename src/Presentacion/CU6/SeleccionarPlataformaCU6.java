@@ -52,7 +52,7 @@ public class SeleccionarPlataformaCU6 extends javax.swing.JFrame {
         });
         jScrollPane2.setViewportView(lstPlataformas1);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Seleccione la plataforma del espectaculo");
 

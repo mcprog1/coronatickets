@@ -138,7 +138,7 @@ public class EditarUsuario extends javax.swing.JFrame {
         url = new javax.swing.JTextField();
         modificarArtista = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         apellido.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -507,7 +507,7 @@ public class EditarUsuario extends javax.swing.JFrame {
 
     private void btnCancelarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCancelarActionPerformed
        limpiar();
-       
+       dispose();
     }//GEN-LAST:event_btnCancelarActionPerformed
 
     /**

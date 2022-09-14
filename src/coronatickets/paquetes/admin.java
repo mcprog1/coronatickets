@@ -7,6 +7,7 @@ package coronatickets.paquetes;
 import Clases.DtFecha;
 import Clases.Espectaculo;
 import Clases.Paquetes;
+import coronatickets.espetaculos.informacionEspectaculo;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import logica.Fabrica;
@@ -147,7 +148,7 @@ public class admin extends javax.swing.JFrame {
         ));
         jScrollPane4.setViewportView(jTable1);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
@@ -212,6 +213,11 @@ public class admin extends javax.swing.JFrame {
 
             }
         ));
+        espectaculos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                espectaculosMouseClicked(evt);
+            }
+        });
         jScrollPane5.setViewportView(espectaculos);
 
         jLabel8.setText("Espectaculos");
@@ -344,6 +350,14 @@ public class admin extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_formWindowActivated
+
+    private void espectaculosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_espectaculosMouseClicked
+        int fila = espectaculos.getSelectedRow();
+        String nombre = (String) espectaculos.getValueAt(fila,0);//selecciono de la fila seleccionada la primera
+
+        informacionEspectaculo newFrame = new informacionEspectaculo(nombre);
+        newFrame.setVisible(true);  
+    }//GEN-LAST:event_espectaculosMouseClicked
 
     /**
      * @param args the command line arguments

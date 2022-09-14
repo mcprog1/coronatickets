@@ -53,7 +53,7 @@ public class RegistrarEspectadorFuncionCU8 extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         btnCancelar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Espectadores");
 

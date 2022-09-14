@@ -14,6 +14,7 @@ import Clases.TimeStamp;
 import Persistencia.ConexionDB;
 import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
@@ -291,8 +292,9 @@ public class FuncionServicio {
 
         Statement st;
         st = con.createStatement();
+        System.out.println("select count(reg_esp_nombre) from registro where reg_esp_nombre = '" + nombreEspectaculo + "' and reg_esp_funcion = '" + nombreFuncion + "'");
         ResultSet rs = st.executeQuery("select count(reg_esp_nombre) from registro where reg_esp_nombre = '" + nombreEspectaculo + "' and reg_esp_funcion = '" + nombreFuncion + "'");
-
+        
         int cantidadEspectadores = 5000;
         int cantidadMaximaEspectaculo = 0;
 
@@ -363,7 +365,7 @@ public class FuncionServicio {
         Timestamp fechaCreado = new Timestamp(datetime);
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd-hh-mm-ss");
 
-        st.executeUpdate("insert into registro (reg_id, reg_usu_nick, reg_esp_nombre, reg_fecha_creado, reg_canjeado, reg_vigente, reg_paq_nombre, reg_costo, reg_esp_funcion) values ('" + identificador + "', '" + nickEspectador + "', '" + nombreEspectaculo + "', '" + sdf.format(fechaCreado) + "', 'n', 's', 'null', '" + costo + "', '" + nombreFuncion + "')");
+        st.executeUpdate("insert into registro (reg_id, reg_usu_nick, reg_esp_nombre, reg_fecha_creado, reg_canjeado, reg_vigente, reg_paq_nombre, reg_costo, reg_esp_funcion) values ('" + identificador + "', '" + nickEspectador + "', '" + nombreEspectaculo + "', '" + sdf.format(fechaCreado) + "', 'n', 's', '', '" + costo + "', '" + nombreFuncion + "')");
 
         conexion.cerrar();
     }
@@ -398,6 +400,34 @@ public class FuncionServicio {
 
         conexion.cerrar();
     }
+    
+    public Funciones obtenerDatosFuncion(String nombre)
+    {
+        Funciones fun = new Funciones();
+        ResultSet rs;
+        PreparedStatement ps;
+        try{
+            ConexionDB conexion = new ConexionDB();
+            Connection con = conexion.getConexion();
+            ps = con.prepareStatement("SELECT * FROM funciones WHERE fun_nombre = ?");
+            ps.setString(1, nombre);
+            rs = ps.executeQuery();
+            while(rs.next())
+            {
+                fun.setNombre(rs.getString("fun_nombre"));
+                fun.setFecha(rs.getTimestamp("fun_fecha"));
+                fun.setHoraDeInicio(rs.getTimestamp("fun_hora_inicio"));
+                fun.setFechaCreado(rs.getTimestamp("fun_fecha_creado"));
+                
+            }
+            rs.close();
+            ps.close();
+        }catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return fun;
+    }
+    
 }
 
 /*create table registro_canjeado (

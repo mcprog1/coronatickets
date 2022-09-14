@@ -84,7 +84,7 @@ public class ConsultaUsuario extends javax.swing.JFrame {
         });
         jScrollPane1.setViewportView(tablaConsulta);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jTextField2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jTextField2.setForeground(new java.awt.Color(204, 0, 0));

@@ -268,9 +268,15 @@ public class ServiciosUsuarios {
     {
         return f.getDia()+"/"+f.getMes()+"/"+f.getAnio();
     }
-     public Date dtFechaToDate(Clases.DtFecha fecha){
+    
+    public String DtFechaToBD(Clases.DtFecha f)
+    {
+        return f.getAnio()+"-"+f.getMes()+"-"+f.getDia();
+    }
+    
+    public Date dtFechaToDate(Clases.DtFecha fecha){
          
-        Date fechaFinal = Date.valueOf(DtFechaToString(fecha));
+        Date fechaFinal = Date.valueOf(DtFechaToBD(fecha));
         return fechaFinal;
     }
      

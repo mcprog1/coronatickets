@@ -10,6 +10,7 @@ import Clases.Espectaculo;
 import Clases.Funciones;
 import Clases.Usuarios;
 import Persistencia.ConexionDB;
+import coronatickets.funciones.consultaFuncion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -98,7 +99,7 @@ public class TablaEspectador extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         TablaEspectador.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -124,6 +125,11 @@ public class TablaEspectador extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        TablaFuncion.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TablaFuncionMouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(TablaFuncion);
 
         jLabel1.setText("Funciones");
@@ -158,12 +164,20 @@ public class TablaEspectador extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jLabel1)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 116, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(111, 111, 111))
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 176, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(51, 51, 51))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void TablaFuncionMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TablaFuncionMouseClicked
+        int fila = TablaFuncion.getSelectedRow();
+        String nombre = (String) TablaFuncion.getValueAt(fila,0);//selecciono de la fila seleccionada la primera
+
+        consultaFuncion newFrame = new consultaFuncion(nombre);
+        newFrame.setVisible(true);
+    }//GEN-LAST:event_TablaFuncionMouseClicked
 
     /**
      * @param args the command line arguments

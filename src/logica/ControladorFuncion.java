@@ -245,4 +245,10 @@ public class ControladorFuncion implements IControladorFuncion {
             Logger.getLogger(ControladorFuncion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    
+    public Funciones obtenerDatosFuncion(String nombre)
+    {
+        Funciones funcion = servicioFunciones.obtenerDatosFuncion(nombre);
+        return funcion;
+    }
 }

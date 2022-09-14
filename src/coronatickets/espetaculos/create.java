@@ -4,11 +4,13 @@
  * and open the template in the editor.
  */
 package coronatickets.espetaculos;
+import Clases.Artista;
 import logica.Fabrica;
 import logica.interfaz.IControladorEspetaculo;;
 import java.util.ArrayList;
 import Clases.Plataformas;
 import javax.swing.*;
+import logica.interfaz.IControladorUsuario;
 /**
  *
  * @author Nico
@@ -16,22 +18,32 @@ import javax.swing.*;
 public class create extends javax.swing.JFrame {
 
     private IControladorEspetaculo ICE;
+    private IControladorUsuario ICU;
     /**
      * Creates new form create
      */
     public create() {
         this.ICE = Fabrica.getInstance().getIControladorEspectaculo();
+        this.ICU = Fabrica.getInstance().getIControladorUsuario();
         initComponents();
         cargarComboBox();
     }
     
     public void cargarComboBox(){
         ArrayList<Plataformas> datos;
+        ArrayList<Artista> datosArt;
         sctPlataformas.addItem("Seleccione una opcion"); 
+        sctArtista.addItem("Seleccione una opcion");
         datos = ICE.tblPlataforma();
+        datosArt = ICU.tablaArtistas();
         for(int i = 0; i<datos.size(); i++)
         {
             sctPlataformas.addItem(datos.get(i).getNombre());
+        }
+        
+        for(int i = 0; i<datosArt.size(); i++)
+        {
+            sctArtista.addItem(datosArt.get(i).getNickname());
         }
     }
 
@@ -70,7 +82,7 @@ public class create extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         txtCosto = new javax.swing.JSpinner();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Crear Espetaculo");
@@ -262,7 +274,7 @@ public class create extends javax.swing.JFrame {
         int minimo = (int) txtEspectadorMin.getValue();
         String url = txtUrl.getText();
         boolean continuar = true;
-        float costo = (float) txtCosto.getValue();
+        int costo = (int) txtCosto.getValue();
         if(plataforma.isEmpty())
         {
             JOptionPane.showMessageDialog(this, "La plataforma es obligaotoria.");
@@ -323,8 +335,8 @@ public class create extends javax.swing.JFrame {
         
         if(continuar)
         {
-            ICE.crearEspetaculo(plataforma, artista ,nombre, duracion, maximo, minimo, url, costo);
-            if("S" == "S")//Todo OK
+            String creo = ICE.crearEspetaculo(plataforma, artista ,nombre, duracion, maximo, minimo, url, costo);
+            if(creo == "S")//Todo OK
             {
                 JOptionPane.showMessageDialog(this, "Creado con exito.");
                 dispose();

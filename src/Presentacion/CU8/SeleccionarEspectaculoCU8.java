@@ -43,7 +43,7 @@ public class SeleccionarEspectaculoCU8 extends javax.swing.JFrame {
         lstEspetaculo = new javax.swing.JList<>();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Seleccione el espectaculo de la función");
 

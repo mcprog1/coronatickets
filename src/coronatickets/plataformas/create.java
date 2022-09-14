@@ -32,8 +32,6 @@ public class create extends javax.swing.JFrame {
         btnCrear = new javax.swing.JButton();
         btnCancelar = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-
         titulo.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         titulo.setText("Crear plataforma");
 

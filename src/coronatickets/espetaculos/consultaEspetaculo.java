@@ -5,14 +5,14 @@
  */
 package coronatickets.espetaculos;
 
-import Clases.Espectaculo;
-import Clases.Paquetes;
-import Clases.Plataformas;
+import Clases.*;
 import java.util.ArrayList;
 import javax.swing.table.DefaultTableModel;
 import logica.Fabrica;
 import logica.interfaz.*;
-
+import Interface.IControladorFuncion;
+import coronatickets.funciones.consultaFuncion;
+import coronatickets.paquetes.datosPaquetes;
 /**
  *
  * @author Nico
@@ -21,12 +21,14 @@ public class consultaEspetaculo extends javax.swing.JFrame {
 
     private IControladorEspetaculo ICE;
     private IControladorPaquetes ICP;
+    private IControladorFuncion ICF;
     /**
      * Creates new form consultaEspetaculo
      */
     public consultaEspetaculo() {
         this.ICE = Fabrica.getInstance().getIControladorEspectaculo();
         this.ICP = Fabrica.getInstance().getIControladorPaquete();
+        this.ICF = Fabrica.getInstance().getIControladorFuncion();
         initComponents();
         cargarComboBox();
     }
@@ -93,6 +95,19 @@ public class consultaEspetaculo extends javax.swing.JFrame {
         }
         paquetes.setModel(tableP);
         
+        /* Cargo las funciones */
+        DefaultTableModel tableF = new DefaultTableModel();
+        ArrayList<Funciones> datosF;
+        String[] filasF = new String[1];
+        tableF.addColumn("Nombre");
+        
+        datosF = ICF.ListarFuncionesEspectaculo(esp.getNombre());
+        for(int i = 0; i<datosF.size(); i++)
+        {
+            filasF[0] = datosF.get(i).getNombre().toString();
+            tableF.addRow(filasF);
+        }
+        funciones.setModel(tableF);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -148,7 +163,7 @@ public class consultaEspetaculo extends javax.swing.JFrame {
         ));
         jScrollPane3.setViewportView(jTable2);
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel1.setText("Consulta espectaculo");
@@ -248,6 +263,11 @@ public class consultaEspetaculo extends javax.swing.JFrame {
 
             }
         ));
+        funciones.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                funcionesMouseClicked(evt);
+            }
+        });
         jScrollPane4.setViewportView(funciones);
 
         paquetes.setModel(new javax.swing.table.DefaultTableModel(
@@ -261,6 +281,11 @@ public class consultaEspetaculo extends javax.swing.JFrame {
 
             }
         ));
+        paquetes.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                paquetesMouseClicked(evt);
+            }
+        });
         jScrollPane5.setViewportView(paquetes);
 
         jLabel12.setText("Funciones asociadas:");
@@ -419,6 +444,22 @@ public class consultaEspetaculo extends javax.swing.JFrame {
         }
         System.err.println(plataforma);
     }//GEN-LAST:event_sctPlatActionPerformed
+
+    private void funcionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_funcionesMouseClicked
+        int fila = funciones.getSelectedRow();
+        String nombre = (String) funciones.getValueAt(fila,0);//selecciono de la fila seleccionada la primera
+
+        consultaFuncion newFrame = new consultaFuncion(nombre);
+        newFrame.setVisible(true);
+    }//GEN-LAST:event_funcionesMouseClicked
+
+    private void paquetesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paquetesMouseClicked
+       int fila = paquetes.getSelectedRow();
+       String nombre = (String) paquetes.getValueAt(fila,0);//selecciono de la fila seleccionada la primera
+
+       datosPaquetes newFrame = new datosPaquetes(nombre);
+       newFrame.setVisible(true);
+    }//GEN-LAST:event_paquetesMouseClicked
 
     
     

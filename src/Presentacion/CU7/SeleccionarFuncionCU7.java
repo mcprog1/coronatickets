@@ -43,7 +43,7 @@ public class SeleccionarFuncionCU7 extends javax.swing.JFrame {
         lstFuncion = new javax.swing.JList<>();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Seleccione la función que quiere ver informacion detallada");
 
@@ -274,8 +274,11 @@ public class SeleccionarFuncionCU7 extends javax.swing.JFrame {
         lista = ICF.ListarFuncionesEspectaculo(SeleccionarEspectaculoCU7.lstEspetaculo.getSelectedValue());
 
         DefaultListModel listModel = new DefaultListModel();
-
+        
+        System.out.println(lista.size());
+        
         for (int i = 0; i < lista.size(); i++) {
+            System.out.println(lista.get(i).getNombre());    
             listModel.add(i, lista.get(i).getNombre());
         }
 

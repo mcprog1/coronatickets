@@ -45,7 +45,7 @@ public class SeleccionarFuncionCU8 extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblFunciones = new javax.swing.JTable();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Seleccione la función a la que quiere registar el espectador");
 
