@@ -27,6 +27,7 @@ public interface IControladorUsuario {
     public abstract Artista Consultar_un_artista_particular(String nick);//consulto un artista identificado con el nick
     public abstract boolean EdiarEspectador(String nick,String nombre,String apellido,String clave ,DtFecha fecha);
     public boolean editarArtistas(String nick ,String nombre,String apellido,String clave ,DtFecha fecha,String descripcion ,String url,String biografia);
-
+    
+    public abstract String crearUsuario(String nickname, String nombre, String apellido, String fecha, String email, String password, String esArtista, String descripcionGeneral, String biografia, String url);
 
 }

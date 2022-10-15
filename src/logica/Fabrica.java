@@ -37,9 +37,6 @@ public class Fabrica {
 
     }
 
-    private Fabrica() {
-    }
-
     public IControladorEspetaculo getIControladorEspectaculo() {
         IControladorEspetaculo ControladorE = ControladorEspectaculo.getInstance();
         return ControladorE; 
@@ -59,6 +56,11 @@ public class Fabrica {
 
     public IControladorFuncion getIControladorFuncion() {
         IControladorFuncion Controlador = ControladorFuncion.getInstance();
+        return Controlador;
+    }
+    
+    public IControladorCategoria getIControladorCategoria() {
+        IControladorCategoria Controlador = ControladorCategoria.getInstance();
         return Controlador;
     }
 }

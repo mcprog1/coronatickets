@@ -12,6 +12,9 @@ import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import logica.ControladorUsuario;
 
 /**
  *
@@ -317,6 +320,36 @@ public class ServiciosUsuarios {
         return false;
     }
      
-    
+    public String creaUsuario(String nickname, String nombre, String apellido, String fecha, String email, String password, String esArtista, String descripcionGeneral, String biografia, String url)
+    {        
+         try { // Creo la plataforma - Probando el GitIgnore jeje 
+            PreparedStatement status = conn.prepareStatement("INSERT INTO usuarios (usu_nick, usu_nombre, usu_apellido,usu_clave,usu_mail,usu_fecha_nacimiento) VALUES (?,?,?,?,?,?)");
+            status.setString(1, nickname);
+            status.setString(2, nombre);
+            status.setString(3, apellido);
+            status.setString(4, password);
+            status.setString(5, email);
+            status.setDate(6, Date.valueOf(fecha));
+            status.execute();
+            
+            if(esArtista == "S")
+             {
+                 PreparedStatement artista = conn.prepareStatement("INSERT INTO artistas (art_usu_nick, art_descripcion, art_biografia, art_url) VALUES (?,?,?,?)");
+                 artista.setString(1, nickname);
+                 artista.setString(2, descripcionGeneral);
+                 artista.setString(3, biografia);
+                 artista.setString(4, url);
+                 artista.execute();
+             }
+            
+            
+            return "S";
+        } catch (SQLException ex) {
+            ex.printStackTrace();            
+            Logger.getLogger(ControladorUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            return ex.getMessage();
+        }
+        
+    }
 
 }

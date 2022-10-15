@@ -191,6 +191,35 @@ public class ControladorUsuario implements IControladorUsuario {
     }
     
     
+    public String crearUsuario(String nickname, 
+                              String nombre, 
+                              String apellido, 
+                              String fecha, 
+                              String email, 
+                              String password, 
+                              String esArtista, 
+                              String descripcionGeneral, 
+                              String biografia, 
+                              String url)
+    {
+        String creado;
+        try{           
+            if(serviciosUsuarios.validarusuariosNick(nickname))
+            {
+               creado = "NR";
+            }else if(serviciosUsuarios.validarusuariosMail(email))
+            {
+                creado = "ER";
+            }else{
+                creado = serviciosUsuarios.creaUsuario(nickname, nombre, apellido, fecha, email, password, esArtista, descripcionGeneral, biografia, url);
+            }
+        } catch (Exception e) {
+            creado = e.getMessage();
+            System.out.println("Error a la hora de crear el usuario: "+nombre+" "+apellido);
+            Logger.getLogger(ControladorUsuario.class.getName()).log(Level.SEVERE, null, e);
+        }
+        return creado;
+    }
 
 
 }
