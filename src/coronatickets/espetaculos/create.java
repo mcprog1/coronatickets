@@ -325,7 +325,7 @@ public class create extends javax.swing.JFrame {
         
         if(continuar)
         {
-            String creo = ICE.crearEspetaculo(plataforma, artista ,nombre, duracion, maximo, minimo, url, costo);
+            String creo = ICE.crearEspetaculo(plataforma, artista ,nombre, duracion, maximo, minimo, url, costo, descripcion);
             if(creo == "S")//Todo OK
             {
                 JOptionPane.showMessageDialog(this, "Creado con exito.");

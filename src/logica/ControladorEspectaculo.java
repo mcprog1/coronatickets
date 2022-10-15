@@ -30,10 +30,10 @@ public class ControladorEspectaculo implements IControladorEspetaculo{
         return instancia;
     }
         
-    public String crearEspetaculo(String plataforma, String artista, String nombre, int duracion, int maximo, int minimo, String url, float costo)
+    public String crearEspetaculo(String plataforma, String artista, String nombre, int duracion, int maximo, int minimo, String url, float costo, String descripcion)
     {
         String creo = "N";
-        if(this.espectaculoServicio.crearActualizarEspetaculo(nombre, plataforma, artista, url, duracion, minimo, minimo, url, costo))
+        if(this.espectaculoServicio.crearActualizarEspetaculo(nombre, plataforma, artista, descripcion, duracion, maximo, minimo, url, costo))
         {
             creo = "S";
         }

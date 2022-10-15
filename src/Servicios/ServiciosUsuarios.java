@@ -332,18 +332,25 @@ public class ServiciosUsuarios {
             status.setDate(6, Date.valueOf(fecha));
             status.execute();
             
-            if(esArtista == "S")
-             {
-                 PreparedStatement artista = conn.prepareStatement("INSERT INTO artistas (art_usu_nick, art_descripcion, art_biografia, art_url) VALUES (?,?,?,?)");
-                 artista.setString(1, nickname);
-                 artista.setString(2, descripcionGeneral);
-                 artista.setString(3, biografia);
-                 artista.setString(4, url);
-                 artista.execute();
-             }
+            if(esArtista.equals("S"))
+            {
+                 try { // Creo la plataforma - Probando el GitIgnore jeje 
+                        PreparedStatement artista = conn.prepareStatement("INSERT INTO artistas (art_usu_nick, art_descripcion, art_biografia, art_url) VALUES (?,?,?,?)");
+                        artista.setString(1, nickname);
+                        artista.setString(2, descripcionGeneral);
+                        artista.setString(3, biografia);
+                        artista.setString(4, url);
+                        artista.execute();
+                        return "S";
+                } catch (SQLException exA) {
+                   exA.printStackTrace();            
+                   Logger.getLogger(ControladorUsuario.class.getName()).log(Level.SEVERE, null, exA);
+                   return exA.getMessage();
+               }
+            }else{
+                return "S";
+            }
             
-            
-            return "S";
         } catch (SQLException ex) {
             ex.printStackTrace();            
             Logger.getLogger(ControladorUsuario.class.getName()).log(Level.SEVERE, null, ex);
