@@ -17,7 +17,7 @@ public interface IControladorEspetaculo {
     public abstract ArrayList<Espectaculo> tblEspectaculoPlataforma(String plataforma);
     public abstract ArrayList<Espectaculo> tblEspectaculoNoPaquete(String paquete, String plataforma);
     public abstract Espectaculo obtenerDato(String nombre);
-    public abstract String crearEspetaculo(String plataforma, String artista, String nombre, int duracion, int maximo, int minimo, String url, float costo);
+    public abstract String crearEspetaculo(String plataforma, String artista, String nombre, int duracion, int maximo, int minimo, String url, float costo, String descripcion);
     public abstract ArrayList<Espectaculo> tablaespetaculo(String nom);//Busco espetaculo a traves del nickname del artista
     public abstract ArrayList<Funciones> ListaFuncionesEspectador(String nick);//funciones que esta registrado el Espectador
     
