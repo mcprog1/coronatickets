@@ -26,6 +26,8 @@ public class Funciones {
         this.HoraDeInicio = horaDeInicio;
     }
 
+    public Funciones() {}
+    
     public String getNombre() {
         return Nombre;
     }

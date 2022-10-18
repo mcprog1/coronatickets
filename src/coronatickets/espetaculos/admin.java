@@ -2,9 +2,17 @@
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
+Aaca ava a ir los espetaculos
  */
 package coronatickets.espetaculos;
-
+import Clases.Espectaculo;
+import coronatickets.espetaculos.create;
+import java.util.ArrayList;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import logica.Fabrica;
+import logica.interfaz.IControladorEspetaculo;
+import coronatickets.espetaculos.consultaEspetaculo;
 /**
  *
  * @author Nico
@@ -14,10 +22,36 @@ public class admin extends javax.swing.JFrame {
     /**
      * Creates new form admin
      */
+    private IControladorEspetaculo ICE;
     public admin() {
+        this.ICE = Fabrica.getInstance().getIControladorEspectaculo();
         initComponents();
+        cargarTabla();
     }
-
+    
+    
+    public void cargarTabla()
+    {
+        DefaultTableModel table = new DefaultTableModel();
+        ArrayList<Espectaculo> datos;
+        String[] filas = new String[5];
+        table.addColumn("Nombre");
+        table.addColumn("Artista");
+        table.addColumn("Plataforma");
+        table.addColumn("URL");
+        table.addColumn("Costo");
+        datos = ICE.tblEspectaculo();
+        for(int i = 0; i<datos.size(); i++)
+        {
+            filas[0] = datos.get(i).getNombre().toString();
+            filas[1] = datos.get(i).getDescripcion().toString();
+            filas[2] = datos.get(i).getPLataforma();
+            filas[3] = datos.get(i).getURL().toString();
+            filas[4] = String.valueOf(datos.get(i).getCosto());
+            table.addRow(filas);
+        }
+        tablaEspetaculos.setModel(table);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -27,21 +61,109 @@ public class admin extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        jScrollPane1 = new javax.swing.JScrollPane();
+        tablaEspetaculos = new javax.swing.JTable();
+        btnCrearEspetaculo = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        setTitle("Consulta de espectaculos");
+
+        tablaEspetaculos.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        tablaEspetaculos.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tablaEspetaculosMouseClicked(evt);
+            }
+        });
+        jScrollPane1.setViewportView(tablaEspetaculos);
+
+        btnCrearEspetaculo.setText("Crear");
+        btnCrearEspetaculo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCrearEspetaculoActionPerformed(evt);
+            }
+        });
+
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(23, 23, 23)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnBuscar, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(btnCrearEspetaculo, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 532, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(31, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnCrearEspetaculo)
+                    .addComponent(btnBuscar))
+                .addGap(18, 24, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 356, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(31, 31, 31))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnCrearEspetaculoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCrearEspetaculoActionPerformed
+        create fmCreate = new create();
+        fmCreate.show(true);
+    }//GEN-LAST:event_btnCrearEspetaculoActionPerformed
+
+    private void tablaEspetaculosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaEspetaculosMouseClicked
+      int fila = tablaEspetaculos.getSelectedRow();
+      String nombre = (String) tablaEspetaculos.getValueAt(fila,0);//selecciono de la fila seleccionada la primera
+      
+      datosEspectaculo(nombre);
+    }//GEN-LAST:event_tablaEspetaculosMouseClicked
+
+    
+    public void datosEspectaculo(String nombre)
+    {
+        Espectaculo esp = ICE.obtenerDato(nombre);
+        /*this.nombre.setText(esp.getNombre());
+        this.artista.setText(esp.getArtistaOrganizador());
+        this.plataforma.setText(esp.getPLataforma());
+        this.descripcion.setText(esp.getDescripcion());
+        this.max.setText(String.valueOf(esp.getCapacidadMaxima()));
+        this.min.setText(String.valueOf(esp.getCapacidadMinima()));
+        this.url.setText(esp.getURL());
+        this.costo.setText(String.valueOf(esp.getCosto()));
+        this.fecha.setText(esp.getFechaCreado().toString());*/
+        
+    }
+    
+    
+    
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        consultaEspetaculo fmCreate = new consultaEspetaculo();
+        fmCreate.show(true);
+    }//GEN-LAST:event_btnBuscarActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +201,9 @@ public class admin extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnCrearEspetaculo;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable tablaEspetaculos;
     // End of variables declaration//GEN-END:variables
 }

@@ -18,6 +18,8 @@ public class Plataformas {
         this.Descripcion = descripcion;
         this.URL = url;
     }
+    
+    public Plataformas(){}
 
     public String getNombre() {
         return Nombre;

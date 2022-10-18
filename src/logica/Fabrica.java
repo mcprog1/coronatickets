@@ -4,12 +4,15 @@
  * and open the template in the editor.
  */
 package logica;
+import logica.interfaz.*;
+import logica.*;
 
 import Interface.IControladorFuncion;
 import logica.interfaz.IControladorEspetaculo;
-import logica.ControladorEspetaculo;
+import logica.ControladorEspectaculo;
+import logica.interfaz.IControladorPaquetes;
 
-import Interface.IControladorUsuario;
+import logica.interfaz.IControladorUsuario;
 
 /**
  *
@@ -25,6 +28,8 @@ public class Fabrica {
         }
         return instancia;
     }
+    
+     
 
     public IControladorUsuario getIControladorUsuario() {
         IControladorUsuario Controlador = ControladorUsuario.getinstancia();
@@ -32,16 +37,30 @@ public class Fabrica {
 
     }
 
-    private Fabrica() {
-    }
-
     public IControladorEspetaculo getIControladorEspectaculo() {
-        IControladorEspetaculo ControladorE = ControladorEspetaculo.getInstance();
-        return ControladorE; //To change body of generated methods, choose Tools | Templates.
+        IControladorEspetaculo ControladorE = ControladorEspectaculo.getInstance();
+        return ControladorE; 
+    }
+    
+    public IControladorPaquetes getIControladorpaquetes() {
+        IControladorPaquetes ControladorP = ControladoraPaquetes.getInstance();
+        return ControladorP;
+        
+        
+    }
+    
+     public IControladorPaquetes getIControladorPaquete() {
+        IControladorPaquetes ControladorP = ControladoraPaquetes.getInstance();
+        return ControladorP; //To change body of generated methods, choose Tools | Templates.
     }
 
     public IControladorFuncion getIControladorFuncion() {
         IControladorFuncion Controlador = ControladorFuncion.getInstance();
+        return Controlador;
+    }
+    
+    public IControladorCategoria getIControladorCategoria() {
+        IControladorCategoria Controlador = ControladorCategoria.getInstance();
         return Controlador;
     }
 }

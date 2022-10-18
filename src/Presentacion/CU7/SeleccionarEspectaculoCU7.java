@@ -5,7 +5,7 @@
  */
 package Presentacion.CU7;
 
-import Clases.Espetaculo;
+import Clases.Espectaculo;
 import Interface.IControladorFuncion;
 import java.io.IOException;
 import java.sql.SQLException;
@@ -43,7 +43,7 @@ public class SeleccionarEspectaculoCU7 extends javax.swing.JFrame {
         lstEspetaculo = new javax.swing.JList<>();
         jButton1 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Seleccione el espectaculo donde se va a crear la función");
 
@@ -125,69 +125,7 @@ public class SeleccionarEspectaculoCU7 extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(SeleccionarEspectaculoCU7.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
-        //</editor-fold>
+        
 
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -205,7 +143,7 @@ public class SeleccionarEspectaculoCU7 extends javax.swing.JFrame {
 
     private void CargarDatos() throws SQLException, ClassNotFoundException, IOException {
 
-        ArrayList<Espetaculo> lista = new ArrayList();
+        ArrayList<Espectaculo> lista = new ArrayList();
 
         lista = ICF.ListarEspectaculosPlataforma(SeleccionarPlataformaCU7.lstPlataformas.getSelectedValue());
 

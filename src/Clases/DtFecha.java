@@ -9,9 +9,18 @@ package Clases;
  *
  * @author Cristian
  */
-class DtFecha {
+public class DtFecha {
     String Dia,mes,anio;
-
+    
+    //constructor
+    public DtFecha(){}
+    
+    public DtFecha(String dia, String mes, String anio){
+        this.Dia = dia;
+        this.mes = mes;
+        this.anio = anio;
+    }
+    
     public String getDia() {
         return Dia;
     }

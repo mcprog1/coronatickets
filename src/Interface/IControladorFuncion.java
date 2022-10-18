@@ -41,4 +41,6 @@ public interface IControladorFuncion {
     public void RegistrarEspectadorFuncion(String nickEspectador, String nombreEspectaculo, String nombreFuncion);
     
     public void CanjearRegistroEspectadorFuncion(String nickEspectador, String nombreEspectaculo, String nombreFuncion, List RegistrosPrevios);
+    
+    public abstract Funciones obtenerDatosFuncion(String nombre);
 }

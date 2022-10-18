@@ -7,7 +7,7 @@ package logica;
 
 import Clases.Artista;
 import Clases.Espectador;
-import Clases.Espetaculo;
+import Clases.Espectaculo;
 import Clases.Funciones;
 import Clases.Plataformas;
 import Interface.IControladorFuncion;
@@ -116,7 +116,7 @@ public class ControladorFuncion implements IControladorFuncion {
 
     public ArrayList ListarEspectaculosPlataforma(String nombre) {
 
-        ArrayList<Espetaculo> lista = new ArrayList();
+        ArrayList<Espectaculo> lista = new ArrayList();
 
         try {
             lista = servicioFunciones.ListarEspectaculosPlataforma(nombre);
@@ -244,5 +244,11 @@ public class ControladorFuncion implements IControladorFuncion {
         } catch (SQLException ex) {
             Logger.getLogger(ControladorFuncion.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+    
+    public Funciones obtenerDatosFuncion(String nombre)
+    {
+        Funciones funcion = servicioFunciones.obtenerDatosFuncion(nombre);
+        return funcion;
     }
 }

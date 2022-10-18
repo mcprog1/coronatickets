@@ -6,6 +6,7 @@
 package Clases;
 
 import java.sql.Time;
+import java.sql.Timestamp;
 
 /**
  *
@@ -13,10 +14,31 @@ import java.sql.Time;
  */
 public class Paquetes {
     private String Nombre,Descripcion;
-    private Time FechaInicio,Fechafinalizado;
+    private DtFecha FechaInicio,Fechafinalizado;
     private float Descuento;
-    private TimeStamp  FechaCreada;
+    private /*Timestamp*/String  FechaCreada;
+    
+     public Paquetes (String nom ,String Descripcion,DtFecha FechaInicio ,DtFecha Fechafinalizado,float Descuento,/*Timestamp*/String FechaCreada){
+        this.Nombre = nom;
+        this.Descripcion = Descripcion;
+        this.FechaInicio = FechaInicio;
+        this.Fechafinalizado = Fechafinalizado;
+        this.Descuento = Descuento;
+        this.FechaCreada = FechaCreada;
+        
+    }
 
+    
+    public Paquetes(String nombre_, String Descripcion_, DtFecha Fecha_Inicio_, DtFecha Fecha_Fin_,Float Descuento_) {
+        this.Nombre=nombre_;
+        this.Descripcion=Descripcion_;
+        this.FechaInicio= Fecha_Inicio_;
+        this.Fechafinalizado= Fecha_Fin_;
+        this.Descuento= Descuento_;
+    }
+
+    public Paquetes() {}
+    
     public String getNombre() {
         return Nombre;
     }
@@ -33,19 +55,19 @@ public class Paquetes {
         this.Descripcion = Descripcion;
     }
 
-    public Time getFechaInicio() {
+    public DtFecha getFechaInicio() {
         return FechaInicio;
     }
 
-    public void setFechaInicio(Time FechaInicio) {
+    public void setFechaInicio(DtFecha FechaInicio) {
         this.FechaInicio = FechaInicio;
     }
 
-    public Time getFechafinalizado() {
+    public DtFecha getFechafinalizado() {
         return Fechafinalizado;
     }
 
-    public void setFechafinalizado(Time Fechafinalizado) {
+    public void setFechafinalizado(DtFecha Fechafinalizado) {
         this.Fechafinalizado = Fechafinalizado;
     }
 
@@ -57,11 +79,11 @@ public class Paquetes {
         this.Descuento = Descuento;
     }
 
-    public TimeStamp getFechaCreada() {
+    public /*Timestamp*/String getFechaCreada() {
         return FechaCreada;
     }
 
-    public void setFechaCreada(TimeStamp FechaCreada) {
+    public void setFechaCreada(/*Timestamp*/String FechaCreada) {
         this.FechaCreada = FechaCreada;
     }
     

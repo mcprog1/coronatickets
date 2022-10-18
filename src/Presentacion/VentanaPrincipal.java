@@ -4,11 +4,13 @@
  */
 package Presentacion;
 
-import Interface.IControladorUsuario;
+import logica.interfaz.IControladorUsuario;
 import Presentacion.CU6.SeleccionarPlataformaCU6;
 import Presentacion.CU7.SeleccionarPlataformaCU7;
 import Presentacion.CU8.SeleccionarPlataformaCU8;
+import java.sql.Date;
 import java.sql.Timestamp;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import logica.Fabrica;
 
@@ -539,9 +541,23 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNicknameActionPerformed
 
     private void btnAceptarAltaEspectadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarAltaEspectadorActionPerformed
-       ICU.addEspectador(txtNickname.getText(), txtNombre.getText(), txtApellido.getText(), txtClave.getText(), txtMail.getText(), Timestamp.valueOf(txtFecha.getText()), txtIdentificador.getText());
+        Date d = Date.valueOf(txtFecha.getText());
+        Clases.DtFecha dFecha = dateToDTFecha(d);
+        ICU.addEspectador(txtNickname.getText(), txtNombre.getText(), txtApellido.getText(), txtClave.getText(), txtMail.getText(), dFecha, txtIdentificador.getText());
     }//GEN-LAST:event_btnAceptarAltaEspectadorActionPerformed
 
+    public Clases.DtFecha dateToDTFecha(Date fecha){
+        if(fecha != null){
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String fechaDB = dateFormat.format(fecha);
+            String[] partes = fechaDB.split("-");
+            return new Clases.DtFecha(partes[2],partes[1],partes[0]);
+        }
+        else{
+            return new Clases.DtFecha("0","0","0");
+        }
+    }
+    
     private void RegistroEspectadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RegistroEspectadorActionPerformed
         FrameAltaEspectador.setVisible(true);
         FrameAltaEspectador.setLocationRelativeTo(this);
