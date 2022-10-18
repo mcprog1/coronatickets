@@ -28,4 +28,5 @@ public interface IControladorUsuario {
     public int login(String nombreCorreo, String clave);
     public String nickUsuario(String nickCorreo, String password);
     public String[] infoUsuario(String nick, String password);
+    //prueba
 }
