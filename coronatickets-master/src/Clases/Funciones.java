@@ -1,0 +1,63 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package Clases;
+
+import java.sql.Date;
+import java.sql.Timestamp;
+
+/**
+ *
+ * @author Cristian
+ */
+public class Funciones {
+
+    private String Nombre;
+    private Timestamp Fecha;
+    private Timestamp FechaCreado;
+    private Timestamp HoraDeInicio;
+    
+    public Funciones(String nombre, Timestamp fecha,  Timestamp horaDeInicio, Timestamp fechaCreado){
+        this.Nombre = nombre;
+        this.Fecha = fecha;
+        this.FechaCreado = fechaCreado;
+        this.HoraDeInicio = horaDeInicio;
+    }
+
+    public Funciones() {}
+    
+    public String getNombre() {
+        return Nombre;
+    }
+
+    public void setNombre(String Nombre_) {
+        this.Nombre = Nombre_;
+    }
+
+    public Timestamp getFecha() {
+        return Fecha;
+    }
+
+    public void setFecha(Timestamp Fecha) {
+        this.Fecha = Fecha;
+    }
+
+    public Timestamp getFechaCreado() {
+        return FechaCreado;
+    }
+
+    public void setFechaCreado(Timestamp FechaCreado) {
+        this.FechaCreado = FechaCreado;
+    }
+
+    public Timestamp getHoraDeInicio() {
+        return HoraDeInicio;
+    }
+
+    public void setHoraDeInicio(Timestamp HoraDeInicio) {
+        this.HoraDeInicio = HoraDeInicio;
+    }
+
+}
