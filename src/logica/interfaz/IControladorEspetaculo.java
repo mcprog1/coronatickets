@@ -29,7 +29,7 @@ public interface IControladorEspetaculo {
     public abstract String categoriasEspectaculo(String nombre);
     public abstract String espectaculosPaquete(String paquete);
     public abstract String espectaculosPlataforma(String plataforma);
-    public abstract String espectaculosCategoria(String categoria);
+    public abstract String espectaculosCategoria(String categoria); //aa
     public abstract String Plataformas();
     public abstract String Categorias();
 }
