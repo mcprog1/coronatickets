@@ -4,10 +4,14 @@
  * and open the template in the editor.
  */
 package Servicios;
+
 import Clases.*;
 import Persistencia.ConexionDB;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Nico
@@ -21,32 +25,31 @@ public class EspetaculoServicio {
             PreparedStatement status = conexion.prepareStatement("SELECT * FROM espetaculos WHERE esp_nombre=?");
             status.setString(1, nombre);
             ResultSet rs = status.executeQuery();
-            if (rs.next()){
+            if (rs.next()) {
                 return true;
             }// existe la plataforma
         } catch (SQLException ex) {
             ex.printStackTrace();
             return false; // No existe la plataforma
-        }   
+        }        
         return false;
     }
     
-    public boolean crearActualizarEspetaculo(String nombre, String plataforma, String artista, String descripcion, int duracion, int espMax, int espMin, String url, float costo){
+    public boolean crearActualizarEspetaculo(String nombre, String plataforma, String artista, String descripcion, int duracion, int espMax, int espMin, String url, float costo) {
         boolean existe = this.checkEspectaculo(nombre);
         try {
-            if(!existe)
-            {
+            if (!existe) {
                 PreparedStatement status = conexion.prepareStatement("INSERT INTO espetaculos "
-                                                                        + "(esp_nombre, "
-                                                                         + "esp_plat_nombre, "
-                                                                         + "esp_art_organizador, "
-                                                                         + "esp_descripcion, "
-                                                                         + "esp_duracion, "
-                                                                         + "esp_espectadores_max, "
-                                                                         + "esp_espectadores_min, "
-                                                                         + "esp_url_asociada, "
-                                                                         + "esp_costo) "
-                                                                        + "VALUES (?,?,?,?,?,?,?,?,?)");
+                        + "(esp_nombre, "
+                        + "esp_plat_nombre, "
+                        + "esp_art_organizador, "
+                        + "esp_descripcion, "
+                        + "esp_duracion, "
+                        + "esp_espectadores_max, "
+                        + "esp_espectadores_min, "
+                        + "esp_url_asociada, "
+                        + "esp_costo) "
+                        + "VALUES (?,?,?,?,?,?,?,?,?)");
                 status.setString(1, nombre);
                 status.setString(2, plataforma);
                 status.setString(3, artista);
@@ -57,10 +60,10 @@ public class EspetaculoServicio {
                 status.setString(8, url);
                 status.setFloat(9, costo);
                 status.execute();
-            }else{
+            } else {
                 PreparedStatement status = conexion.prepareStatement("UPDATE espetaculos "
-                                                                   + "SET esp_plat_nombre = ?, esp_art_organizador = ?,esp_descripcion = ?, esp_duracion = ?,esp_espectadores_max = ?, esp_espectadores_min = ?, esp_url_asociada = ?,esp_costo = ?"
-                                                                   + "WHERE esp_nombre = ?");
+                        + "SET esp_plat_nombre = ?, esp_art_organizador = ?,esp_descripcion = ?, esp_duracion = ?,esp_espectadores_max = ?, esp_espectadores_min = ?, esp_url_asociada = ?,esp_costo = ?"
+                        + "WHERE esp_nombre = ?");
                 
                 status.setString(1, plataforma);
                 status.setString(2, artista);
@@ -74,7 +77,7 @@ public class EspetaculoServicio {
                 status.execute();
             }
             
-                return true;
+            return true;
         } catch (SQLException ex) {
             ex.printStackTrace();
             return false; // No existe la plataforma
@@ -82,17 +85,15 @@ public class EspetaculoServicio {
         
     }
     
-    
-    public ArrayList<Espectaculo> datosLista(){
+    public ArrayList<Espectaculo> datosLista() {
         Espectaculo model;
         ArrayList<Espectaculo> datos = new ArrayList<>();
         ResultSet rs;
         PreparedStatement ps;
-        try{
+        try {
             ps = conexion.prepareStatement("SELECT * FROM espetaculos");
             rs = ps.executeQuery();
-            while(rs.next())
-            {
+            while (rs.next()) {
                 model = new Espectaculo();
                 model.setNombre(rs.getString("esp_nombre"));
                 model.setPLataforma(rs.getString("esp_plat_nombre"));
@@ -109,23 +110,22 @@ public class EspetaculoServicio {
             }
             rs.close();
             ps.close();
-        }catch (SQLException ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return datos;
     }
     
-    public ArrayList<Espectaculo> datosListaPlataforma(String plataforma){
+    public ArrayList<Espectaculo> datosListaPlataforma(String plataforma) {
         Espectaculo model;
         ArrayList<Espectaculo> datos = new ArrayList<>();
         ResultSet rs;
         PreparedStatement ps;
-        try{
+        try {
             ps = conexion.prepareStatement("SELECT * FROM espetaculos WHERE esp_plat_nombre = ?");
             ps.setString(1, plataforma);
             rs = ps.executeQuery();
-            while(rs.next())
-            {
+            while (rs.next()) {
                 model = new Espectaculo();
                 model.setNombre(rs.getString("esp_nombre"));
                 model.setPLataforma(rs.getString("esp_plat_nombre"));
@@ -142,23 +142,21 @@ public class EspetaculoServicio {
             }
             rs.close();
             ps.close();
-        }catch (SQLException ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return datos;
     }
     
-    public Espectaculo obtenerDato(String nombre)
-    {
+    public Espectaculo obtenerDato(String nombre) {
         Espectaculo esp = new Espectaculo();
         ResultSet rs;
         PreparedStatement ps;
-        try{
+        try {
             ps = conexion.prepareStatement("SELECT * FROM espetaculos WHERE esp_nombre = ?");
             ps.setString(1, nombre);
             rs = ps.executeQuery();
-            while(rs.next())
-            {
+            while (rs.next()) {
                 esp.setNombre(rs.getString("esp_nombre"));
                 esp.setPLataforma(rs.getString("esp_plat_nombre"));
                 esp.setArtistaOrganizador(rs.getString("esp_art_organizador"));
@@ -173,25 +171,23 @@ public class EspetaculoServicio {
             }
             rs.close();
             ps.close();
-        }catch (SQLException ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return esp;
     }
     
-    
-    public ArrayList<Espectaculo> espectaculosLibresPaquete(String paquete,String plataforma){
+    public ArrayList<Espectaculo> espectaculosLibresPaquete(String paquete, String plataforma) {
         Espectaculo model;
         ArrayList<Espectaculo> datos = new ArrayList<>();
         ResultSet rs;
         PreparedStatement ps;
-        try{
+        try {
             ps = conexion.prepareStatement("SELECT * FROM espetaculos WHERE esp_plat_nombre = ? AND NOT EXISTS(SELECT 1 FROM  paquete_espetaculo WHERE paqesp_paq_nombre = ? AND  paqesp_esp_nombre = esp_nombre)");
             ps.setString(1, plataforma);
             ps.setString(2, paquete);
             rs = ps.executeQuery();
-            while(rs.next())
-            {
+            while (rs.next()) {
                 model = new Espectaculo();
                 model.setNombre(rs.getString("esp_nombre"));
                 model.setPLataforma(rs.getString("esp_plat_nombre"));
@@ -208,10 +204,32 @@ public class EspetaculoServicio {
             }
             rs.close();
             ps.close();
-        }catch (SQLException ex) {
+        } catch (SQLException ex) {
             ex.printStackTrace();
         }
         return datos;
     }
     
+    public ArrayList<Categoria> Categorias() {
+        
+        ArrayList<Categoria> datos = new ArrayList<>();
+        
+        try {
+            
+            PreparedStatement consulta = conexion.prepareStatement("SELECT * FROM categorias");
+            ResultSet resultadoConsulta = consulta.executeQuery();
+            
+            while (resultadoConsulta.next()) {
+                Categoria categoria = new Categoria();
+                categoria.setId(resultadoConsulta.getInt("cat_id"));
+                categoria.setNombre(resultadoConsulta.getString("cat_nombre"));
+                categoria.setVigente(resultadoConsulta.getString("cat_vigente").charAt(0));
+                datos.add(categoria);
+            }
+            
+        } catch (SQLException ex) {
+            Logger.getLogger(PlataformaServicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return datos;
+    }
 }

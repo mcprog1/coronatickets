@@ -9,6 +9,8 @@ import Clases.Plataformas;
 import Persistencia.ConexionDB;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -47,28 +49,45 @@ public class PlataformaServicio {
         }
     }
 
-    public ArrayList<Plataformas> datosList(){
-        Plataformas model;
+    public ArrayList<Plataformas> datosList() {
+        
         ArrayList<Plataformas> plat = new ArrayList<>();
-        ResultSet rs;
-        PreparedStatement ps;
-        try{
-            ps = conexion.prepareStatement("SELECT * FROM plataforma");
-            rs = ps.executeQuery();
-            while(rs.next())
-            {
-                model = new Plataformas();
-                model.setNombre(rs.getString("plat_nombre"));
-                model.setDescripcion(rs.getString("plat_descripcion"));
-                model.setURL(rs.getString("plat_url"));
-                plat.add(model);
+        
+        try {
+
+            PreparedStatement consulta = conexion.prepareStatement("SELECT * FROM plataforma");
+            ResultSet resultadoConsulta = consulta.executeQuery();
+
+            while (resultadoConsulta.next()) {
+                Plataformas plataforma = new Plataformas();
+                plataforma.setNombre(resultadoConsulta.getString("plat_nombre"));
+                plataforma.setDescripcion(resultadoConsulta.getString("plat_descripcion"));
+                plataforma.setURL(resultadoConsulta.getString("plat_url"));
+                plat.add(plataforma);
             }
-            rs.close();
-            ps.close();
-        }catch (SQLException ex) {
-            ex.printStackTrace();
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PlataformaServicio.class.getName()).log(Level.SEVERE, null, ex);
         }
         return plat;
     }
+    
+      public String Plataformas() {
+        
+       String plataformas = "";
+        
+        try {
 
+            PreparedStatement consulta = conexion.prepareStatement("SELECT * FROM plataforma");
+            ResultSet resultadoConsulta = consulta.executeQuery();
+
+            while (resultadoConsulta.next()) {
+                plataformas = plataformas + "-" + resultadoConsulta.getString("plat_nombre");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PlataformaServicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return plataformas;
+    }
 }
