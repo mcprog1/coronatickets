@@ -13,6 +13,7 @@ import java.sql.*;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -70,7 +71,7 @@ public class EspectaculoServicio {
     }
 
     public String DtFechaToString(Clases.DtFecha f) {
-        return f.getDia() + "/" + f.getMes() + "/" + f.getAnio();
+        return f.getAnio() + "-" + f.getMes() + "-" + f.getDia();
     }
 
     public Date dtFechaToDate(Clases.DtFecha fecha) {
@@ -82,19 +83,19 @@ public class EspectaculoServicio {
     public boolean addPaquetes(Paquetes p) throws SQLException {
 
         try {
-            PreparedStatement result = conn.prepareStatement("INSERT INTO paquetes (paq_nombre ,paq_descripcion ,paq_fecha_inicio, paq_fecha_fin, paq_descuento,paq_fecha_creado ) VALUE (?,?,?,?,?,?)");
+            PreparedStatement result = conn.prepareStatement("INSERT INTO paquetes (paq_nombre ,paq_descripcion ,paq_fecha_inicio, paq_fecha_fin, paq_descuento, paq_imagen) VALUE (?,?,?,?,?,?)");
 
             result.setString(1, p.getNombre());
             result.setString(2, p.getDescripcion());
-            result.setDate(3, dtFechaToDate(p.getFechaInicio()));
-            result.setDate(4, dtFechaToDate(p.getFechafinalizado()));
+            result.setString(3, DtFechaToString(p.getFechaInicio()));
+            result.setString(4, DtFechaToString(p.getFechafinalizado()));
             result.setFloat(5, p.getDescuento());
-            result.setString(6, p.getFechaCreada());
-
+            result.setString(6, p.getImagen());
+            
             result.execute();
             return true;
         } catch (Exception e) {
-            System.out.println("Ocurrio un error al crear un paquete");
+            e.printStackTrace();
         }
 
         return false;
@@ -105,14 +106,14 @@ public class EspectaculoServicio {
             PreparedStatement status = conn.prepareStatement("SELECT * FROM paquetes WHERE paq_nombre= ?");
             status.setString(1, nombre);
             ResultSet ResultadoConsulta = status.executeQuery();
-            if (ResultadoConsulta.first()) {
-                return true;
+            if (ResultadoConsulta.next()) {
+                return false;
             } else {
-                return false;// existe el usuario
+                return true;// existe el usuario
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
-            return false; // No existe el usuario
+            return true; // No existe el usuario
         }
     }
 
@@ -131,7 +132,7 @@ public class EspectaculoServicio {
         return false;
     }
 
-    public boolean crearActualizarEspetaculo(String nombre, String plataforma, String artista, String descripcion, int duracion, int espMax, int espMin, String url, float costo) {
+    public boolean crearActualizarEspetaculo(String nombre, String plataforma, String artista, String descripcion, int duracion, int espMax, int espMin, String url, float costo, List categorias, String imagen) {
         boolean existe = this.checkEspectaculo(nombre);
         try {
             if (!existe) {
@@ -144,8 +145,9 @@ public class EspectaculoServicio {
                         + "esp_espectadores_max, "
                         + "esp_espectadores_min, "
                         + "esp_url_asociada, "
-                        + "esp_costo) "
-                        + "VALUES (?,?,?,?,?,?,?,?,?)");
+                        + "esp_costo, "
+                        + "esp_imagen) "
+                        + "VALUES (?,?,?,?,?,?,?,?,?,?)");
                 status.setString(1, nombre);
                 status.setString(2, plataforma);
                 status.setString(3, artista);
@@ -155,7 +157,21 @@ public class EspectaculoServicio {
                 status.setInt(7, espMin);
                 status.setString(8, url);
                 status.setFloat(9, costo);
+                status.setString(10, imagen);
                 status.execute();
+
+                for (int i = 0; i < categorias.size(); i++) {
+
+                    String idCategoria = idCategoria(categorias.get(i).toString());
+                    System.out.println(idCategoria);
+                    status = conn.prepareStatement("INSERT INTO categorias_espectaculo"
+                            + "(esp_nombre,"
+                            + "cat_id)"
+                            + "VALUES (?,?)");
+                    status.setString(1, nombre);
+                    status.setString(2, idCategoria);
+                    status.execute();
+                }
             } else {
                 PreparedStatement status = conn.prepareStatement("UPDATE espetaculos "
                         + "SET esp_plat_nombre = ?, esp_art_organizador = ?,esp_descripcion = ?, esp_duracion = ?,esp_espectadores_max = ?, esp_espectadores_min = ?, esp_url_asociada = ?,esp_costo = ?"
@@ -171,6 +187,14 @@ public class EspectaculoServicio {
                 status.setFloat(8, costo);
                 status.setString(9, nombre);
                 status.execute();
+
+                for (int i = 0; i < categorias.size(); i++) {
+
+                    String idCategoria = idCategoria(categorias.get(i).toString());
+
+                    status = conn.prepareStatement("UPDATE categorias_espectaculo SET esp_nombre = '" + nombre + "', cat_id = '" + idCategoria + "' WHERE esp_nombre = '" + nombre + "'");
+                    status.execute();
+                }
             }
 
             return true;
@@ -179,6 +203,27 @@ public class EspectaculoServicio {
             return false; // No existe la plataforma
         }
 
+    }
+
+    private String idCategoria(String nombre) {
+
+        String idCategoria = "";
+
+        try {
+            PreparedStatement status = conn.prepareStatement("SELECT cat_id FROM categorias WHERE cat_nombre= ?");
+            status.setString(1, nombre);
+
+            ResultSet ResultadoConsulta = status.executeQuery();
+
+            if (ResultadoConsulta.next()) {
+                idCategoria = ResultadoConsulta.getString("cat_id");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(EspectaculoServicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return idCategoria;
     }
 
     public ArrayList<Espectaculo> datosLista() {
@@ -449,10 +494,10 @@ public class EspectaculoServicio {
         }
         return paquetesEspectaculo;
     }
-    
-     public String categoriasEspectaculo(String nombre) {
-         
-          String categoriasEspectaculo = "";
+
+    public String categoriasEspectaculo(String nombre) {
+
+        String categoriasEspectaculo = "";
 
         try {
             PreparedStatement consulta = conn.prepareStatement("SELECT cat_nombre FROM categorias_espectaculo AS CE, categorias AS C where C.cat_id = CE.cat_id and esp_nombre = ?");
@@ -466,7 +511,7 @@ public class EspectaculoServicio {
             ex.printStackTrace();
         }
         return categoriasEspectaculo;
-     }
+    }
 
     public String espectaculosPaquete(String paquete) {
 

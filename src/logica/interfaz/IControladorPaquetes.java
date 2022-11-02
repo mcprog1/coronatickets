@@ -8,6 +8,7 @@ package logica.interfaz;
 import Clases.Espectaculo;
 import Clases.Paquetes;
 import Clases.Plataformas;
+import java.io.File;
 import java.util.ArrayList;
 import java.sql.Time;
 import java.sql.Date;
@@ -16,7 +17,7 @@ import java.sql.Date;
  * @author Nico
  */
 public interface IControladorPaquetes {
-    public abstract String crearpaquete(String nom ,String Descripcion,Date FechaInicio ,Date Fechafinalizado,float Descuento,/*TimeStamp*/String FechaCreada);
+    public abstract String crearpaquete(String nom ,String Descripcion,Date FechaInicio ,Date Fechafinalizado,float Descuento, File imagen);
     public abstract ArrayList<Paquetes>obtenerPaquetesEspectaculos(String nombre);
     public abstract ArrayList<Espectaculo>obtenerEspectaculosPaquetes(String nombre);
     public abstract ArrayList<Paquetes>obtenerPaquetes();

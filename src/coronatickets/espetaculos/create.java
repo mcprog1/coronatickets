@@ -4,13 +4,18 @@
  * and open the template in the editor.
  */
 package coronatickets.espetaculos;
+
 import Clases.Artista;
+import Clases.Categoria;
 import logica.Fabrica;
-import logica.interfaz.IControladorEspetaculo;;
+import logica.interfaz.IControladorEspetaculo;
+import java.util.List;
+import javax.swing.*;
 import java.util.ArrayList;
 import Clases.Plataformas;
-import javax.swing.*;
+import java.io.File;
 import logica.interfaz.IControladorUsuario;
+
 /**
  *
  * @author Nico
@@ -19,6 +24,7 @@ public class create extends javax.swing.JFrame {
 
     private IControladorEspetaculo ICE;
     private IControladorUsuario ICU;
+
     /**
      * Creates new form create
      */
@@ -28,27 +34,32 @@ public class create extends javax.swing.JFrame {
         initComponents();
         cargarComboBox();
     }
-    
-    public void cargarComboBox(){
+
+    public void cargarComboBox() {
         ArrayList<Plataformas> datos;
         ArrayList<Artista> datosArt;
-        sctPlataformas.addItem("Seleccione una opcion"); 
+        ArrayList<Categoria> categorias;
+        sctPlataformas.addItem("Seleccione una opcion");
         sctArtista.addItem("Seleccione una opcion");
         datos = ICE.tblPlataforma();
         datosArt = ICU.tablaArtistas();
-        for(int i = 0; i<datos.size(); i++)
-        {
+        categorias = ICE.tblCategoria();
+
+        for (int i = 0; i < datos.size(); i++) {
             sctPlataformas.addItem(datos.get(i).getNombre());
         }
-        
-        for(int i = 0; i<datosArt.size(); i++)
-        {
+
+        for (int i = 0; i < datosArt.size(); i++) {
             sctArtista.addItem(datosArt.get(i).getNickname());
         }
+
+        DefaultListModel list = new DefaultListModel();
+        for (int i = 0; i < categorias.size(); i++) {
+            list.addElement(categorias.get(i).getNombre());
+        }
+        lstCategorias.setModel(list);
     }
 
-    
-    
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -81,6 +92,11 @@ public class create extends javax.swing.JFrame {
         txtUrl = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         txtCosto = new javax.swing.JSpinner();
+        jLabel12 = new javax.swing.JLabel();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        lstCategorias = new javax.swing.JList<>();
+        lblImagen = new javax.swing.JLabel();
+        btnImagen4 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -135,44 +151,22 @@ public class create extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         jLabel11.setText("Costo:");
 
+        jLabel12.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        jLabel12.setText("Categorias:");
+
+        jScrollPane2.setViewportView(lstCategorias);
+
+        btnImagen4.setText("Agregar imagen");
+        btnImagen4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnImagen4MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addGap(34, 34, 34)
-                                .addComponent(sctPlataformas, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(layout.createSequentialGroup()
-                                        .addComponent(jLabel3)
-                                        .addGap(0, 0, Short.MAX_VALUE))
-                                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                        .addGap(0, 0, Short.MAX_VALUE)
-                                        .addComponent(jLabel4)))
-                                .addGap(18, 18, 18)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(sctArtista, 0, 139, Short.MAX_VALUE)
-                                    .addComponent(txtNombre))))
-                        .addGap(31, 31, 31))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel5)
-                                .addGap(18, 18, 18)
-                                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 156, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(btnAceptar)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel9)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtUrl, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(18, 18, 18))))
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
@@ -180,28 +174,77 @@ public class create extends javax.swing.JFrame {
                         .addComponent(jLabel1))
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
+                        .addComponent(btnImagen4)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                        .addComponent(jLabel2)
+                                        .addGap(34, 34, 34)
+                                        .addComponent(sctPlataformas, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(layout.createSequentialGroup()
+                                                .addComponent(jLabel3)
+                                                .addGap(0, 0, Short.MAX_VALUE))
+                                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                .addComponent(jLabel4)))
+                                        .addGap(18, 18, 18)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(sctArtista, 0, 139, Short.MAX_VALUE)
+                                            .addComponent(txtNombre))))
+                                .addGap(31, 31, 31))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addComponent(btnCancelar)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btnAceptar)
+                                .addGap(37, 37, 37))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel5)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel9)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(txtUrl, javax.swing.GroupLayout.PREFERRED_SIZE, 163, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(6, 6, 6)))
+                                .addGap(31, 31, 31))))
+                    .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel7)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(txtDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 153, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(btnCancelar)
-                                .addGap(107, 107, 107))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(txtDuracion, javax.swing.GroupLayout.PREFERRED_SIZE, 140, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(37, 37, 37))
                             .addGroup(layout.createSequentialGroup()
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                                     .addComponent(jLabel11)
                                     .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                         .addComponent(jLabel10)
                                         .addComponent(jLabel8)))
-                                .addGap(15, 15, 15)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(txtEspectadorMin)
-                                    .addComponent(txtEspectadorMax, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(txtCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))))))
-                .addGap(21, 21, 21))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(txtEspectadorMax, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtCosto, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(txtEspectadorMin, javax.swing.GroupLayout.PREFERRED_SIZE, 136, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(37, 37, 37))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel12)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                                .addGap(31, 31, 31))))
+                    .addComponent(lblImagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -227,8 +270,7 @@ public class create extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel7)
-                        .addGap(118, 118, 118))
+                        .addComponent(jLabel7))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -250,11 +292,20 @@ public class create extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtUrl, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(btnAceptar)
-                    .addComponent(btnCancelar))
-                .addGap(18, 18, 18))
+                        .addGap(24, 24, 24)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel12)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(btnImagen4)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(lblImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addComponent(btnAceptar))
+                    .addComponent(btnCancelar, javax.swing.GroupLayout.Alignment.TRAILING))
+                .addContainerGap())
         );
 
         pack();
@@ -275,77 +326,89 @@ public class create extends javax.swing.JFrame {
         String url = txtUrl.getText();
         boolean continuar = true;
         int costo = (int) txtCosto.getValue();
-        if(plataforma.isEmpty())
-        {
+
+        if (sctPlataformas.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(this, "La plataforma es obligaotoria.");
             continuar = false;
         }
-        if(artista.isEmpty() && continuar)
-        {
+        if (sctArtista.getSelectedIndex() == 0 && continuar) {
             JOptionPane.showMessageDialog(this, "El artista organizador es obligatorio.");
             continuar = false;
         }
-        if(nombre.isEmpty() && continuar)
-        {
+        if (nombre.isEmpty() && continuar) {
             JOptionPane.showMessageDialog(this, "El nombre es obligatorio.");
             continuar = false;
         }
-        
-        if(duracion <= 0 && continuar)
-        {
+
+        if (duracion <= 0 && continuar) {
             JOptionPane.showMessageDialog(this, "La duracion no pueder 0 ni inferior.");
             continuar = false;
         }
-        
-        if(maximo <= 0 && continuar)
-        {
+
+        if (maximo <= 0 && continuar) {
             JOptionPane.showMessageDialog(this, "El maximo espectador no puede ser 0 o inferior.");
             continuar = false;
         }
-        
-        if(minimo <=0 && continuar)
-        {
+
+        if (minimo <= 0 && continuar) {
             JOptionPane.showMessageDialog(this, "El minimo de espectador no puede ser 0 e inferior.");
             continuar = false;
         }
-        
-        if(maximo <= minimo && continuar)
-        {
+
+        if (maximo <= minimo && continuar) {
             JOptionPane.showMessageDialog(this, "El maximo no puede ser menor o igual al minimo.");
             continuar = false;
         }
-        
-        if(minimo >= maximo && continuar)
-        {
+
+        if (minimo >= maximo && continuar) {
             JOptionPane.showMessageDialog(this, "El minimo no puede ser mayor al maximo de espectadores.");
             continuar = false;
         }
-        
-        if(url.isEmpty() && continuar)
-        {
+
+        if (url.isEmpty() && continuar) {
             JOptionPane.showMessageDialog(this, "La url es obligatoria.");
             continuar = false;
         }
-        
-        if(costo < 0 && continuar)
-        {
+
+        if (costo < 0 && continuar) {
             JOptionPane.showMessageDialog(this, "El costo no puede ser menor que 0.");
             continuar = false;
         }
-        
-        if(continuar)
-        {
-            String creo = ICE.crearEspetaculo(plataforma, artista ,nombre, duracion, maximo, minimo, url, costo);
-            if(creo == "S")//Todo OK
+
+        if (lstCategorias.getSelectedIndex() == -1 && continuar) {
+            JOptionPane.showMessageDialog(null, "Seleccione categorias para la funcion");
+            continuar = false;
+        }
+
+        if (continuar == true) {
+
+            List categorias = lstCategorias.getSelectedValuesList();
+            
+             File imagen = new File(this.lblImagen.getText());
+
+            String creo = ICE.crearEspetaculo(plataforma, artista, nombre, descripcion, duracion, maximo, minimo, url, costo, categorias, imagen);
+            if (creo == "S")//Todo OK
             {
                 JOptionPane.showMessageDialog(this, "Creado con exito.");
                 dispose();
-            }else{
+            } else {
                 JOptionPane.showMessageDialog(this, "Erro a la hora de crear la plataforma  .");
             }
         }
-        
     }//GEN-LAST:event_btnAceptarActionPerformed
+
+    private void btnImagen4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnImagen4MouseClicked
+        JFileChooser imagen = new JFileChooser();
+        imagen.showOpenDialog(this);
+
+        File archivo = imagen.getSelectedFile();
+
+        if (archivo != null) {
+            String origen = archivo.getPath();
+
+            this.lblImagen.setText(origen);
+        }
+    }//GEN-LAST:event_btnImagen4MouseClicked
 
     /**
      * @param args the command line arguments
@@ -385,9 +448,15 @@ public class create extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAceptar;
     private javax.swing.JButton btnCancelar;
+    private javax.swing.JButton btnImagen;
+    private javax.swing.JButton btnImagen1;
+    private javax.swing.JButton btnImagen2;
+    private javax.swing.JButton btnImagen3;
+    private javax.swing.JButton btnImagen4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -397,6 +466,9 @@ public class create extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel lblImagen;
+    private javax.swing.JList<String> lstCategorias;
     private javax.swing.JComboBox<String> sctArtista;
     private javax.swing.JComboBox<String> sctPlataformas;
     private javax.swing.JSpinner txtCosto;

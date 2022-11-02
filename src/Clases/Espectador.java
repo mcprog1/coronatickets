@@ -14,8 +14,8 @@ import Clases.TimeStamp;
  */
 public class Espectador extends Usuarios {
     
-    public Espectador(String Nickname, String Clave, String Nombre, String Apellido, String Mail,DtFecha f,String i) {
-        super(Nickname, Nombre, Apellido, Clave , Mail, f, i);
+    public Espectador(String Nickname, String Clave, String Nombre, String Apellido, String Mail,DtFecha f,String i, String imagen) {
+        super(Nickname, Nombre, Apellido, Clave , Mail, f, i, imagen);
     }
     
 }

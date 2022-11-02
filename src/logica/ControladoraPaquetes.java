@@ -11,10 +11,15 @@ import Servicios.*;
 import java.util.ArrayList;
 import Clases.TimeStamp;
 import Servicios.EspectaculoServicio;
+import java.io.File;
 import java.sql.Date;
 import java.sql.Time;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
+import java.util.HashMap;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import logica.interfaz.IControladorPaquetes;
 
 /**
@@ -83,12 +88,25 @@ public class ControladoraPaquetes implements IControladorPaquetes {
         }
     }
 
-    public String crearpaquete(String nom, String Descripcion, Date FechaInicio, Date Fechafinalizado, float Descuento,/*Timestamp*/ String FechaCreada) {
+    public String crearpaquete(String nom, String Descripcion, Date FechaInicio, Date Fechafinalizado, float Descuento, File imagen) {
+        
+          String urlimagen = null;
+        try {
+            Map<String, String> headers = new HashMap<>();
+            headers.put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36");
+            ServicioImagen multipart = new ServicioImagen("https://upload-image-to-imgur.vercel.app/upload", "utf-8", headers);
+
+            multipart.addFilePart("file", imagen);
+            String response = multipart.finish();
+            urlimagen = response;
+        } catch (Exception ex) {
+            Logger.getLogger(ControladorUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
 
         boolean i = false;
         String info;
         boolean verificar = false;
-        Paquetes p = new Paquetes(nom, Descripcion, dateToDTFecha(FechaInicio), dateToDTFecha(Fechafinalizado), Descuento, FechaCreada);
+        Paquetes p = new Paquetes(nom, Descripcion, dateToDTFecha(FechaInicio), dateToDTFecha(Fechafinalizado), Descuento, "", urlimagen);
 
         verificar = serviciosP.validarPaquetes(nom);
 

@@ -15,6 +15,7 @@ import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+
 /**
  *
  * @author Cristian
@@ -28,11 +29,15 @@ public class ServiciosUsuarios {
 
     }
 
+    public class ParameterStringBuilder {
+
+    }
+
     public boolean UpdateBDEspectador(Usuarios u) {
 
         try {
 
-            PreparedStatement result = conn.prepareStatement("INSERT INTO usuarios (usu_nick,usu_nombre,usu_apellido,usu_clave,usu_mail,usu_fecha_nacimiento ,usu_tipo_usuario) VALUE (?,?,?,?,?,?,?)");
+            PreparedStatement result = conn.prepareStatement("INSERT INTO usuarios (usu_nick,usu_nombre,usu_apellido,usu_clave,usu_mail,usu_fecha_nacimiento ,usu_tipo_usuario,usu_imagen) VALUE (?,?,?,?,?,?,?,?)");
             result.setString(1, u.getNickname());
             result.setString(2, u.getNombre());
             result.setString(3, u.getApellido());
@@ -40,6 +45,7 @@ public class ServiciosUsuarios {
             result.setString(5, u.getMail());
             result.setDate(6, dtFechaToDate(u.getFechai()));
             result.setString(7, u.getIdentificador());
+            result.setString(8, u.getImagen());
             result.execute();
             return true;
 
@@ -87,8 +93,9 @@ public class ServiciosUsuarios {
                     String mail = rs.getString("usu_mail");
                     Date fecha = rs.getDate("usu_fecha_nacimiento");
                     String id = rs.getString("usu_tipo_usuario");
+                    String imagen = rs.getString("usu_imagen");
                     if (mail.equals(correo) & nick.equals(nickname)) {
-                        resultado = new Usuarios(nick, nombre, apellido, password, mail, dateToDTFecha(fecha), id);
+                        resultado = new Usuarios(nick, nombre, apellido, password, mail, dateToDTFecha(fecha), id, imagen);
                     };
                 }
             }

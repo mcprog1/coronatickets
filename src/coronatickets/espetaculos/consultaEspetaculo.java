@@ -13,6 +13,7 @@ import logica.interfaz.*;
 import Interface.IControladorFuncion;
 import coronatickets.funciones.consultaFuncion;
 import coronatickets.paquetes.datosPaquetes;
+
 /**
  *
  * @author Nico
@@ -22,6 +23,7 @@ public class consultaEspetaculo extends javax.swing.JFrame {
     private IControladorEspetaculo ICE;
     private IControladorPaquetes ICP;
     private IControladorFuncion ICF;
+
     /**
      * Creates new form consultaEspetaculo
      */
@@ -32,17 +34,17 @@ public class consultaEspetaculo extends javax.swing.JFrame {
         initComponents();
         cargarComboBox();
     }
-    public void cargarComboBox(){
+
+    public void cargarComboBox() {
         ArrayList<Plataformas> datos;
-        sctPlat.addItem("Seleccione una opcion"); 
+        sctPlat.addItem("Seleccione una opcion");
         datos = ICE.tblPlataforma();
-        for(int i = 0; i<datos.size(); i++)
-        {
+        for (int i = 0; i < datos.size(); i++) {
             sctPlat.addItem(datos.get(i).getNombre());
         }
     }
-    public void cargarTabla(String plataforma)
-    {
+
+    public void cargarTabla(String plataforma) {
         DefaultTableModel table = new DefaultTableModel();
         ArrayList<Espectaculo> datos;
         String[] filas = new String[5];
@@ -52,8 +54,7 @@ public class consultaEspetaculo extends javax.swing.JFrame {
         table.addColumn("URL");
         table.addColumn("Costo");
         datos = ICE.tblEspectaculoPlataforma(plataforma);
-        for(int i = 0; i<datos.size(); i++)
-        {
+        for (int i = 0; i < datos.size(); i++) {
             filas[0] = datos.get(i).getNombre().toString();
             filas[1] = datos.get(i).getDescripcion().toString();
             filas[2] = datos.get(i).getPLataforma();
@@ -62,14 +63,9 @@ public class consultaEspetaculo extends javax.swing.JFrame {
             table.addRow(filas);
         }
         tablaEspetaculos.setModel(table);
-        
-       
-        
-        
     }
-    
-    public void datosEspectaculo(String nombre)
-    {
+
+    public void datosEspectaculo(String nombre) {
         Espectaculo esp = ICE.obtenerDato(nombre);
         this.nombre.setText(esp.getNombre());
         this.artista.setText(esp.getArtistaOrganizador());
@@ -79,36 +75,52 @@ public class consultaEspetaculo extends javax.swing.JFrame {
         this.duracion.setText(String.valueOf(esp.getDuracion()));
         this.url.setText(esp.getURL());
         this.costo.setText(String.valueOf(esp.getCosto()));
-        
+
         //this.fecha.setText(esp.getFechaCreado().toString());
-        
-         /** Cargo los paquetes */
+        /* Cargo los paquetes */
         DefaultTableModel tableP = new DefaultTableModel();
         ArrayList<Paquetes> datosP;
         String[] filasP = new String[1];
         tableP.addColumn("Nombre");
+
         datosP = ICP.obtenerPaquetesEspectaculos(nombre);
-        for(int i = 0; i<datosP.size(); i++)
-        {
+        for (int i = 0; i < datosP.size(); i++) {
             filasP[0] = datosP.get(i).getNombre().toString();
             tableP.addRow(filasP);
         }
         paquetes.setModel(tableP);
-        
+
         /* Cargo las funciones */
         DefaultTableModel tableF = new DefaultTableModel();
         ArrayList<Funciones> datosF;
         String[] filasF = new String[1];
         tableF.addColumn("Nombre");
-        
+
         datosF = ICF.ListarFuncionesEspectaculo(esp.getNombre());
-        for(int i = 0; i<datosF.size(); i++)
-        {
+        for (int i = 0; i < datosF.size(); i++) {
             filasF[0] = datosF.get(i).getNombre().toString();
             tableF.addRow(filasF);
         }
         funciones.setModel(tableF);
+
+        /* Cargo las categorias */
+        DefaultTableModel tableC = new DefaultTableModel();
+        String datosC;
+        String[] filasC = new String[1];
+        tableC.addColumn("Nombre");
+        datosC = ICE.categoriasEspectaculo(nombre);
+
+        String[] data = datosC.split("-");
+
+        for (String data1 : data) {
+            if (!data1.equals("")) {
+                filasC[0] = data1;
+                tableC.addRow(filasC);
+            }
+        }
+        categorias.setModel(tableC);
     }
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -146,9 +158,12 @@ public class consultaEspetaculo extends javax.swing.JFrame {
         jScrollPane4 = new javax.swing.JScrollPane();
         funciones = new javax.swing.JTable();
         jScrollPane5 = new javax.swing.JScrollPane();
-        paquetes = new javax.swing.JTable();
+        categorias = new javax.swing.JTable();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        paquetes = new javax.swing.JTable();
+        jLabel14 = new javax.swing.JLabel();
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -207,7 +222,7 @@ public class consultaEspetaculo extends javax.swing.JFrame {
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
         jLabel3.setText("Información espectaculo:");
 
-        jLabel4.setText("Nombre:");
+        jLabel4.setText("Nombre");
 
         nombre.setEditable(false);
 
@@ -250,7 +265,7 @@ public class consultaEspetaculo extends javax.swing.JFrame {
             }
         });
 
-        jLabel11.setText("Url:");
+        jLabel11.setText("Url");
 
         funciones.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -270,6 +285,23 @@ public class consultaEspetaculo extends javax.swing.JFrame {
         });
         jScrollPane4.setViewportView(funciones);
 
+        categorias.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        jScrollPane5.setViewportView(categorias);
+
+        jLabel12.setText("Funciones asociadas");
+
+        jLabel13.setText("Categorias asociadas");
+
         paquetes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -286,11 +318,9 @@ public class consultaEspetaculo extends javax.swing.JFrame {
                 paquetesMouseClicked(evt);
             }
         });
-        jScrollPane5.setViewportView(paquetes);
+        jScrollPane6.setViewportView(paquetes);
 
-        jLabel12.setText("Funciones asociadas:");
-
-        jLabel13.setText("Paquetes asociados");
+        jLabel14.setText("Paquetes asociados");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -300,114 +330,112 @@ public class consultaEspetaculo extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 452, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel2)
+                                .addGap(9, 9, 9)
+                                .addComponent(sctPlat, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(37, 37, 37)
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel11)
+                                        .addGap(32, 32, 32)
+                                        .addComponent(url))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(max))
                                     .addGroup(layout.createSequentialGroup()
                                         .addComponent(jLabel4)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(30, 30, 30)
-                                        .addComponent(jLabel5)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(artista, javax.swing.GroupLayout.PREFERRED_SIZE, 146, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                        .addGroup(layout.createSequentialGroup()
+                                        .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 132, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel9))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(min)
+                                            .addComponent(artista, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                             .addComponent(jLabel8)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(duracion, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jLabel6)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(max, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(jLabel7)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(min, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel9)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                            .addComponent(jScrollPane2))
-                                        .addGroup(layout.createSequentialGroup()
-                                            .addComponent(jLabel10)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(costo, javax.swing.GroupLayout.PREFERRED_SIZE, 92, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                            .addGap(30, 30, 30)
-                                            .addComponent(jLabel11)
-                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                            .addComponent(url, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                            .addComponent(jLabel10))
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(duracion, javax.swing.GroupLayout.DEFAULT_SIZE, 146, Short.MAX_VALUE)
+                                            .addComponent(costo)))
+                                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 358, Short.MAX_VALUE)))
                             .addGroup(layout.createSequentialGroup()
-                                .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jLabel12))
                                 .addGap(18, 18, 18)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jLabel13)
-                                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel14))
+                                .addGap(18, 18, 18)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel13)))))
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
-                        .addGap(18, 18, 18)
-                        .addComponent(jLabel2)
-                        .addGap(18, 18, 18)
-                        .addComponent(sctPlat, javax.swing.GroupLayout.PREFERRED_SIZE, 113, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(34, 34, 34)
+                        .addGap(244, 244, 244)
                         .addComponent(jLabel3)))
-                .addContainerGap(21, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel4)
+                    .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel5)
+                    .addComponent(artista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8)
+                    .addComponent(duracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel2)
+                    .addComponent(sctPlat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel2)
-                            .addComponent(sctPlat, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(21, 21, 21)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 275, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(layout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
-                            .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel5)
-                            .addComponent(artista, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel6)
                             .addComponent(max, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel7)
                             .addComponent(min, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8)
-                            .addComponent(duracion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel9)
-                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(18, 18, 18)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel10)
-                            .addComponent(costo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel11)
-                            .addComponent(url, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 19, Short.MAX_VALUE)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel13, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(costo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addContainerGap())))
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel11)
+                                .addComponent(url, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(jLabel9)
+                            .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel13, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                .addComponent(jLabel12, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jScrollPane6, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                    .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 328, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -423,23 +451,22 @@ public class consultaEspetaculo extends javax.swing.JFrame {
 
     private void tablaEspetaculosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tablaEspetaculosMouseClicked
         int fila = tablaEspetaculos.getSelectedRow();
-        String nombre = (String) tablaEspetaculos.getValueAt(fila,0);//selecciono de la fila seleccionada la primera
+        String nombre = (String) tablaEspetaculos.getValueAt(fila, 0);//selecciono de la fila seleccionada la primera
 
         datosEspectaculo(nombre);
     }//GEN-LAST:event_tablaEspetaculosMouseClicked
 
     private void sctPlatPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_sctPlatPropertyChange
-        
+
     }//GEN-LAST:event_sctPlatPropertyChange
 
     private void sctPlatItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_sctPlatItemStateChanged
-        
+
     }//GEN-LAST:event_sctPlatItemStateChanged
 
     private void sctPlatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sctPlatActionPerformed
         String plataforma = (String) sctPlat.getSelectedItem();
-        if(plataforma != "Seleccione una opcion")
-        {
+        if (plataforma != "Seleccione una opcion") {
             cargarTabla(plataforma);
         }
         System.err.println(plataforma);
@@ -447,22 +474,20 @@ public class consultaEspetaculo extends javax.swing.JFrame {
 
     private void funcionesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_funcionesMouseClicked
         int fila = funciones.getSelectedRow();
-        String nombre = (String) funciones.getValueAt(fila,0);//selecciono de la fila seleccionada la primera
+        String nombre = (String) funciones.getValueAt(fila, 0);//selecciono de la fila seleccionada la primera
 
         consultaFuncion newFrame = new consultaFuncion(nombre);
         newFrame.setVisible(true);
     }//GEN-LAST:event_funcionesMouseClicked
 
     private void paquetesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_paquetesMouseClicked
-       int fila = paquetes.getSelectedRow();
-       String nombre = (String) paquetes.getValueAt(fila,0);//selecciono de la fila seleccionada la primera
+        int fila = paquetes.getSelectedRow();
+        String nombre = (String) paquetes.getValueAt(fila, 0);//selecciono de la fila seleccionada la primera
 
-       datosPaquetes newFrame = new datosPaquetes(nombre);
-       newFrame.setVisible(true);
+        datosPaquetes newFrame = new datosPaquetes(nombre);
+        newFrame.setVisible(true);
     }//GEN-LAST:event_paquetesMouseClicked
 
-    
-    
     /**
      * @param args the command line arguments
      */
@@ -500,6 +525,7 @@ public class consultaEspetaculo extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField artista;
+    private javax.swing.JTable categorias;
     private javax.swing.JTextField costo;
     private javax.swing.JTextArea descripcion;
     private javax.swing.JTextField duracion;
@@ -509,6 +535,7 @@ public class consultaEspetaculo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -522,6 +549,7 @@ public class consultaEspetaculo extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+    private javax.swing.JScrollPane jScrollPane6;
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField max;
     private javax.swing.JTextField min;

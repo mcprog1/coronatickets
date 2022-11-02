@@ -6,6 +6,7 @@
 package Interface;
 
 import Clases.Funciones;
+import java.io.File;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -16,7 +17,7 @@ import java.util.List;
  */
 public interface IControladorFuncion {
 
-    public int AltaFuncion(String nombreEspectaculo, String nombre, String dia, String mes, String anio, String hora, String minuto, List artistas);
+    public int AltaFuncion(String nombreEspectaculo, String nombre, String dia, String mes, String anio, String hora, String minuto, List artistas, File imagen);
 
     public Funciones ConsultaFuncion(String nombreFuncion, String nombreEspectaculo) throws SQLException;
 

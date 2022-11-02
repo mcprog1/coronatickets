@@ -15,12 +15,12 @@ public class Artista extends Usuarios {
     private String Descripcion;
     private String Biografia;
     private String URL;
-
+       
     public Artista(){
         
     }
-    public Artista(String Nickname, String Nombre, String Apellido, String Clave, String Mail,DtFecha f,String i,String Descripcion,String Biografia,String URL) {
-        super(Nickname,Nombre,Apellido,Clave,Mail, f, i);
+    public Artista(String Nickname, String Nombre, String Apellido, String Clave, String Mail, DtFecha f, String i, String imagen, String Descripcion, String Biografia, String URL) {
+        super(Nickname,Nombre,Apellido,Clave,Mail, f, i, imagen);
         this.Descripcion = Descripcion;
         this.Biografia = Biografia;
         this.URL = URL;
@@ -49,6 +49,5 @@ public class Artista extends Usuarios {
     public void setURL(String URL) {
         this.URL = URL;
     }
-    
     
 }

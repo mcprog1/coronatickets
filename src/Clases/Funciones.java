@@ -14,19 +14,28 @@ import java.sql.Timestamp;
  */
 public class Funciones {
 
-    private String Nombre;
+    private String Nombre, Imagen;
     private Timestamp Fecha;
     private Timestamp FechaCreado;
     private Timestamp HoraDeInicio;
     
-    public Funciones(String nombre, Timestamp fecha,  Timestamp horaDeInicio, Timestamp fechaCreado){
+    public Funciones(String nombre, Timestamp fecha,  Timestamp horaDeInicio, Timestamp fechaCreado, String imagen){
         this.Nombre = nombre;
         this.Fecha = fecha;
         this.FechaCreado = fechaCreado;
         this.HoraDeInicio = horaDeInicio;
+        this.Imagen = imagen;
     }
 
     public Funciones() {}
+    
+    public String getImagen() {
+        return Imagen;
+    }
+
+    public void setImagen(String Imagen) {
+        this.Imagen = Imagen;
+    }
     
     public String getNombre() {
         return Nombre;

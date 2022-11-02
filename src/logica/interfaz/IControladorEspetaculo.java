@@ -4,7 +4,9 @@ import Clases.Categoria;
 import Clases.Espectaculo;
 import Clases.Funciones;
 import Clases.Plataformas;
+import java.io.File;
 import java.util.ArrayList;
+import java.util.List;
 /**
  *
  * @author Nico
@@ -17,7 +19,7 @@ public interface IControladorEspetaculo {
     public abstract ArrayList<Espectaculo> tblEspectaculoPlataforma(String plataforma);
     public abstract ArrayList<Espectaculo> tblEspectaculoNoPaquete(String paquete, String plataforma);
     public abstract Espectaculo obtenerDato(String nombre);
-    public abstract String crearEspetaculo(String plataforma, String artista, String nombre, int duracion, int maximo, int minimo, String url, float costo);
+    public abstract String crearEspetaculo(String plataforma, String artista, String nombre, String descripcion, int duracion, int maximo, int minimo, String url, float costo, List artistas, File imagen);
     public abstract ArrayList<Espectaculo> tablaespetaculo(String nom);//Busco espetaculo a traves del nickname del artista
     public abstract ArrayList<Funciones> ListaFuncionesEspectador(String nick);//funciones que esta registrado el Espectador
     public abstract void nuevoEspectaculo(String nombre, String plataforma, String artista, String descripcion, String duracion, String espMax, String espMin, String url, String costo, ArrayList<String> categorias, String imagen);

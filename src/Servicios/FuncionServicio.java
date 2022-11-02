@@ -64,7 +64,7 @@ public class FuncionServicio {
 
         ArrayList<Espectaculo> lista = new ArrayList();
         while (rs.next()) {
-            Espectaculo espetaculo = new Espectaculo(rs.getString(1), rs.getString(3), rs.getString(4), rs.getString(8), rs.getInt(5), rs.getInt(6), rs.getInt(7), rs.getFloat(9), rs.getTimestamp(10));
+            Espectaculo espetaculo = new Espectaculo(rs.getString(1), rs.getString(3), rs.getString(4), rs.getString(8), rs.getInt(5), rs.getInt(6), rs.getInt(7), rs.getFloat(9), rs.getTimestamp(10), rs.getString(12));
             lista.add(espetaculo);
         }
         conexion.cerrar();
@@ -143,7 +143,7 @@ public class FuncionServicio {
             ResultSet rs2 = st2.executeQuery("select * from Usuarios where usu_nick ='" + rs.getString(1) + "'");
 
             while (rs2.next()) {
-                Artista artista = new Artista(rs2.getString(1), rs2.getString(2), rs2.getString(3), rs2.getString(4), rs2.getString(5), dateToDTFecha(rs2.getDate(7)), rs2.getString(6), rs.getString(2), rs.getString(3), rs.getString(4));
+                Artista artista = new Artista(rs2.getString(1), rs2.getString(2), rs2.getString(3), rs2.getString(4), rs2.getString(5), dateToDTFecha(rs2.getDate(7)), rs2.getString(6), rs.getString(2), rs.getString(3), rs.getString(4),rs2.getString(8));
                 lista.add(artista);
             }
         }
@@ -160,10 +160,10 @@ public class FuncionServicio {
 
         Statement st;
         st = con.createStatement();
-        ResultSet rs = st.executeQuery("select fun_nombre,fun_fecha,fun_hora_inicio,fun_fecha_creado from Funciones,Espetaculo_funcion where Funciones.fun_nombre = Espetaculo_funcion.espfun_fun_nombre and Funciones.fun_nombre = '" + nombreFuncion + "' and espetaculo_funcion.espfun_esp_nombre = '" + nombreEspectaculo + "'");
+        ResultSet rs = st.executeQuery("select fun_nombre, fun_fecha, fun_hora_inicio, fun_fecha_creado, fun_url from Funciones,Espetaculo_funcion where Funciones.fun_nombre = Espetaculo_funcion.espfun_fun_nombre and Funciones.fun_nombre = '" + nombreFuncion + "' and espetaculo_funcion.espfun_esp_nombre = '" + nombreEspectaculo + "'");
 
         if (rs.next()) {
-            Funciones funcion = new Funciones(rs.getString(1), rs.getTimestamp(2), rs.getTimestamp(3), rs.getTimestamp(4));
+            Funciones funcion = new Funciones(rs.getString(1), rs.getTimestamp(2), rs.getTimestamp(3), rs.getTimestamp(4), rs.getString(5));
             return funcion;
         }
         conexion.cerrar();
@@ -191,7 +191,7 @@ public class FuncionServicio {
     }
 //------------------------------------------------------------------------------
 
-    public int AltaFuncion(String nombreEspectaculo, String nombre, Timestamp Tfecha, Timestamp Thora, Timestamp fechaCreacion, List artistas) throws SQLException {
+    public int AltaFuncion(String nombreEspectaculo, String nombre, Timestamp Tfecha, Timestamp Thora, Timestamp fechaCreacion, List artistas, String imagen) throws SQLException {
 
         ConexionDB conexion = new ConexionDB();
         Connection con = conexion.getConexion();
@@ -202,7 +202,7 @@ public class FuncionServicio {
 
         if (rs.next()) {
             //Update
-            st.executeUpdate("update Funciones set fun_fecha = '" + Tfecha + "', fun_hora_inicio = '" + Thora + "', fun_fecha_creado = '" + fechaCreacion + "' where fun_nombre = '" + nombre + "'");
+            st.executeUpdate("update Funciones set fun_fecha = '" + Tfecha + "', fun_hora_inicio = '" + Thora + "', fun_fecha_creado = '" + fechaCreacion + "', fun_url = '" + imagen + "' where fun_nombre = '" + nombre + "'");
             st.executeUpdate("delete from funcion_artista where funart_fun_nombre = '" + nombre + "'");
 
             for (int i = 0; i < artistas.size(); i++) {
@@ -212,7 +212,7 @@ public class FuncionServicio {
             return 8;
         } else {
             //Insert
-            st.executeUpdate("insert into Funciones (fun_nombre, fun_fecha, fun_hora_inicio, fun_fecha_creado) values ('" + nombre + "', '" + Tfecha + "', '" + Thora + "', '" + fechaCreacion + "')");
+            st.executeUpdate("insert into Funciones (fun_nombre, fun_fecha, fun_hora_inicio, fun_fecha_creado, fun_url) values ('" + nombre + "', '" + Tfecha + "', '" + Thora + "', '" + fechaCreacion + "', '" + imagen + "')");
             st.executeUpdate("insert into espetaculo_funcion (espfun_esp_nombre, espfun_fun_nombre) values ('" + nombreEspectaculo + "', '" + nombre + "')");
 
             for (int i = 0; i < artistas.size(); i++) {
@@ -236,7 +236,7 @@ public class FuncionServicio {
         ArrayList<Funciones> lista = new ArrayList();
 
         while (rs.next()) {
-            Funciones funcion = new Funciones(rs.getString(1), rs.getTimestamp(2), rs.getTimestamp(3), rs.getTimestamp(4));
+            Funciones funcion = new Funciones(rs.getString(1), rs.getTimestamp(2), rs.getTimestamp(3), rs.getTimestamp(4), rs.getString(5));
             lista.add(funcion);
         }
 
@@ -256,7 +256,7 @@ public class FuncionServicio {
 
         ArrayList<Espectador> lista = new ArrayList();
         while (rs.next()) {
-            Espectador espectador = new Espectador(rs.getString(1), rs.getString(4), rs.getString(2), rs.getString(3), rs.getString(5), dateToDTFecha(rs.getDate(7)), rs.getString(6));
+            Espectador espectador = new Espectador(rs.getString(1), rs.getString(4), rs.getString(2), rs.getString(3), rs.getString(5), dateToDTFecha(rs.getDate(7)), rs.getString(6),  rs.getString(8));
             lista.add(espectador);
         }
         conexion.cerrar();

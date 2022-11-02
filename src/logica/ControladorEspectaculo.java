@@ -8,7 +8,14 @@ import Servicios.EspectaculoServicio;
 import Servicios.PlataformaServicio;
 import java.util.ArrayList;
 import Clases.Plataformas;
+import Servicios.ServicioImagen;
 import Servicios.ServiciosRegistros;
+import java.io.File;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
@@ -34,9 +41,23 @@ public class ControladorEspectaculo implements IControladorEspetaculo {
         return instancia;
     }
 
-    public String crearEspetaculo(String plataforma, String artista, String nombre, int duracion, int maximo, int minimo, String url, float costo) {
+    public String crearEspetaculo(String plataforma, String artista, String nombre, String descipcion, int duracion, int maximo, int minimo, String url, float costo, List categorias, File imagen) {
         String creo = "N";
-        if (this.espectaculoServicio.crearActualizarEspetaculo(nombre, plataforma, artista, url, duracion, minimo, minimo, url, costo)) {
+        
+          String urlimagen = null;
+        try {
+            Map<String, String> headers = new HashMap<>();
+            headers.put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36");
+            ServicioImagen multipart = new ServicioImagen("https://upload-image-to-imgur.vercel.app/upload", "utf-8", headers);
+
+            multipart.addFilePart("file", imagen);
+            String response = multipart.finish();
+            urlimagen = response;
+        } catch (Exception ex) {
+            Logger.getLogger(ControladorUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        if (this.espectaculoServicio.crearActualizarEspetaculo(nombre, plataforma, artista, descipcion, duracion, maximo, minimo, url, costo, categorias, urlimagen)) {
             creo = "S";
         }
         return creo;

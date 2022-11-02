@@ -8,6 +8,7 @@ package Presentacion.CU6;
 import Clases.Artista;
 import Clases.Funciones;
 import Interface.IControladorFuncion;
+import java.io.File;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -16,6 +17,7 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import logica.Fabrica;
 
@@ -33,6 +35,8 @@ public class CrearFuncionCU6 extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        lblImagen = new javax.swing.JLabel();
+        btnImagen4 = new javax.swing.JButton();
         txtNombre = new javax.swing.JTextField();
         txtDia = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -50,6 +54,15 @@ public class CrearFuncionCU6 extends javax.swing.JFrame {
         jLabel6 = new javax.swing.JLabel();
         txtHora = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
+        lblImagen1 = new javax.swing.JLabel();
+        btnImagen5 = new javax.swing.JButton();
+
+        btnImagen4.setText("Agregar imagen");
+        btnImagen4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnImagen4MouseClicked(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -104,6 +117,13 @@ public class CrearFuncionCU6 extends javax.swing.JFrame {
 
         jLabel7.setText("Artistas*");
 
+        btnImagen5.setText("Agregar imagen");
+        btnImagen5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnImagen5MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -111,39 +131,44 @@ public class CrearFuncionCU6 extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblImagen1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel1)
-                            .addComponent(jLabel2)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel7))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
-                                        .addComponent(txtDia, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                    .addComponent(jLabel1)
+                                    .addComponent(jLabel2)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel7))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                            .addComponent(txtNombre, javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, layout.createSequentialGroup()
+                                                .addComponent(txtDia, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(jLabel4)
+                                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                                .addComponent(txtMes, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(jLabel4)
+                                        .addComponent(jLabel5)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtMes, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel5)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addComponent(txtAnio, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(jLabel6)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtMinuto, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addComponent(btnCrear)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel6)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(txtMinuto, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(btnCrear)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(btnCancelar)))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addComponent(btnCancelar))
+                            .addComponent(btnImagen5))
+                        .addGap(0, 0, Short.MAX_VALUE)))
+                .addContainerGap())
         );
 
         layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {btnCancelar, btnCrear});
@@ -151,7 +176,7 @@ public class CrearFuncionCU6 extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel1))
@@ -173,7 +198,11 @@ public class CrearFuncionCU6 extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel7))
-                .addGap(9, 9, 9)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnImagen5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblImagen1, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnCrear)
                     .addComponent(btnCancelar))
@@ -195,6 +224,7 @@ public class CrearFuncionCU6 extends javax.swing.JFrame {
         txtHora.setText("HH");
         txtMinuto.setText("MM");
         lstArtistas.clearSelection();
+        lblImagen1.setText("");
         try {
             CargarDatosFuncion(txtNombre.getText(), SeleccionarEspectaculoCU6.lstEspetaculo.getSelectedValue());
         } catch (SQLException ex) {
@@ -216,8 +246,10 @@ public class CrearFuncionCU6 extends javax.swing.JFrame {
                         JOptionPane.showMessageDialog(null, "Seleccione artistas para la funcion");
                     } else {
                         List artistas = lstArtistas.getSelectedValuesList();
+                        
+                         File imagen = new File(this.lblImagen1.getText());
 
-                        int controlar = ICF.AltaFuncion(SeleccionarEspectaculoCU6.lstEspetaculo.getSelectedValue(), txtNombre.getText(), txtDia.getText(), txtMes.getText(), txtAnio.getText(), txtHora.getText(), txtMinuto.getText(), artistas);
+                        int controlar = ICF.AltaFuncion(SeleccionarEspectaculoCU6.lstEspetaculo.getSelectedValue(), txtNombre.getText(), txtDia.getText(), txtMes.getText(), txtAnio.getText(), txtHora.getText(), txtMinuto.getText(), artistas, imagen);
 
                         if (controlar == 1) {
                             JOptionPane.showMessageDialog(null, "Ingrese un año valido");
@@ -262,6 +294,32 @@ public class CrearFuncionCU6 extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_btnCrearMouseClicked
 
+    private void btnImagen4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnImagen4MouseClicked
+        JFileChooser imagen = new JFileChooser();
+        imagen.showOpenDialog(this);
+
+        File archivo = imagen.getSelectedFile();
+
+        if (archivo != null) {
+            String origen = archivo.getPath();
+
+            this.lblImagen.setText(origen);
+        }
+    }//GEN-LAST:event_btnImagen4MouseClicked
+
+    private void btnImagen5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnImagen5MouseClicked
+        JFileChooser imagen = new JFileChooser();
+        imagen.showOpenDialog(this);
+
+        File archivo = imagen.getSelectedFile();
+
+        if (archivo != null) {
+            String origen = archivo.getPath();
+
+            this.lblImagen1.setText(origen);
+        }
+    }//GEN-LAST:event_btnImagen5MouseClicked
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -299,6 +357,8 @@ public class CrearFuncionCU6 extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnCancelar;
     private javax.swing.JButton btnCrear;
+    private javax.swing.JButton btnImagen4;
+    private javax.swing.JButton btnImagen5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -307,6 +367,8 @@ public class CrearFuncionCU6 extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JLabel lblImagen;
+    private javax.swing.JLabel lblImagen1;
     private javax.swing.JList<String> lstArtistas;
     private javax.swing.JTextField txtAnio;
     private javax.swing.JTextField txtDia;
@@ -373,7 +435,7 @@ public class CrearFuncionCU6 extends javax.swing.JFrame {
             txtAnio.setText(sdf3.format(timestamp));
             txtHora.setText(sdf4.format(timestamp2));
             txtMinuto.setText(sdf5.format(timestamp2));
-
+            lblImagen1.setText(funcion.getImagen());
         }
     }
 }

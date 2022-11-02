@@ -541,9 +541,7 @@ public class VentanaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_txtNicknameActionPerformed
 
     private void btnAceptarAltaEspectadorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAceptarAltaEspectadorActionPerformed
-        Date d = Date.valueOf(txtFecha.getText());
-        Clases.DtFecha dFecha = dateToDTFecha(d);
-        ICU.addEspectador(txtNickname.getText(), txtNombre.getText(), txtApellido.getText(), txtClave.getText(), txtMail.getText(), dFecha, txtIdentificador.getText());
+
     }//GEN-LAST:event_btnAceptarAltaEspectadorActionPerformed
 
     public Clases.DtFecha dateToDTFecha(Date fecha){

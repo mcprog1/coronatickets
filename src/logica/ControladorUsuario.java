@@ -11,8 +11,12 @@ import Clases.Usuarios;
 import logica.interfaz.IControladorUsuario;
 import java.sql.SQLException;
 import Clases.*;
+import Servicios.ServicioImagen;
+import java.io.File;
 import java.sql.Date;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -23,6 +27,7 @@ import java.util.logging.Logger;
 public class ControladorUsuario implements IControladorUsuario {
 
     private final ServiciosUsuarios serviciosUsuarios;
+    private ServicioImagen ServicioImagen;
 
     public ControladorUsuario() {
         this.serviciosUsuarios = new ServiciosUsuarios();
@@ -38,7 +43,7 @@ public class ControladorUsuario implements IControladorUsuario {
         return instancia;
     }
 
-    public String addEspectador(String nick, String nombre, String apellido, String clave, String mail, DtFecha f, String i) {
+    public String addEspectador(String nick, String nombre, String apellido, String clave, String mail, DtFecha f, File imagen) {
 
         boolean verificaNick = true;
         boolean verificaMail = true;
@@ -47,8 +52,21 @@ public class ControladorUsuario implements IControladorUsuario {
         verificaNick = serviciosUsuarios.validarusuariosNick(nick);
         verificaMail = serviciosUsuarios.validarusuariosMail(mail);
 
+        String urlimagen = null;
+        try {
+            Map<String, String> headers = new HashMap<>();
+            headers.put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36");
+            ServicioImagen multipart = new ServicioImagen("https://upload-image-to-imgur.vercel.app/upload", "utf-8", headers);
+
+            multipart.addFilePart("file", imagen);
+            String response = multipart.finish();
+            urlimagen = response;
+        } catch (Exception ex) {
+            Logger.getLogger(ControladorUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
         if (verificaNick == false & verificaMail == false) {
-            Usuarios u = new Usuarios(nick, nombre, apellido, clave, mail, f, i);
+
+            Usuarios u = new Usuarios(nick, nombre, apellido, clave, mail, f, "1", urlimagen);
             serviciosUsuarios.UpdateBDEspectador(u);
             valido = "V";//Usuario valido
             return valido;
@@ -61,16 +79,30 @@ public class ControladorUsuario implements IControladorUsuario {
 
     }
 
-    public String addArtista(String Nickname, String Nombre, String Apellido, String Clave, String Mail, DtFecha f, String i, String Descripcion, String Biografia, String URL) {
+    public String addArtista(String Nickname, String Nombre, String Apellido, String Clave, String Mail, DtFecha f, String Descripcion, String Biografia, String URL, File imagen) {
         boolean verificaNick = true;
         boolean verificaMail = true;
         String valido = "E";//Error si es que no se ejecuta
 
         verificaNick = serviciosUsuarios.validarusuariosNick(Nickname);
         verificaMail = serviciosUsuarios.validarusuariosMail(Mail);
+        
+         String urlimagen = null;
+        try {
+            Map<String, String> headers = new HashMap<>();
+            headers.put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36");
+            ServicioImagen multipart = new ServicioImagen("https://upload-image-to-imgur.vercel.app/upload", "utf-8", headers);
 
-        if (verificaNick == false & verificaMail == false) {
-            Artista a = new Artista(Nickname, Nombre, Apellido, Clave, Mail, f, i, Descripcion, Biografia, URL);
+            multipart.addFilePart("file", imagen);
+            String response = multipart.finish();
+            urlimagen = response;
+        } catch (Exception ex) {
+            Logger.getLogger(ControladorUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        if (verificaNick == false && verificaMail == false) {
+
+            Artista a = new Artista(Nickname, Nombre, Apellido, Clave, Mail, f, "2", urlimagen, Descripcion, Biografia, URL);
             if (serviciosUsuarios.UpdateBDArtista(a) == true) {
                 valido = "V";//Usuario valido
                 return valido;
@@ -116,14 +148,6 @@ public class ControladorUsuario implements IControladorUsuario {
         }
     }
 
-    /*public void addEspectador(String nick, String nombre, String apellido, String clave, String mail, Timestamp f,String i) {
-        
-            Usuarios u = new Usuarios(nick, nombre, apellido, clave, mail,f,i);
-            String add = String.format("INSERT INTO usuarios (usu_nick,usu_nombre,usu_apellido,usu_clave,usu_mail,usu_tipo_usuario,usu_fecha_nacimiento) "
-                    + "VALUE ('%s','%s','%s','%s','%s','%s','%s')", u.getNickname(), u.getNombre(), u.getApellido(), u.getClave(), u.getMail(),u.getFechai(),u.getIdentificador());
-            serviciosUsuarios.UpdateBD(add);
-        
-    }*/
     public int Artista_o_Espectador(String nick) {
         if (serviciosUsuarios.EsArtistaoEspectador(nick) == 1) {
             return 1;
@@ -192,9 +216,9 @@ public class ControladorUsuario implements IControladorUsuario {
     }
 
     public String nickUsuario(String nickCorreo, String password) {
-     
-          String  nickUsuario = serviciosUsuarios.nickUsuario(nickCorreo, password);
-      
+
+        String nickUsuario = serviciosUsuarios.nickUsuario(nickCorreo, password);
+
         return nickUsuario;
     }
 
