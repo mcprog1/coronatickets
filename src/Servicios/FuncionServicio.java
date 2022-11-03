@@ -64,7 +64,7 @@ public class FuncionServicio {
 
         ArrayList<Espectaculo> lista = new ArrayList();
         while (rs.next()) {
-            Espectaculo espetaculo = new Espectaculo(rs.getString(1), rs.getString(3), rs.getString(4), rs.getString(8), rs.getInt(5), rs.getInt(6), rs.getInt(7), rs.getFloat(9), rs.getTimestamp(10));
+            Espectaculo espetaculo = new Espectaculo(rs.getString(1), rs.getString(3), rs.getString(4), rs.getString(8), rs.getInt(5), rs.getInt(6), rs.getInt(7), rs.getFloat(9), rs.getTimestamp(10),rs.getString(11));
             lista.add(espetaculo);
         }
         conexion.cerrar();
@@ -160,10 +160,10 @@ public class FuncionServicio {
 
         Statement st;
         st = con.createStatement();
-        ResultSet rs = st.executeQuery("select fun_nombre,fun_fecha,fun_hora_inicio,fun_fecha_creado from Funciones,Espetaculo_funcion where Funciones.fun_nombre = Espetaculo_funcion.espfun_fun_nombre and Funciones.fun_nombre = '" + nombreFuncion + "' and espetaculo_funcion.espfun_esp_nombre = '" + nombreEspectaculo + "'");
+        ResultSet rs = st.executeQuery("select fun_nombre,fun_fecha,fun_hora_inicio,fun_fecha_creado, fun_url from Funciones,Espetaculo_funcion where Funciones.fun_nombre = Espetaculo_funcion.espfun_fun_nombre and Funciones.fun_nombre = '" + nombreFuncion + "' and espetaculo_funcion.espfun_esp_nombre = '" + nombreEspectaculo + "'");
 
         if (rs.next()) {
-            Funciones funcion = new Funciones(rs.getString(1), rs.getTimestamp(2), rs.getTimestamp(3), rs.getTimestamp(4));
+            Funciones funcion = new Funciones(rs.getString(1), rs.getTimestamp(2), rs.getTimestamp(3), rs.getTimestamp(4), rs.getString(5));
             return funcion;
         }
         conexion.cerrar();
@@ -191,7 +191,7 @@ public class FuncionServicio {
     }
 //------------------------------------------------------------------------------
 
-    public int AltaFuncion(String nombreEspectaculo, String nombre, Timestamp Tfecha, Timestamp Thora, Timestamp fechaCreacion, List artistas) throws SQLException {
+    public int AltaFuncion(String nombreEspectaculo, String nombre, Timestamp Tfecha, Timestamp Thora, Timestamp fechaCreacion, List artistas, String url) throws SQLException {
 
         ConexionDB conexion = new ConexionDB();
         Connection con = conexion.getConexion();
@@ -202,7 +202,7 @@ public class FuncionServicio {
 
         if (rs.next()) {
             //Update
-            st.executeUpdate("update Funciones set fun_fecha = '" + Tfecha + "', fun_hora_inicio = '" + Thora + "', fun_fecha_creado = '" + fechaCreacion + "' where fun_nombre = '" + nombre + "'");
+            st.executeUpdate("update Funciones set fun_fecha = '" + Tfecha + "', fun_hora_inicio = '" + Thora + "', fun_fecha_creado = '" + fechaCreacion + "', fun_url = '"+ url +"' where fun_nombre = '" + nombre + "'");
             st.executeUpdate("delete from funcion_artista where funart_fun_nombre = '" + nombre + "'");
 
             for (int i = 0; i < artistas.size(); i++) {
@@ -212,7 +212,7 @@ public class FuncionServicio {
             return 8;
         } else {
             //Insert
-            st.executeUpdate("insert into Funciones (fun_nombre, fun_fecha, fun_hora_inicio, fun_fecha_creado) values ('" + nombre + "', '" + Tfecha + "', '" + Thora + "', '" + fechaCreacion + "')");
+            st.executeUpdate("insert into Funciones (fun_nombre, fun_fecha, fun_hora_inicio, fun_fecha_creado, fun_url) values ('" + nombre + "', '" + Tfecha + "', '" + Thora + "', '" + fechaCreacion + "', '"+ url +"')");
             st.executeUpdate("insert into espetaculo_funcion (espfun_esp_nombre, espfun_fun_nombre) values ('" + nombreEspectaculo + "', '" + nombre + "')");
 
             for (int i = 0; i < artistas.size(); i++) {
@@ -231,12 +231,12 @@ public class FuncionServicio {
 
         Statement st;
         st = con.createStatement();
-        ResultSet rs = st.executeQuery("select fun_nombre,fun_fecha,fun_hora_inicio,fun_fecha_creado from Funciones,Espetaculo_funcion where Funciones.fun_nombre = Espetaculo_funcion.espfun_fun_nombre and espetaculo_funcion.espfun_esp_nombre = '" + nombre + "'");
+        ResultSet rs = st.executeQuery("select fun_nombre,fun_fecha,fun_hora_inicio,fun_fecha_creado, fun_url from Funciones,Espetaculo_funcion where Funciones.fun_nombre = Espetaculo_funcion.espfun_fun_nombre and UPPER(espetaculo_funcion.espfun_esp_nombre) = UPPER('" + nombre + "')");
 
         ArrayList<Funciones> lista = new ArrayList();
 
         while (rs.next()) {
-            Funciones funcion = new Funciones(rs.getString(1), rs.getTimestamp(2), rs.getTimestamp(3), rs.getTimestamp(4));
+            Funciones funcion = new Funciones(rs.getString(1), rs.getTimestamp(2), rs.getTimestamp(3), rs.getTimestamp(4), rs.getString(5));
             lista.add(funcion);
         }
 
@@ -283,6 +283,7 @@ public class FuncionServicio {
 
         return lista;
     }
+    
 //------------------------------------------------------------------------------
 
     public int EspectaculoLleno(String nombreEspectaculo, String nombreFuncion) throws SQLException {
@@ -427,6 +428,96 @@ public class FuncionServicio {
         }
         return fun;
     }
+    
+    public String existeNombreFuncion(String nombre)
+    {
+        String existe = "N";
+        ConexionDB conexion = new ConexionDB();
+        Connection con = conexion.getConexion();
+        try{
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("select * from Funciones where fun_nombre = '" + nombre + "'");
+            if(rs.next())
+            {
+                existe = "S";
+            }
+        }catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return existe;
+    }
+    
+    public ArrayList obtenerArtistaFuncion(String nombre) throws SQLException {
+
+        ConexionDB conexion = new ConexionDB();
+        Connection con = conexion.getConexion();
+
+        Statement st;
+        st = con.createStatement();
+        ResultSet rs = st.executeQuery("select * "
+                                     + "from funcion_artista, artistas, usuarios "
+                                     + "where funart_art_nick = art_usu_nick "
+                                     + " AND art_usu_nick = usu_nick "
+                                     + " AND funart_fun_nombre = '" + nombre + "'");
+
+        ArrayList<Artista> lista = new ArrayList(); 
+        while (rs.next()) {
+            lista.add(new Artista(rs.getString("usu_nick"), rs.getString("usu_nombre"), rs.getString("usu_apellido"), "", rs.getString("usu_mail"),dateToDTFecha(rs.getDate("usu_fecha_nacimiento")), rs.getString("usu_tipo_usuario"), rs.getString("art_descripcion"), rs.getString("art_biografia"), rs.getString("art_url")));
+        }
+
+        conexion.cerrar();
+        return lista;
+    }
+    
+    public String tieneCanje(String nickname)
+    {
+        String tieneCanje = "N";
+        ConexionDB conexion = new ConexionDB();
+        Connection con = conexion.getConexion();
+        try{
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("SELECT COUNT(*)\n" +
+                                           "FROM registro\n" +
+                                           "WHERE UPPER(reg_usu_nick) = UPPER('"+nickname+"') AND UPPER(reg_canjeado) = 'N' AND UPPER(reg_vigente) = 'S'"
+                                         + "HAVING COUNT(*)>= 3");
+            if(rs.next())
+            {
+                tieneCanje = "S";
+            }
+        }catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return tieneCanje;
+    }
+ 
+    
+    
+    public String obtenerRegistroCanjera(String nickname)
+    {
+        String jsonRegistro = "";
+        ConexionDB conexion = new ConexionDB();
+        Connection con = conexion.getConexion();
+        try{
+            Statement st = con.createStatement();
+            ResultSet rs = st.executeQuery("SELECT * FROM registro WHERE UPPER(reg_usu_nick) = '"+nickname+"' AND UPPER(reg_canjeado) = 'N' AND UPPER(reg_vigente) = 'S'");
+            int i = 0;
+            while (rs.next()) {
+                if(i > 0)
+                {
+                    jsonRegistro = jsonRegistro +",";
+                }        
+                jsonRegistro =  jsonRegistro+ "{"
+                                                + "\"idRegistro\":\""+ rs.getString("reg_id") + "\","
+                                                + "\"nombre\":" + "\""+ rs.getString("reg_esp_funcion") +"\""
+                                            + "}";
+                i++;
+            }
+        }catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return jsonRegistro;
+    }
+    
     
 }
 

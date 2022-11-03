@@ -34,16 +34,14 @@ public class admin extends javax.swing.JFrame {
     public void cargarTabla(){
         DefaultTableModel table = new DefaultTableModel();
         ArrayList<Categorias> datos;
-        String[] filas = new String[3];
+        String[] filas = new String[2];
         table.addColumn("ID");
         table.addColumn("Nombre");
-        table.addColumn("");
         datos = ICC.tblCategorias();
         for(int i = 0; i < datos.size(); i++)
         {
             filas[0] = String.valueOf(datos.get(i).getId());
             filas[1] = datos.get(i).getNombre().toString();
-            filas[2] = "";
             table.addRow(filas);
         }
         tablaCategorias.setModel(table);

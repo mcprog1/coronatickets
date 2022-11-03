@@ -148,4 +148,69 @@ public class PaquetesServicio {
             ex.printStackTrace();
         }
     }
+    
+    public String comprarPaquete(String paquete, String nickname)
+    {
+        String compra= "N";
+        try { // Creo la plataforma - Probando el GitIgnore jeje 
+
+            ResultSet rs;
+            PreparedStatement ps;
+            ps = conexion.prepareStatement("SELECT  e.esp_nombre as nome, f.fun_nombre as fune  FROM  paquete_espetaculo as pe, espetaculos as e , espetaculo_funcion as ef, funciones as f WHERE paqesp_paq_nombre = ? AND paqesp_esp_nombre = esp_nombre AND esp_nombre = ef.espfun_esp_nombre AND ef.espfun_fun_nombre = f.fun_nombre AND NOT EXISTS(SELECT 1 FROM registro as r WHERE r.reg_usu_nick = ?  AND r.reg_esp_nombre = e.esp_nombre  AND r.reg_esp_funcion = f.fun_nombre)");
+            ps.setString(1, paquete);
+            ps.setString(2, nickname);
+            rs = ps.executeQuery();
+            FuncionServicio fs = new FuncionServicio();
+            
+            while(rs.next()) //Registro a las funciones
+            {
+                fs.RegistrarEspectadorFuncion(nickname, rs.getString("nome"), rs.getString("fune"));
+            }
+            ps = conexion.prepareStatement("SELECT SUM(e.esp_costo)*(1-p.paq_descuento/100) as precio_total, p.paq_descuento as descuento FROM  paquetes as p ,paquete_espetaculo as pe, espetaculos as e WHERE p.paq_nombre = ? AND p.paq_nombre = pe.paqesp_paq_nombre AND pe.paqesp_esp_nombre = e.esp_nombre");
+            ps.setString(1, paquete);
+            float precio = 0, descuento =0;
+            while(rs.next()) //Registro a las funciones
+            {
+                precio = precio+rs.getFloat("precio_total");
+                descuento = descuento+rs.getFloat("descuento");
+            }
+            
+            PreparedStatement status = conexion.prepareStatement("INSERT INTO compra_paquete (comp_usu, comp_paquete, comp_descuento, comp_precio_total) VALUES (?,?,?,?)");
+            status.setString(1, nickname);
+            status.setString(2, paquete);
+            status.setFloat(3, precio);
+            status.setFloat(4, descuento);
+            status.execute();
+            rs.close();
+            compra = "S";
+        } catch (SQLException ex) {
+           return ex.getMessage();
+        }
+        return compra;
+    }
+    
+    
+    public String comproPaquete(String paquete, String nickname)
+    {
+        String compro = "N";
+        try { // Creo la plataforma - Probando el GitIgnore jeje 
+            
+            ResultSet rs;
+            PreparedStatement ps;
+            ps = conexion.prepareStatement("SELECT * FROM compra_paquete WHERE comp_usu = ? AND comp_paquete = ?");
+            ps.setString(1, nickname);
+            ps.setString(2, paquete);
+            rs = ps.executeQuery();
+            while(rs.next()) //Registro a las funciones
+            {
+                compro = "S";
+            }
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        
+        return compro;
+    }
+        
+    
 }

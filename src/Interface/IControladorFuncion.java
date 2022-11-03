@@ -5,6 +5,7 @@
  */
 package Interface;
 
+import Clases.Artista;
 import Clases.Funciones;
 import java.sql.SQLException;
 import java.util.ArrayList;
@@ -16,7 +17,7 @@ import java.util.List;
  */
 public interface IControladorFuncion {
 
-    public int AltaFuncion(String nombreEspectaculo, String nombre, String dia, String mes, String anio, String hora, String minuto, List artistas);
+    public int AltaFuncion(String nombreEspectaculo, String nombre, String dia, String mes, String anio, String hora, String minuto, List artistas, String url);
 
     public Funciones ConsultaFuncion(String nombreFuncion, String nombreEspectaculo) throws SQLException;
 
@@ -43,4 +44,11 @@ public interface IControladorFuncion {
     public void CanjearRegistroEspectadorFuncion(String nickEspectador, String nombreEspectaculo, String nombreFuncion, List RegistrosPrevios);
     
     public abstract Funciones obtenerDatosFuncion(String nombre);
+    
+    public abstract String existeNombreFuncion(String nombre);
+    
+    public abstract ArrayList<Artista> obtenerArtistasFuncion(String nombre);
+    
+    public abstract String tieneCanjeDisponible(String nickname);
+    public abstract String obtenerRegistroCanjera(String nickname);
 }

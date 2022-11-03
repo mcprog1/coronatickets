@@ -14,12 +14,12 @@ import java.sql.Timestamp;
  */
 public class Espectaculo {
 
-    private String Nombre,ArtistaOrganizador,Descripcion,URL, Plataforma;
+    private String Nombre,ArtistaOrganizador,Descripcion,URL, Plataforma, estado;
     private int Duracion, CapacidadMinima, CapacidadMaxima;
     private float Costo;
     private Timestamp FechaCreado;
 
-    public Espectaculo(String nombre, String artistaOrganizador, String descripcion, String url, int duracion, int capacidadMinima, int capacidadMaxima, float costo, Timestamp fechaCreado){
+    public Espectaculo(String nombre, String artistaOrganizador, String descripcion, String url, int duracion, int capacidadMinima, int capacidadMaxima, float costo, Timestamp fechaCreado, String estado){
         this.Nombre = nombre;
         this.ArtistaOrganizador = artistaOrganizador;
         this.Descripcion = descripcion;
@@ -29,11 +29,22 @@ public class Espectaculo {
         this.CapacidadMaxima = capacidadMaxima;
         this.Costo = costo;
         this.FechaCreado = fechaCreado;
+        this.estado = estado;
     }
     
     
     public Espectaculo() {}
 
+    
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
+    }
+
+    
     public String getNombre() {
         return Nombre;
     }

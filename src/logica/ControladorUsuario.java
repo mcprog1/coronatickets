@@ -17,6 +17,7 @@ import logica.interfaz.IControladorUsuario;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import Clases.*;
+import java.sql.Date;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -159,33 +160,33 @@ public class ControladorUsuario implements IControladorUsuario {
         
     }
     
-    public boolean EdiarEspectador(String nick,String nombre,String apellido,String clave ,DtFecha fecha){
+    public boolean EdiarEspectador(String nick, String nombre, String apellido, String clave, Date fecha) {
         boolean verificar = false;
         try {
-            verificar  = serviciosUsuarios.editarEspectador(nick, nombre, apellido, clave, fecha);
-            if(verificar == true){
+            verificar = serviciosUsuarios.editarEspectador(nick, nombre, apellido, clave, fecha);
+            if (verificar == true) {
                 return true;
-            }else{
+            } else {
                 return false;
-                
+
             }
         } catch (Exception e) {
-            System.out.println("ocurrio un error al ediar al especador : "+nombre+" "+apellido);
+            System.out.println("ocurrio un error al ediar al especador : " + nombre + " " + apellido);
         }
         return false;
     }
-    public boolean editarArtistas(String nick ,String nombre,String apellido,String clave ,DtFecha fecha,String descripcion ,String url,String biografia){
+    public boolean editarArtistas(String nick, String nombre, String apellido, String clave, Date fecha, String descripcion, String url, String biografia) {
         boolean verificar = false;
         try {
-            verificar  = serviciosUsuarios.editarArtista(nick, nombre, apellido, clave, fecha, descripcion, url, biografia);
-            if(verificar == true){
+            verificar = serviciosUsuarios.editarArtista(nick, nombre, apellido, clave, fecha, descripcion, url, biografia);
+            if (verificar == true) {
                 return true;
-            }else{
+            } else {
                 return false;
-                
+
             }
         } catch (Exception e) {
-            System.out.println("ocurrio un error al ediar al especador : "+nombre+" "+apellido);
+            System.out.println("ocurrio un error al ediar al especador : " + nombre + " " + apellido);
         }
         return false;
     }
@@ -200,7 +201,8 @@ public class ControladorUsuario implements IControladorUsuario {
                               String esArtista, 
                               String descripcionGeneral, 
                               String biografia, 
-                              String url)
+                              String url,
+                              String imagen)
     {
         String creado;
         try{           
@@ -211,7 +213,7 @@ public class ControladorUsuario implements IControladorUsuario {
             {
                 creado = "ER";
             }else{
-                creado = serviciosUsuarios.creaUsuario(nickname, nombre, apellido, fecha, email, password, esArtista, descripcionGeneral, biografia, url);
+                creado = serviciosUsuarios.creaUsuario(nickname, nombre, apellido, fecha, email, password, esArtista, descripcionGeneral, biografia, url, imagen);
             }
         } catch (Exception e) {
             creado = e.getMessage();
@@ -221,5 +223,29 @@ public class ControladorUsuario implements IControladorUsuario {
         return creado;
     }
 
+    public int login(String nombreCorreo, String clave) {
 
+        int tipoUsuario = 0;
+
+        try {
+            tipoUsuario = serviciosUsuarios.login(nombreCorreo, clave);
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return tipoUsuario;
+    }
+
+    public String nickUsuario(String nickCorreo, String password) {
+     
+          String  nickUsuario = serviciosUsuarios.nickUsuario(nickCorreo, password);
+      
+        return nickUsuario;
+    }
+
+    public String[] infoUsuario(String nick, String password) {
+
+        String[] infoUsuario = serviciosUsuarios.infoUsuario(nick, password);
+
+        return infoUsuario;
+    }
 }

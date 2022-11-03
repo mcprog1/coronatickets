@@ -318,5 +318,101 @@ public class EspectaculoServicio {
         }
         return datos;
     }
+ 
+    public ArrayList<Espectaculo> obtenerEspectaculos(String soloPendientes){
+        Espectaculo model;
+        ArrayList<Espectaculo> datos = new ArrayList<>();
+        ResultSet rs;
+        PreparedStatement ps;
+        try{
+            String subWhere = " != UPPER(?)";
+            if(soloPendientes == "S")//Si manda eso entonces tragio solo los pendientes
+            {
+                subWhere = "= UPPER(?)";
+            }
+            ps = conn.prepareStatement("SELECT * FROM espetaculos WHERE UPPER(esp_estado) "+subWhere);
+            ps.setString(1, "p");
+            rs = ps.executeQuery();
+            while(rs.next())
+            {
+                model = new Espectaculo();
+                model.setNombre(rs.getString("esp_nombre"));
+                model.setPLataforma(rs.getString("esp_plat_nombre"));
+                model.setArtistaOrganizador(rs.getString("esp_art_organizador"));
+                model.setDescripcion(rs.getString("esp_descripcion"));
+                model.setDuracion(rs.getInt("esp_duracion"));
+                model.setCapacidadMaxima(rs.getInt("esp_espectadores_max"));
+                model.setCapacidadMinima(rs.getInt("esp_espectadores_min"));
+                model.setURL(rs.getString("esp_url_asociada"));
+                model.setCosto(rs.getFloat("esp_costo"));
+                model.setFechaCreado(rs.getTimestamp("esp_fecha_creado"));
+                
+                datos.add(model);
+            }
+            rs.close();
+            ps.close();
+        }catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return datos;
+    }
+    
+    public boolean actualizarEstadoEspectaculo(String nombre, String estado)
+    {
+         try {
+            PreparedStatement status = conn.prepareStatement("UPDATE espetaculos "
+                                                               + "SET esp_estado = ?"
+                                                               + "WHERE esp_nombre = ?");
+
+            status.setString(1, estado);
+            status.setString(2, nombre);
+            status.execute();
+                return true;
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+            return false; // No existe la plataforma
+        }
+    }
+    
+    public ArrayList<Espectaculo> obtenerEspectaculosEstado(String estado){
+        Espectaculo model;
+        ArrayList<Espectaculo> datos = new ArrayList<>();
+        ResultSet rs;
+        PreparedStatement ps;
+        try{
+            String subWhere = " WHERE esp_estado = UPPER(?)";
+            if(estado == "")//Si manda vacio es que trae todos los espectaculos sin importar el 
+            {
+                subWhere = "";
+            }
+            ps = conn.prepareStatement("SELECT * FROM espetaculos "+subWhere);
+            if(estado != "")//Si manda vacio es que trae todos los espectaculos sin importar el 
+            {
+                ps.setString(1, estado);
+            }
+            rs = ps.executeQuery();
+            while(rs.next())
+            {
+                model = new Espectaculo();
+                model.setNombre(rs.getString("esp_nombre"));
+                model.setPLataforma(rs.getString("esp_plat_nombre"));
+                model.setArtistaOrganizador(rs.getString("esp_art_organizador"));
+                model.setDescripcion(rs.getString("esp_descripcion"));
+                model.setDuracion(rs.getInt("esp_duracion"));
+                model.setCapacidadMaxima(rs.getInt("esp_espectadores_max"));
+                model.setCapacidadMinima(rs.getInt("esp_espectadores_min"));
+                model.setURL(rs.getString("esp_url_asociada"));
+                model.setCosto(rs.getFloat("esp_costo"));
+                model.setFechaCreado(rs.getTimestamp("esp_fecha_creado"));
+                model.setEstado(rs.getString("esp_estado"));
+                datos.add(model);
+            }
+            rs.close();
+            ps.close();
+        }catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return datos;
+    }
     
 }

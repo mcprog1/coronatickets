@@ -115,5 +115,16 @@ public class ControladoraPaquetes implements IControladorPaquetes{
         }
     }
     
+    public String comprarPaquete(String paquete, String nickname)
+    {
+        String r = "E";
+        if(paquetesServicio.comproPaquete(paquete, nickname).equals("N"))
+        {
+           r = paquetesServicio.comprarPaquete(paquete, nickname);
+        }else{
+            r = "Y";
+        }
+        return r;
+    }
     
 }

@@ -110,4 +110,23 @@ public class ControladorEspectaculo implements IControladorEspetaculo{
         return f;
     
     }
+   
+   public ArrayList<Espectaculo> obtenerEspectaculos(String soloPendientes)
+   {
+       ArrayList<Espectaculo> esp = new ArrayList<>();
+       esp = espectaculoServicio.obtenerEspectaculos(soloPendientes);
+       return esp;
+   }
+   
+   public ArrayList<Espectaculo> obtenerEspectaculosEstado(String estado)
+   {
+       ArrayList<Espectaculo> esp = new ArrayList<>();
+       esp = espectaculoServicio.obtenerEspectaculosEstado(estado);
+       return esp;
+   }
+   
+   public boolean actualizarEstadoEspectaculo(String nombre, String estado)
+   {
+       return espectaculoServicio.actualizarEstadoEspectaculo( nombre,  estado);
+   }
 }

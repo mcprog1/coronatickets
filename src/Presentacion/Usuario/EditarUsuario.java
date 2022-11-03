@@ -380,7 +380,7 @@ public class EditarUsuario extends javax.swing.JFrame {
         Date fechaD = Date.valueOf(fecha.getText());
         
         if(continuar){
-            op = ICUEditar.EdiarEspectador(nick, nom, apell, clav, dateToDTFecha(fechaD));
+            op = ICUEditar.EdiarEspectador(nick, nom, apell, clav, fechaD);
             
             if(op == true){
                 JOptionPane.showMessageDialog(this, "Modificacion Exitosa.");
@@ -485,7 +485,7 @@ public class EditarUsuario extends javax.swing.JFrame {
         Date fechaD = Date.valueOf(fecha.getText());
         
         if(continuar){
-            op = ICUEditar.editarArtistas(nick, nom, apell, clav, dateToDTFecha(fechaD), des, Url, bio);
+            op = ICUEditar.editarArtistas(nick, nom, apell, clav, fechaD, des, Url, bio);
            
             
             if(op == true){

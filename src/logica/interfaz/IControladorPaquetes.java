@@ -22,4 +22,6 @@ public interface IControladorPaquetes {
     public abstract ArrayList<Paquetes>obtenerPaquetes();
     public abstract Paquetes obtenerDato(String nombre);
     public abstract void agregarPaqueteEspectaculo(String espectaculo, String paquete);
+    
+    public String comprarPaquete(String paquete, String nickname);
 }
