@@ -21,6 +21,10 @@ public interface IControladorEspetaculo {
     public abstract ArrayList<Espectaculo> tablaespetaculo(String nom);//Busco espetaculo a traves del nickname del artista
     public abstract ArrayList<Funciones> ListaFuncionesEspectador(String nick);//funciones que esta registrado el Espectador
     
+    public abstract ArrayList<Espectaculo> obtenerEspectaculos(String soloPendientes);
     
+    public abstract ArrayList<Espectaculo> obtenerEspectaculosEstado(String estado);
+    
+    public abstract boolean actualizarEstadoEspectaculo(String nombre, String estado);
    
 }

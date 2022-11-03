@@ -42,7 +42,7 @@ public class ControladorFuncion implements IControladorFuncion {
     }
 //------------------------------------------------------------------------------
 
-    public int AltaFuncion(String nombreEspectaculo, String nombre, String dia, String mes, String anio, String hora, String minuto, List artistas) {
+    public int AltaFuncion(String nombreEspectaculo, String nombre, String dia, String mes, String anio, String hora, String minuto, List artistas, String url) {
 
         GregorianCalendar calendar = new GregorianCalendar();//Para saber si el año es bisiesto
 
@@ -84,7 +84,7 @@ public class ControladorFuncion implements IControladorFuncion {
                                             return 7;
                                         } else {
                                             try {
-                                                return servicioFunciones.AltaFuncion(nombreEspectaculo, nombre, Tfecha, Thora, fechaCreacion, artistas);
+                                                return servicioFunciones.AltaFuncion(nombreEspectaculo, nombre, Tfecha, Thora, fechaCreacion, artistas,url);
                                             } catch (SQLException ex) {
                                                 Logger.getLogger(ControladorFuncion.class.getName()).log(Level.SEVERE, null, ex);
                                             }
@@ -251,4 +251,35 @@ public class ControladorFuncion implements IControladorFuncion {
         Funciones funcion = servicioFunciones.obtenerDatosFuncion(nombre);
         return funcion;
     }
+    
+    public String existeNombreFuncion(String nombre)
+    {
+        return servicioFunciones.existeNombreFuncion(nombre);
+    }
+    
+    public ArrayList<Artista> obtenerArtistasFuncion(String nombre)
+    {   
+        ArrayList<Artista> art = null;
+        try
+        {
+            art =  servicioFunciones.obtenerArtistaFuncion(nombre);    
+        } catch (SQLException ex) {
+            Logger.getLogger(ControladorFuncion.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return art;
+    }
+    
+    public String tieneCanjeDisponible(String nickname)
+    {
+        String tieneCanje = "N";
+        tieneCanje = servicioFunciones.tieneCanje(nickname);
+        return tieneCanje;
+    }
+    
+    public String obtenerRegistroCanjera(String nickname)
+    {
+        String registros = servicioFunciones.obtenerRegistroCanjera(nickname);
+        return registros;
+    }
+    
 }

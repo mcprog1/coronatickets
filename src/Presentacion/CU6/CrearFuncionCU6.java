@@ -218,7 +218,7 @@ public class CrearFuncionCU6 extends javax.swing.JFrame {
                     } else {
                         List artistas = lstArtistas.getSelectedValuesList();
 
-                        int controlar = ICF.AltaFuncion(SeleccionarEspectaculoCU6.lstEspetaculo.getSelectedValue(), txtNombre.getText(), txtDia.getText(), txtMes.getText(), txtAnio.getText(), txtHora.getText(), txtMinuto.getText(), artistas);
+                        int controlar = ICF.AltaFuncion(SeleccionarEspectaculoCU6.lstEspetaculo.getSelectedValue(), txtNombre.getText(), txtDia.getText(), txtMes.getText(), txtAnio.getText(), txtHora.getText(), txtMinuto.getText(), artistas,"");
 
                         if (controlar == 1) {
                             JOptionPane.showMessageDialog(null, "Ingrese un año valido");

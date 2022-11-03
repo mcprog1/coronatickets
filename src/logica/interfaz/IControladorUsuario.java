@@ -9,6 +9,7 @@ import Clases.Artista;
 import Clases.Espectaculo;
 import Clases.Funciones;
 import Clases.*;
+import java.sql.Date;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 
@@ -25,9 +26,10 @@ public interface IControladorUsuario {
     public abstract Usuarios Consultar_un_Espectador_particular(String nick);
     public abstract int Artista_o_Espectador(String nick);//consulto si es artista(1) o espectador (2) con el nickname
     public abstract Artista Consultar_un_artista_particular(String nick);//consulto un artista identificado con el nick
-    public abstract boolean EdiarEspectador(String nick,String nombre,String apellido,String clave ,DtFecha fecha);
-    public boolean editarArtistas(String nick ,String nombre,String apellido,String clave ,DtFecha fecha,String descripcion ,String url,String biografia);
-    
-    public abstract String crearUsuario(String nickname, String nombre, String apellido, String fecha, String email, String password, String esArtista, String descripcionGeneral, String biografia, String url);
-
+    public abstract boolean EdiarEspectador(String nick,String nombre,String apellido,String clave ,Date fecha);
+    public boolean editarArtistas(String nick ,String nombre,String apellido,String clave ,Date fecha,String descripcion ,String url,String biografia);    
+    public abstract String crearUsuario(String nickname, String nombre, String apellido, String fecha, String email, String password, String esArtista, String descripcionGeneral, String biografia, String url, String imagen);
+    public int login(String nombreCorreo, String clave);
+    public String nickUsuario(String nickCorreo, String password);
+    public String[] infoUsuario(String nick, String password);
 }

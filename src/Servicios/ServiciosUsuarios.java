@@ -283,53 +283,49 @@ public class ServiciosUsuarios {
         return fechaFinal;
     }
      
-    public boolean editarEspectador(String nick ,String nombre,String apellido,String clave ,Clases.DtFecha fecha){
+    public boolean editarEspectador(String nick, String nombre, String apellido, String clave, Date fecha) {
         try {
-             PreparedStatement sn = conn.prepareStatement("UPDATE usuarios SET usu_nombre = ? ,usu_apellido = ? ,usu_clave = ? ,usu_fecha_nacimiento = ?   WHERE usu_nick = ?");
-             sn.setString(1, nombre);
-             sn.setString(2,apellido);
-             sn.setString(3, clave);
-             sn.setDate(4, dtFechaToDate(fecha));
-             sn.setString(5, nick);
-             sn.executeUpdate();
-             return true;
-        
+            PreparedStatement sn = conn.prepareStatement("UPDATE usuarios SET usu_nombre = '" + nombre + "' ,usu_apellido = '" + apellido + "' ,usu_clave = '" + clave + "' ,usu_fecha_nacimiento = '" + fecha + "' WHERE usu_nick = '" + nick + "'");
+            sn.executeUpdate();
+            return true;
+
         } catch (SQLException e) {
             System.out.println("Ocurrio un error al editar el espectador");
         }
         return false;
     }
     
-    public boolean editarArtista(String nick ,String nombre,String apellido,String clave ,Clases.DtFecha fecha,String descripcion ,String url,String biografia){
+    public boolean editarArtista(String nick, String nombre, String apellido, String clave, Date fecha, String descripcion, String url, String biografia) {
         try {
-             PreparedStatement sn = conn.prepareStatement("UPDATE usuarios AS u,artistas AS a SET u.usu_nombre=? ,u.usu_apellido=? ,u.usu_clave=? ,u.usu_fecha_nacimiento=? ,a.art_descripcion=? ,a.art_biografia=?,a.art_url=?   WHERE u.usu_nick = ?  AND a.art_usu_nick = u.usu_nick ");
-             sn.setString(1, nombre);
-             sn.setString(2,apellido);
-             sn.setString(3, clave);
-             sn.setDate(4, dtFechaToDate(fecha));
-             sn.setString(5,descripcion);
-             sn.setString(6, biografia);
-             sn.setString(7, url);
-             sn.setString(8, nick);
-             sn.executeUpdate();
-             return true;
-        
+            PreparedStatement sn = conn.prepareStatement("UPDATE usuarios AS u,artistas AS a SET u.usu_nombre=? ,u.usu_apellido=? ,u.usu_clave=? ,u.usu_fecha_nacimiento=? ,a.art_descripcion=? ,a.art_biografia=?,a.art_url=?   WHERE u.usu_nick = ?  AND a.art_usu_nick = u.usu_nick ");
+            sn.setString(1, nombre);
+            sn.setString(2, apellido);
+            sn.setString(3, clave);
+            sn.setDate(4, fecha);
+            sn.setString(5, descripcion);
+            sn.setString(6, biografia);
+            sn.setString(7, url);
+            sn.setString(8, nick);
+            sn.executeUpdate();
+            return true;
+
         } catch (SQLException e) {
             System.out.println("Ocurrio un error al editar al artista");
         }
         return false;
     }
      
-    public String creaUsuario(String nickname, String nombre, String apellido, String fecha, String email, String password, String esArtista, String descripcionGeneral, String biografia, String url)
+    public String creaUsuario(String nickname, String nombre, String apellido, String fecha, String email, String password, String esArtista, String descripcionGeneral, String biografia, String url, String imagen)
     {        
          try { // Creo la plataforma - Probando el GitIgnore jeje 
-            PreparedStatement status = conn.prepareStatement("INSERT INTO usuarios (usu_nick, usu_nombre, usu_apellido,usu_clave,usu_mail,usu_fecha_nacimiento) VALUES (?,?,?,?,?,?)");
+            PreparedStatement status = conn.prepareStatement("INSERT INTO usuarios (usu_nick, usu_nombre, usu_apellido,usu_clave,usu_mail,usu_fecha_nacimiento,usu_img) VALUES (?,?,?,?,?,?,?)");
             status.setString(1, nickname);
             status.setString(2, nombre);
             status.setString(3, apellido);
             status.setString(4, password);
             status.setString(5, email);
             status.setDate(6, Date.valueOf(fecha));
+            status.setString(7, imagen);
             status.execute();
             
             if(esArtista.equals("S"))
@@ -359,4 +355,75 @@ public class ServiciosUsuarios {
         
     }
 
+    public int login(String nickCorreo, String clave) throws SQLException {
+
+        int tipoUsuario = 0;
+
+        PreparedStatement consulta = conn.prepareStatement("SELECT usu_tipo_usuario FROM usuarios WHERE usu_nick='" + nickCorreo + "' and usu_clave='" + clave + "'");
+        ResultSet resultadoConsulta = consulta.executeQuery();
+
+        if (resultadoConsulta.next()) {
+
+            tipoUsuario = resultadoConsulta.getInt("usu_tipo_usuario");
+
+            return tipoUsuario;
+
+        } else {
+            return tipoUsuario;
+        }
+
+    }
+
+    public String nickUsuario(String nickCorreo, String password) {
+
+        String nickUsuario = "";
+
+        try {
+            PreparedStatement consulta = conn.prepareStatement("SELECT usu_nick FROM usuarios WHERE usu_mail='" + nickCorreo + "' and usu_clave='" + password + "'");
+            ResultSet resultadoConsulta = consulta.executeQuery();
+
+            while (resultadoConsulta.next()) {
+                nickUsuario = resultadoConsulta.getString("usu_nick");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(ServiciosUsuarios.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return nickUsuario;
+    }
+
+    public String[] infoUsuario(String nick, String password) {
+
+        String[] infoUsuario = new String[7];
+
+        try {
+            PreparedStatement consulta = conn.prepareStatement("SELECT * FROM usuarios WHERE usu_nick ='" + nick + "' and usu_clave = '" + password + "'");
+            ResultSet resultadoConsulta = consulta.executeQuery();
+
+            while (resultadoConsulta.next()) {
+
+                infoUsuario[0] = resultadoConsulta.getString("usu_nombre");
+                infoUsuario[1] = resultadoConsulta.getString("usu_apellido");
+                infoUsuario[2] = resultadoConsulta.getDate("usu_fecha_nacimiento").toString();
+                infoUsuario[3] = resultadoConsulta.getString("usu_clave");
+
+            }
+
+            PreparedStatement consultaA = conn.prepareStatement("SELECT * FROM artistas WHERE art_usu_nick ='" + nick + "'");
+            ResultSet resultadoConsultaA = consultaA.executeQuery();
+
+            while (resultadoConsultaA.next()) {
+
+                infoUsuario[4] = resultadoConsultaA.getString("art_descripcion");
+                infoUsuario[5] = resultadoConsultaA.getString("art_biografia");
+                infoUsuario[6] = resultadoConsultaA.getString("art_url");
+
+            }
+
+        } catch (SQLException e) {
+        }
+
+        return infoUsuario;
+    }
+    
 }

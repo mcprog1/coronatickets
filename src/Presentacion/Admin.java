@@ -48,6 +48,7 @@ public class Admin extends javax.swing.JFrame {
         Consular = new javax.swing.JMenu();
         menuCE = new javax.swing.JMenuItem();
         menuCee = new javax.swing.JMenuItem();
+        jMenuItem5 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
         RegistroEspectador = new javax.swing.JMenuItem();
@@ -139,6 +140,14 @@ public class Admin extends javax.swing.JFrame {
             }
         });
         Consular.add(menuCee);
+
+        jMenuItem5.setText("Espectaculos ingresados");
+        jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem5ActionPerformed(evt);
+            }
+        });
+        Consular.add(jMenuItem5);
 
         jMenuBar2.add(Consular);
 
@@ -315,6 +324,11 @@ public class Admin extends javax.swing.JFrame {
         newFrame.setVisible(true);
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
+    private void jMenuItem5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem5ActionPerformed
+        coronatickets.espetaculos.espectaculosIngresados newFrame = new coronatickets.espetaculos.espectaculosIngresados();
+        newFrame.setVisible(true);
+    }//GEN-LAST:event_jMenuItem5ActionPerformed
+
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -367,6 +381,7 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
     private javax.swing.JMenuItem jMenuItem4;
+    private javax.swing.JMenuItem jMenuItem5;
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;
