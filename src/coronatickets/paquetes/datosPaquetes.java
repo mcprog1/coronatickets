@@ -24,6 +24,10 @@ public class datosPaquetes extends javax.swing.JFrame {
     private IControladorEspetaculo ICE;
     private IControladorPaquetes ICP;
     String nombrePaquete;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
     /**
      * Creates new form datosPaquetes
      */
@@ -35,6 +39,7 @@ public class datosPaquetes extends javax.swing.JFrame {
         datosPaquetes();
     }
 
+<<<<<<< HEAD
     public String DtFechaToString(DtFecha f)
     {
         return f.getDia()+"/"+f.getMes()+"/"+f.getAnio();
@@ -42,30 +47,53 @@ public class datosPaquetes extends javax.swing.JFrame {
     
     public void datosPaquetes()
     {
+=======
+    public String DtFechaToString(DtFecha f) {
+        return f.getDia() + "/" + f.getMes() + "/" + f.getAnio();
+    }
+
+    public void datosPaquetes() {
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
         Paquetes paq = ICP.obtenerDato(nombrePaquete);
         this.nombre.setText(paq.getNombre());
         this.descripcion.setText(paq.getDescripcion());
         this.descuento.setText(String.valueOf(paq.getDescuento()));
         this.inicio.setText(DtFechaToString(paq.getFechaInicio()));
         this.fin.setText(DtFechaToString(paq.getFechafinalizado()));
+<<<<<<< HEAD
         
          /** Cargo los paquetes */
+=======
+
+        /**
+         * Cargo los espectaculos
+         */
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
         DefaultTableModel tableE = new DefaultTableModel();
         ArrayList<Espectaculo> datosE;
         String[] filasP = new String[1];
         tableE.addColumn("Espectaculos");
         datosE = ICP.obtenerEspectaculosPaquetes(nombrePaquete);
+<<<<<<< HEAD
         for(int i = 0; i<datosE.size(); i++)
         {
+=======
+        for (int i = 0; i < datosE.size(); i++) {
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
             filasP[0] = datosE.get(i).getNombre().toString();
             tableE.addRow(filasP);
         }
         espectaculos.setModel(tableE);
+<<<<<<< HEAD
         
     }
     
     
     
+=======
+    }
+
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -87,9 +115,15 @@ public class datosPaquetes extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         descuento = new javax.swing.JTextField();
         fin = new javax.swing.JTextField();
+<<<<<<< HEAD
         jScrollPane5 = new javax.swing.JScrollPane();
         espectaculos = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
+=======
+        jLabel8 = new javax.swing.JLabel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        espectaculos = new javax.swing.JTable();
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -104,7 +138,11 @@ public class datosPaquetes extends javax.swing.JFrame {
 
         jLabel5.setText("Inicio:");
 
+<<<<<<< HEAD
         jLabel9.setText("Descripcion");
+=======
+        jLabel9.setText("Descripcion:");
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
 
         descripcion.setEditable(false);
         descripcion.setColumns(20);
@@ -113,12 +151,21 @@ public class datosPaquetes extends javax.swing.JFrame {
 
         jLabel6.setText("Fin:");
 
+<<<<<<< HEAD
         jLabel4.setText("D:escuento");
+=======
+        jLabel4.setText("Descuento:");
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
 
         descuento.setEditable(false);
 
         fin.setEditable(false);
 
+<<<<<<< HEAD
+=======
+        jLabel8.setText("Espectaculos:");
+
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
         espectaculos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -135,15 +182,20 @@ public class datosPaquetes extends javax.swing.JFrame {
                 espectaculosMouseClicked(evt);
             }
         });
+<<<<<<< HEAD
         jScrollPane5.setViewportView(espectaculos);
 
         jLabel8.setText("Espectaculos");
+=======
+        jScrollPane6.setViewportView(espectaculos);
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addContainerGap()
@@ -181,17 +233,60 @@ public class datosPaquetes extends javax.swing.JFrame {
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel8))
                 .addContainerGap(56, Short.MAX_VALUE))
+=======
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(23, 23, 23)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel5)
+                            .addComponent(jLabel2))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(nombre)
+                            .addComponent(inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel6)
+                                .addGap(46, 46, 46)
+                                .addComponent(fin, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel4)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(descuento, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                    .addComponent(jLabel3)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel9)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jScrollPane3)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel8)
+                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+<<<<<<< HEAD
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel8)
                     .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)
+=======
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel8)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 160, javax.swing.GroupLayout.PREFERRED_SIZE))
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jLabel2)
@@ -206,20 +301,30 @@ public class datosPaquetes extends javax.swing.JFrame {
                             .addComponent(fin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
                             .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel9))))
                 .addContainerGap(33, Short.MAX_VALUE))
+=======
+                            .addComponent(jLabel9)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 108, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
     private void espectaculosMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_espectaculosMouseClicked
+<<<<<<< HEAD
         int fila = espectaculos.getSelectedRow();
         String nombre = (String) espectaculos.getValueAt(fila,0);//selecciono de la fila seleccionada la primera
 
         informacionEspectaculo newFrame = new informacionEspectaculo(nombre);
         newFrame.setVisible(true);
+=======
+        // TODO add your handling code here:
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
     }//GEN-LAST:event_espectaculosMouseClicked
 
     /**
@@ -271,7 +376,11 @@ public class datosPaquetes extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane3;
+<<<<<<< HEAD
     private javax.swing.JScrollPane jScrollPane5;
+=======
+    private javax.swing.JScrollPane jScrollPane6;
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
     private javax.swing.JTextField nombre;
     // End of variables declaration//GEN-END:variables
 }

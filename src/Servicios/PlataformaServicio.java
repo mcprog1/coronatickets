@@ -9,7 +9,13 @@ import Clases.Plataformas;
 import Persistencia.ConexionDB;
 import java.sql.*;
 import java.util.ArrayList;
+<<<<<<< HEAD
 
+=======
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import java.io.File;
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
 /**
  *
  * @author Nico
@@ -47,6 +53,7 @@ public class PlataformaServicio {
         }
     }
 
+<<<<<<< HEAD
     public ArrayList<Plataformas> datosList(){
         Plataformas model;
         ArrayList<Plataformas> plat = new ArrayList<>();
@@ -71,4 +78,47 @@ public class PlataformaServicio {
         return plat;
     }
 
+=======
+    public ArrayList<Plataformas> datosList() {
+        
+        ArrayList<Plataformas> plat = new ArrayList<>();
+        
+        try {
+
+            PreparedStatement consulta = conexion.prepareStatement("SELECT * FROM plataforma");
+            ResultSet resultadoConsulta = consulta.executeQuery();
+
+            while (resultadoConsulta.next()) {
+                Plataformas plataforma = new Plataformas();
+                plataforma.setNombre(resultadoConsulta.getString("plat_nombre"));
+                plataforma.setDescripcion(resultadoConsulta.getString("plat_descripcion"));
+                plataforma.setURL(resultadoConsulta.getString("plat_url"));
+                plat.add(plataforma);
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PlataformaServicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return plat;
+    }
+    
+      public String Plataformas() {
+        
+       String plataformas = "";
+        
+        try {
+
+            PreparedStatement consulta = conexion.prepareStatement("SELECT * FROM plataforma");
+            ResultSet resultadoConsulta = consulta.executeQuery();
+
+            while (resultadoConsulta.next()) {
+                plataformas = plataformas + "-" + resultadoConsulta.getString("plat_nombre");
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(PlataformaServicio.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return plataformas;
+    }
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
 }

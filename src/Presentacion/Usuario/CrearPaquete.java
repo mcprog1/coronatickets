@@ -5,10 +5,18 @@
  */
 package Presentacion.Usuario;
 
+<<<<<<< HEAD
+=======
+import java.io.File;
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
 import java.sql.Time;
 import java.sql.Timestamp;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
+<<<<<<< HEAD
+=======
+import javax.swing.JFileChooser;
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
 import javax.swing.JOptionPane;
 import logica.Fabrica;
 import logica.interfaz.IControladorPaquetes;
@@ -24,6 +32,7 @@ public class CrearPaquete extends javax.swing.JFrame {
         ICUP = Fabrica.getInstance().getIControladorpaquetes();
         initComponents();
     }
+<<<<<<< HEAD
     
     
     
@@ -33,6 +42,9 @@ public class CrearPaquete extends javax.swing.JFrame {
     
 
     
+=======
+
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -40,13 +52,17 @@ public class CrearPaquete extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
+<<<<<<< HEAD
         jLabel4 = new javax.swing.JLabel();
+=======
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         txtNombre = new javax.swing.JTextField();
         txtDescripcion = new javax.swing.JTextField();
         txtFechaInicio = new javax.swing.JTextField();
         txtDescuento = new javax.swing.JTextField();
+<<<<<<< HEAD
         txtFechaAlta = new javax.swing.JTextField();
         txtFechaFinal = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
@@ -54,11 +70,22 @@ public class CrearPaquete extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Crear paquete");
+=======
+        txtFechaFinal = new javax.swing.JTextField();
+        jLabel7 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
+        jButton2 = new javax.swing.JButton();
+        lblImagen = new javax.swing.JLabel();
+        btnImagen4 = new javax.swing.JButton();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
 
         jLabel1.setText("Nombre");
 
         jLabel2.setText("Descripcion");
 
+<<<<<<< HEAD
         jLabel3.setText("fecha inico");
 
         jLabel4.setText("Fecha de alta");
@@ -66,6 +93,13 @@ public class CrearPaquete extends javax.swing.JFrame {
         jLabel5.setText("Descuento");
 
         jLabel6.setText("fecha final");
+=======
+        jLabel3.setText("Fecha inico");
+
+        jLabel5.setText("Descuento");
+
+        jLabel6.setText("Fecha final");
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
 
         txtDescuento.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -73,6 +107,12 @@ public class CrearPaquete extends javax.swing.JFrame {
             }
         });
 
+<<<<<<< HEAD
+=======
+        jLabel7.setFont(new java.awt.Font("Yu Gothic UI Semibold", 0, 18)); // NOI18N
+        jLabel7.setText("Crear Paquete");
+
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
         jButton1.setText("Crear");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -87,11 +127,22 @@ public class CrearPaquete extends javax.swing.JFrame {
             }
         });
 
+<<<<<<< HEAD
+=======
+        btnImagen4.setText("Agregar imagen");
+        btnImagen4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                btnImagen4MouseClicked(evt);
+            }
+        });
+
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
@@ -122,10 +173,54 @@ public class CrearPaquete extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addComponent(jButton2)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+=======
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(lblImagen, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(btnImagen4)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 69, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton2))))
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                            .addGap(36, 36, 36)
+                            .addComponent(jLabel7))
+                        .addGroup(layout.createSequentialGroup()
+                            .addContainerGap()
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(jLabel1)
+                                        .addComponent(jLabel2)
+                                        .addComponent(jLabel3))
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                            .addComponent(jLabel6)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel5)
+                                            .addGap(11, 11, 11)))
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(txtDescuento, javax.swing.GroupLayout.DEFAULT_SIZE, 107, Short.MAX_VALUE)
+                                        .addComponent(txtFechaFinal)))))))
+                .addContainerGap())
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
@@ -148,6 +243,39 @@ public class CrearPaquete extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton1)
                     .addComponent(jButton2)))
+=======
+                .addGap(13, 13, 13)
+                .addComponent(jLabel7)
+                .addGap(20, 20, 20)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(txtDescripcion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel3)
+                    .addComponent(txtFechaInicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel6)
+                    .addComponent(txtFechaFinal, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel5)
+                    .addComponent(txtDescuento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(btnImagen4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(lblImagen, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jButton1)
+                    .addComponent(jButton2))
+                .addGap(12, 12, 12))
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
         );
 
         pack();
@@ -160,6 +288,7 @@ public class CrearPaquete extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         String Nombre = txtNombre.getText();
         String Descripcion = txtDescripcion.getText();
+<<<<<<< HEAD
         Date FechaInicio =null;  
         Date FechaFinal =null; 
         //String FechaAlta = txtFechaAlta.getText();
@@ -218,12 +347,46 @@ public class CrearPaquete extends javax.swing.JFrame {
             } 
         }
         
+=======
+        Date FechaInicio =  Date.valueOf(txtFechaInicio.getText());
+        Date FechaFinal = Date.valueOf(txtFechaFinal.getText());
+        float Descuento = Float.valueOf(txtDescuento.getText());
+
+        String Validar;
+        
+        File imagen = new File(this.lblImagen.getText());
+        
+        Validar = ICUP.crearpaquete(Nombre, Descripcion, FechaInicio, FechaFinal, Descuento, imagen);
+        if(Validar == "D"){
+            JOptionPane.showMessageDialog(this, "Paquete ya existente");
+        }else if (Validar  == "B"){
+            JOptionPane.showMessageDialog(this,"Paquete Registrado!!"); 
+        }else {
+            JOptionPane.showMessageDialog(this,"Error desconocido , vuelva a intentarlo");
+        }
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
+<<<<<<< HEAD
+=======
+    private void btnImagen4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnImagen4MouseClicked
+        JFileChooser imagen = new JFileChooser();
+        imagen.showOpenDialog(this);
+
+        File archivo = imagen.getSelectedFile();
+
+        if (archivo != null) {
+            String origen = archivo.getPath();
+
+            this.lblImagen.setText(origen);
+        }
+    }//GEN-LAST:event_btnImagen4MouseClicked
+
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
     /**
      * @param args the command line arguments
      */
@@ -260,17 +423,30 @@ public class CrearPaquete extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+<<<<<<< HEAD
+=======
+    private javax.swing.JButton btnImagen4;
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
+<<<<<<< HEAD
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JTextField txtDescripcion;
     private javax.swing.JTextField txtDescuento;
     private javax.swing.JTextField txtFechaAlta;
+=======
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel lblImagen;
+    private javax.swing.JTextField txtDescripcion;
+    private javax.swing.JTextField txtDescuento;
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
     private javax.swing.JTextField txtFechaFinal;
     private javax.swing.JTextField txtFechaInicio;
     private javax.swing.JTextField txtNombre;

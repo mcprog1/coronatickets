@@ -12,6 +12,7 @@ import Clases.TimeStamp;
  * @author Cristian
  */
 public class Usuarios {
+<<<<<<< HEAD
     private String Nickname,Clave,Nombre,Apellido,Mail;
     private String identificador;
     private DtFecha fechai;//Lo tengo en mayuscula y lucho lo tiene en minuscula
@@ -20,6 +21,20 @@ public class Usuarios {
         
     }
     public Usuarios (String Nickname_,String Nombre_,String Apellido_,String Clave_,String Mail_,DtFecha f,String i){
+=======
+
+    private String Nickname, Clave, Nombre, Apellido, Mail;
+    private String Imagen;
+    private String identificador;
+    private DtFecha fechai;//Lo tengo en mayuscula y lucho lo tiene en minuscula
+    //private DtFecha fecha;
+
+    public Usuarios() {
+
+    }
+
+    public Usuarios(String Nickname_, String Nombre_, String Apellido_, String Clave_, String Mail_, DtFecha f, String i, String imagen) {
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
         this.Nickname = Nickname_;
         this.Nombre = Nombre_;
         this.Apellido = Apellido_;
@@ -27,6 +42,10 @@ public class Usuarios {
         this.Mail = Mail_;
         this.fechai = f;
         this.identificador = i;
+<<<<<<< HEAD
+=======
+        this.Imagen = imagen;
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
     }
 
     public DtFecha getFechai() {
@@ -84,6 +103,7 @@ public class Usuarios {
     public void setMail(String Mail) {
         this.Mail = Mail;
     }
+<<<<<<< HEAD
     
     
     
@@ -92,3 +112,15 @@ public class Usuarios {
 }
 
 
+=======
+
+    public String getImagen() {
+        return Imagen;
+    }
+
+    public void setImagen(String Imagen) {
+        this.Imagen = Imagen;
+    }
+
+}
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7

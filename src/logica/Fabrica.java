@@ -10,7 +10,11 @@ import logica.*;
 import Interface.IControladorFuncion;
 import logica.interfaz.IControladorEspetaculo;
 import logica.ControladorEspectaculo;
+<<<<<<< HEAD
 import logica.interfaz.*;
+=======
+import logica.interfaz.IControladorPaquetes;
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
 
 import logica.interfaz.IControladorUsuario;
 
@@ -37,6 +41,12 @@ public class Fabrica {
 
     }
 
+<<<<<<< HEAD
+=======
+    private Fabrica() {
+    }
+
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
     public IControladorEspetaculo getIControladorEspectaculo() {
         IControladorEspetaculo ControladorE = ControladorEspectaculo.getInstance();
         return ControladorE; 
@@ -58,6 +68,7 @@ public class Fabrica {
         IControladorFuncion Controlador = ControladorFuncion.getInstance();
         return Controlador;
     }
+<<<<<<< HEAD
     
     public IControladorCategoria getIControladorCategoria() {
         IControladorCategoria Controlador = ControladorCategoria.getInstance();
@@ -68,4 +79,6 @@ public class Fabrica {
         IControladorBusqueda Controlador = ControladorBusqueda.getInstance();
         return Controlador;
     }
+=======
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
 }

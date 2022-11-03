@@ -5,8 +5,13 @@
  */
 package Interface;
 
+<<<<<<< HEAD
 import Clases.Artista;
 import Clases.Funciones;
+=======
+import Clases.Funciones;
+import java.io.File;
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +22,11 @@ import java.util.List;
  */
 public interface IControladorFuncion {
 
+<<<<<<< HEAD
     public int AltaFuncion(String nombreEspectaculo, String nombre, String dia, String mes, String anio, String hora, String minuto, List artistas, String url);
+=======
+    public int AltaFuncion(String nombreEspectaculo, String nombre, String dia, String mes, String anio, String hora, String minuto, List artistas, File imagen);
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
 
     public Funciones ConsultaFuncion(String nombreFuncion, String nombreEspectaculo) throws SQLException;
 
@@ -44,6 +53,7 @@ public interface IControladorFuncion {
     public void CanjearRegistroEspectadorFuncion(String nickEspectador, String nombreEspectaculo, String nombreFuncion, List RegistrosPrevios);
     
     public abstract Funciones obtenerDatosFuncion(String nombre);
+<<<<<<< HEAD
     
     public abstract String existeNombreFuncion(String nombre);
     
@@ -51,4 +61,6 @@ public interface IControladorFuncion {
     
     public abstract String tieneCanjeDisponible(String nickname);
     public abstract String obtenerRegistroCanjera(String nickname);
+=======
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
 }

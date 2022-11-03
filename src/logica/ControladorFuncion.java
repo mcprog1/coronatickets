@@ -12,11 +12,22 @@ import Clases.Funciones;
 import Clases.Plataformas;
 import Interface.IControladorFuncion;
 import Servicios.FuncionServicio;
+<<<<<<< HEAD
+=======
+import Servicios.ServicioImagen;
+import java.io.File;
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
+<<<<<<< HEAD
 import java.util.List;
+=======
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -42,7 +53,11 @@ public class ControladorFuncion implements IControladorFuncion {
     }
 //------------------------------------------------------------------------------
 
+<<<<<<< HEAD
     public int AltaFuncion(String nombreEspectaculo, String nombre, String dia, String mes, String anio, String hora, String minuto, List artistas, String url) {
+=======
+    public int AltaFuncion(String nombreEspectaculo, String nombre, String dia, String mes, String anio, String hora, String minuto, List artistas, File imagen) {
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
 
         GregorianCalendar calendar = new GregorianCalendar();//Para saber si el año es bisiesto
 
@@ -83,8 +98,27 @@ public class ControladorFuncion implements IControladorFuncion {
                                         if (Tfecha.before(fechaCreacion)) {
                                             return 7;
                                         } else {
+<<<<<<< HEAD
                                             try {
                                                 return servicioFunciones.AltaFuncion(nombreEspectaculo, nombre, Tfecha, Thora, fechaCreacion, artistas,url);
+=======
+
+                                            String urlimagen = null;
+                                            try {
+                                                Map<String, String> headers = new HashMap<>();
+                                                headers.put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_14_4) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/79.0.3945.88 Safari/537.36");
+                                                ServicioImagen multipart = new ServicioImagen("https://upload-image-to-imgur.vercel.app/upload", "utf-8", headers);
+
+                                                multipart.addFilePart("file", imagen);
+                                                String response = multipart.finish();
+                                                urlimagen = response;
+                                            } catch (Exception ex) {
+                                                Logger.getLogger(ControladorUsuario.class.getName()).log(Level.SEVERE, null, ex);
+                                            }
+
+                                            try {
+                                                return servicioFunciones.AltaFuncion(nombreEspectaculo, nombre, Tfecha, Thora, fechaCreacion, artistas, urlimagen);
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
                                             } catch (SQLException ex) {
                                                 Logger.getLogger(ControladorFuncion.class.getName()).log(Level.SEVERE, null, ex);
                                             }
@@ -245,6 +279,7 @@ public class ControladorFuncion implements IControladorFuncion {
             Logger.getLogger(ControladorFuncion.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+<<<<<<< HEAD
     
     public Funciones obtenerDatosFuncion(String nombre)
     {
@@ -282,4 +317,11 @@ public class ControladorFuncion implements IControladorFuncion {
         return registros;
     }
     
+=======
+
+    public Funciones obtenerDatosFuncion(String nombre) {
+        Funciones funcion = servicioFunciones.obtenerDatosFuncion(nombre);
+        return funcion;
+    }
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
 }

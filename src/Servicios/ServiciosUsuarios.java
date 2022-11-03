@@ -14,7 +14,11 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+<<<<<<< HEAD
 import logica.ControladorUsuario;
+=======
+
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
 
 /**
  *
@@ -29,11 +33,22 @@ public class ServiciosUsuarios {
 
     }
 
+<<<<<<< HEAD
+=======
+    public class ParameterStringBuilder {
+
+    }
+
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
     public boolean UpdateBDEspectador(Usuarios u) {
 
         try {
 
+<<<<<<< HEAD
             PreparedStatement result = conn.prepareStatement("INSERT INTO usuarios (usu_nick,usu_nombre,usu_apellido,usu_clave,usu_mail,usu_fecha_nacimiento ,usu_tipo_usuario) VALUE (?,?,?,?,?,?,?)");
+=======
+            PreparedStatement result = conn.prepareStatement("INSERT INTO usuarios (usu_nick,usu_nombre,usu_apellido,usu_clave,usu_mail,usu_fecha_nacimiento ,usu_tipo_usuario,usu_imagen) VALUE (?,?,?,?,?,?,?,?)");
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
             result.setString(1, u.getNickname());
             result.setString(2, u.getNombre());
             result.setString(3, u.getApellido());
@@ -41,6 +56,10 @@ public class ServiciosUsuarios {
             result.setString(5, u.getMail());
             result.setDate(6, dtFechaToDate(u.getFechai()));
             result.setString(7, u.getIdentificador());
+<<<<<<< HEAD
+=======
+            result.setString(8, u.getImagen());
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
             result.execute();
             return true;
 
@@ -79,7 +98,11 @@ public class ServiciosUsuarios {
         try {
             Usuarios resultado = new Usuarios();
             PreparedStatement status = conn.prepareStatement("SELECT * FROM usuarios");
+<<<<<<< HEAD
             try (ResultSet rs = status.executeQuery()) {
+=======
+            try ( ResultSet rs = status.executeQuery()) {
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
                 while (rs.next()) {
                     String nick = rs.getString("usu_nick");
                     String nombre = rs.getString("usu_nombre");
@@ -88,8 +111,14 @@ public class ServiciosUsuarios {
                     String mail = rs.getString("usu_mail");
                     Date fecha = rs.getDate("usu_fecha_nacimiento");
                     String id = rs.getString("usu_tipo_usuario");
+<<<<<<< HEAD
                     if (mail.equals(correo) & nick.equals(nickname)) {
                         resultado = new Usuarios(nick, nombre, apellido, password, mail, dateToDTFecha(fecha), id);
+=======
+                    String imagen = rs.getString("usu_imagen");
+                    if (mail.equals(correo) & nick.equals(nickname)) {
+                        resultado = new Usuarios(nick, nombre, apellido, password, mail, dateToDTFecha(fecha), id, imagen);
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
                     };
                 }
             }
@@ -232,11 +261,19 @@ public class ServiciosUsuarios {
         return 3;//error
 
     }
+<<<<<<< HEAD
     
     public Usuarios consultar_Un_Espectador_Particular(String nick) throws SQLException {
         Usuarios E = null;
         try {
             PreparedStatement consulta = conn.prepareStatement("SELECT * FROM usuarios WHERE usu_nick = ?");
+=======
+
+    public Usuarios consultar_Un_Espectador_Particular(String nick) throws SQLException {
+        Usuarios E = null;
+        try {
+            PreparedStatement consulta = conn.prepareStatement("SELECT * FROM usuarios WHERE usu_nick ='" + nick + "'");
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
             consulta.setString(1, nick);
             ResultSet resultadoConsulta = consulta.executeQuery();
             while (resultadoConsulta.next()) {
@@ -254,6 +291,7 @@ public class ServiciosUsuarios {
         }
         return E;
     }
+<<<<<<< HEAD
     
      public Clases.DtFecha dateToDTFecha(Date fecha){
         if(fecha != null){
@@ -283,6 +321,34 @@ public class ServiciosUsuarios {
         return fechaFinal;
     }
      
+=======
+
+    public Clases.DtFecha dateToDTFecha(Date fecha) {
+        if (fecha != null) {
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String fechaDB = dateFormat.format(fecha);
+            String[] partes = fechaDB.split("-");
+            return new Clases.DtFecha(partes[2], partes[1], partes[0]);
+        } else {
+            return new Clases.DtFecha("0", "0", "0");
+        }
+    }
+
+    public String DtFechaToString(Clases.DtFecha f) {
+        return f.getDia() + "/" + f.getMes() + "/" + f.getAnio();
+    }
+
+    public String DtFechaToBD(Clases.DtFecha f) {
+        return f.getAnio() + "-" + f.getMes() + "-" + f.getDia();
+    }
+
+    public Date dtFechaToDate(Clases.DtFecha fecha) {
+
+        Date fechaFinal = Date.valueOf(DtFechaToBD(fecha));
+        return fechaFinal;
+    }
+
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
     public boolean editarEspectador(String nick, String nombre, String apellido, String clave, Date fecha) {
         try {
             PreparedStatement sn = conn.prepareStatement("UPDATE usuarios SET usu_nombre = '" + nombre + "' ,usu_apellido = '" + apellido + "' ,usu_clave = '" + clave + "' ,usu_fecha_nacimiento = '" + fecha + "' WHERE usu_nick = '" + nick + "'");
@@ -294,7 +360,11 @@ public class ServiciosUsuarios {
         }
         return false;
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
     public boolean editarArtista(String nick, String nombre, String apellido, String clave, Date fecha, String descripcion, String url, String biografia) {
         try {
             PreparedStatement sn = conn.prepareStatement("UPDATE usuarios AS u,artistas AS a SET u.usu_nombre=? ,u.usu_apellido=? ,u.usu_clave=? ,u.usu_fecha_nacimiento=? ,a.art_descripcion=? ,a.art_biografia=?,a.art_url=?   WHERE u.usu_nick = ?  AND a.art_usu_nick = u.usu_nick ");
@@ -314,6 +384,7 @@ public class ServiciosUsuarios {
         }
         return false;
     }
+<<<<<<< HEAD
      
     public String creaUsuario(String nickname, String nombre, String apellido, String fecha, String email, String password, String esArtista, String descripcionGeneral, String biografia, String url, String imagen)
     {        
@@ -354,6 +425,8 @@ public class ServiciosUsuarios {
         }
         
     }
+=======
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
 
     public int login(String nickCorreo, String clave) throws SQLException {
 
@@ -425,5 +498,9 @@ public class ServiciosUsuarios {
 
         return infoUsuario;
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
 }

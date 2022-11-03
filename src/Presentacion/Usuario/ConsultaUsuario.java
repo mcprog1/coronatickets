@@ -51,6 +51,10 @@ public class ConsultaUsuario extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaConsulta = new javax.swing.JTable();
+<<<<<<< HEAD
+=======
+        jTextField2 = new javax.swing.JTextField();
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
         jScrollPane3 = new javax.swing.JScrollPane();
         tablaConsulta2 = new javax.swing.JTable();
 
@@ -84,7 +88,20 @@ public class ConsultaUsuario extends javax.swing.JFrame {
         jScrollPane1.setViewportView(tablaConsulta);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+<<<<<<< HEAD
         setTitle("Consulta de usuario");
+=======
+
+        jTextField2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jTextField2.setForeground(new java.awt.Color(204, 0, 0));
+        jTextField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField2.setText("Usuarios");
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
 
         tablaConsulta2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -140,13 +157,28 @@ public class ConsultaUsuario extends javax.swing.JFrame {
                 .addContainerGap()
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 394, Short.MAX_VALUE)
                 .addContainerGap())
+<<<<<<< HEAD
+=======
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(137, 137, 137))
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
                 .addContainerGap(20, Short.MAX_VALUE)
                 .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+=======
+                .addContainerGap()
+                .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(24, Short.MAX_VALUE))
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
         );
 
         pack();
@@ -156,6 +188,13 @@ public class ConsultaUsuario extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_tablaConsultaInputMethodTextChanged
 
+<<<<<<< HEAD
+=======
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
     private void tablaConsulta2InputMethodTextChanged(java.awt.event.InputMethodEvent evt) {//GEN-FIRST:event_tablaConsulta2InputMethodTextChanged
         // TODO add your handling code here:
     }//GEN-LAST:event_tablaConsulta2InputMethodTextChanged
@@ -224,6 +263,10 @@ public class ConsultaUsuario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane3;
+<<<<<<< HEAD
+=======
+    private javax.swing.JTextField jTextField2;
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
     private javax.swing.JTable tablaConsulta;
     private javax.swing.JTable tablaConsulta2;
     // End of variables declaration//GEN-END:variables

@@ -99,6 +99,10 @@ public class informacionEspectaculo extends javax.swing.JFrame {
         funciones = new javax.swing.JTable();
         jScrollPane5 = new javax.swing.JScrollPane();
         paquetes = new javax.swing.JTable();
+<<<<<<< HEAD
+=======
+        jLabel3 = new javax.swing.JLabel();
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
         jLabel4 = new javax.swing.JLabel();
         nombre = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
@@ -113,7 +117,10 @@ public class informacionEspectaculo extends javax.swing.JFrame {
         jLabel13 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+<<<<<<< HEAD
         setTitle("Informacion de espectaculo");
+=======
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
 
         jLabel9.setText("Descripcion");
 
@@ -176,6 +183,12 @@ public class informacionEspectaculo extends javax.swing.JFrame {
         });
         jScrollPane5.setViewportView(paquetes);
 
+<<<<<<< HEAD
+=======
+        jLabel3.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel3.setText("Información espectaculo:");
+
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
         jLabel4.setText("Nombre:");
 
         nombre.setEditable(false);
@@ -205,9 +218,16 @@ public class informacionEspectaculo extends javax.swing.JFrame {
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addGap(38, 38, 38)
+=======
+                .addContainerGap()
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(28, 28, 28)
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(jLabel4)
@@ -243,20 +263,35 @@ public class informacionEspectaculo extends javax.swing.JFrame {
                                     .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                     .addComponent(url, javax.swing.GroupLayout.PREFERRED_SIZE, 231, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
                         .addGap(19, 19, 19)
+=======
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, javax.swing.GroupLayout.PREFERRED_SIZE)
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane4, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel12))
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jLabel13)
+<<<<<<< HEAD
                             .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE))))
+=======
+                            .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 222, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(jLabel3))
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
                 .addContainerGap(33, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+<<<<<<< HEAD
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+=======
+                .addContainerGap()
+                .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 44, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel4)
                     .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -363,6 +398,10 @@ public class informacionEspectaculo extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+<<<<<<< HEAD
+=======
+    private javax.swing.JLabel jLabel3;
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;

@@ -99,7 +99,10 @@ public class TablaArtistas extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+<<<<<<< HEAD
         setTitle("Datos artista");
+=======
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
 
         TablaArtista.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {

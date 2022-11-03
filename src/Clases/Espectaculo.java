@@ -4,6 +4,10 @@
  * and open the template in the editor.
  */
 package Clases;
+<<<<<<< HEAD
+=======
+
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
 import java.sql.*;
 
 import java.sql.Timestamp;
@@ -14,12 +18,20 @@ import java.sql.Timestamp;
  */
 public class Espectaculo {
 
+<<<<<<< HEAD
     private String Nombre,ArtistaOrganizador,Descripcion,URL, Plataforma, estado;
+=======
+    private String Nombre, ArtistaOrganizador, Descripcion, URL, Plataforma, Imagen;
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
     private int Duracion, CapacidadMinima, CapacidadMaxima;
     private float Costo;
     private Timestamp FechaCreado;
 
+<<<<<<< HEAD
     public Espectaculo(String nombre, String artistaOrganizador, String descripcion, String url, int duracion, int capacidadMinima, int capacidadMaxima, float costo, Timestamp fechaCreado, String estado){
+=======
+    public Espectaculo(String nombre, String artistaOrganizador, String descripcion, String url, int duracion, int capacidadMinima, int capacidadMaxima, float costo, Timestamp fechaCreado, String imagen) {
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
         this.Nombre = nombre;
         this.ArtistaOrganizador = artistaOrganizador;
         this.Descripcion = descripcion;
@@ -29,6 +41,7 @@ public class Espectaculo {
         this.CapacidadMaxima = capacidadMaxima;
         this.Costo = costo;
         this.FechaCreado = fechaCreado;
+<<<<<<< HEAD
         this.estado = estado;
     }
     
@@ -45,6 +58,22 @@ public class Espectaculo {
     }
 
     
+=======
+        this.Imagen = imagen;
+    }
+
+    public Espectaculo() {
+    }
+
+    public String getImagen() {
+        return Imagen;
+    }
+
+    public void setImagen(String Imagen) {
+        this.Imagen = Imagen;
+    }
+
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
     public String getNombre() {
         return Nombre;
     }
@@ -52,7 +81,11 @@ public class Espectaculo {
     public void setNombre(String Nombre) {
         this.Nombre = Nombre;
     }
+<<<<<<< HEAD
     
+=======
+
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
     public String getPLataforma() {
         return Plataforma;
     }

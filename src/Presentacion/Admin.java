@@ -48,7 +48,10 @@ public class Admin extends javax.swing.JFrame {
         Consular = new javax.swing.JMenu();
         menuCE = new javax.swing.JMenuItem();
         menuCee = new javax.swing.JMenuItem();
+<<<<<<< HEAD
         jMenuItem5 = new javax.swing.JMenuItem();
+=======
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
         jMenu2 = new javax.swing.JMenu();
         jMenuItem11 = new javax.swing.JMenuItem();
         RegistroEspectador = new javax.swing.JMenuItem();
@@ -59,8 +62,11 @@ public class Admin extends javax.swing.JFrame {
         jMenuItem6 = new javax.swing.JMenuItem();
         jMenu4 = new javax.swing.JMenu();
         jMenuItem8 = new javax.swing.JMenuItem();
+<<<<<<< HEAD
         jMenu5 = new javax.swing.JMenu();
         jMenuItem4 = new javax.swing.JMenuItem();
+=======
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
 
         FrameConsultaU.setMinimumSize(new java.awt.Dimension(500, 500));
 
@@ -141,6 +147,7 @@ public class Admin extends javax.swing.JFrame {
         });
         Consular.add(menuCee);
 
+<<<<<<< HEAD
         jMenuItem5.setText("Espectaculos ingresados");
         jMenuItem5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -149,6 +156,8 @@ public class Admin extends javax.swing.JFrame {
         });
         Consular.add(jMenuItem5);
 
+=======
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
         jMenuBar2.add(Consular);
 
         jMenu2.setText("Usuarios");
@@ -219,6 +228,7 @@ public class Admin extends javax.swing.JFrame {
 
         jMenuBar2.add(jMenu4);
 
+<<<<<<< HEAD
         jMenu5.setText("Categorias");
 
         jMenuItem4.setText("Administrar");
@@ -231,13 +241,19 @@ public class Admin extends javax.swing.JFrame {
 
         jMenuBar2.add(jMenu5);
 
+=======
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
         setJMenuBar(jMenuBar2);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+<<<<<<< HEAD
             .addGap(0, 562, Short.MAX_VALUE)
+=======
+            .addGap(0, 452, Short.MAX_VALUE)
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -319,6 +335,7 @@ public class Admin extends javax.swing.JFrame {
         newFrame.setVisible(true);
     }//GEN-LAST:event_jMenuItem8ActionPerformed
 
+<<<<<<< HEAD
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
         coronatickets.categorias.admin newFrame = new coronatickets.categorias.admin();
         newFrame.setVisible(true);
@@ -329,6 +346,8 @@ public class Admin extends javax.swing.JFrame {
         newFrame.setVisible(true);
     }//GEN-LAST:event_jMenuItem5ActionPerformed
 
+=======
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
     public static void main(String args[]) {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
@@ -374,14 +393,20 @@ public class Admin extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
     private javax.swing.JMenu jMenu4;
+<<<<<<< HEAD
     private javax.swing.JMenu jMenu5;
+=======
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
     private javax.swing.JMenuBar jMenuBar2;
     private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JMenuItem jMenuItem11;
     private javax.swing.JMenuItem jMenuItem2;
     private javax.swing.JMenuItem jMenuItem3;
+<<<<<<< HEAD
     private javax.swing.JMenuItem jMenuItem4;
     private javax.swing.JMenuItem jMenuItem5;
+=======
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
     private javax.swing.JMenuItem jMenuItem6;
     private javax.swing.JMenuItem jMenuItem7;
     private javax.swing.JMenuItem jMenuItem8;

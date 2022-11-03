@@ -69,7 +69,11 @@ public class admin extends javax.swing.JFrame {
         this.inicio.setText(DtFechaToString(paq.getFechaInicio()));
         this.fin.setText(DtFechaToString(paq.getFechafinalizado()));
         
+<<<<<<< HEAD
          /** Cargo los paquetes */
+=======
+         /** Cargo los espectaculos */
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
         DefaultTableModel tableE = new DefaultTableModel();
         ArrayList<Espectaculo> datosE;
         String[] filasP = new String[1];
@@ -82,6 +86,27 @@ public class admin extends javax.swing.JFrame {
         }
         espectaculos.setModel(tableE);
         
+<<<<<<< HEAD
+=======
+        /* Cargo las categorias */
+        DefaultTableModel tableC = new DefaultTableModel();
+        String datosC;
+        String[] filasC = new String[1];
+        tableC.addColumn("Nombre");
+        datosC = ICP.categoriasPaquete(paq.getNombre());
+
+        String[] data = datosC.split("-");
+
+        for (String data1 : data) {
+            if (!data1.equals("")) {
+                filasC[0] = data1;
+                tableC.addRow(filasC);
+            }
+        }
+        categorias.setModel(tableC);
+
+        
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
     }
     
     /**
@@ -97,6 +122,10 @@ public class admin extends javax.swing.JFrame {
         tablaEspetaculos = new javax.swing.JTable();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
+<<<<<<< HEAD
+=======
+        jLabel1 = new javax.swing.JLabel();
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
         jScrollPane2 = new javax.swing.JScrollPane();
         tablaPaquetes = new javax.swing.JTable();
         jLabel2 = new javax.swing.JLabel();
@@ -115,6 +144,12 @@ public class admin extends javax.swing.JFrame {
         espectaculos = new javax.swing.JTable();
         jLabel8 = new javax.swing.JLabel();
         btnAgregarEspectaculo = new javax.swing.JButton();
+<<<<<<< HEAD
+=======
+        jScrollPane6 = new javax.swing.JScrollPane();
+        categorias = new javax.swing.JTable();
+        jLabel7 = new javax.swing.JLabel();
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
 
         tablaEspetaculos.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -148,13 +183,22 @@ public class admin extends javax.swing.JFrame {
         jScrollPane4.setViewportView(jTable1);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+<<<<<<< HEAD
         setTitle("Consulta paquetes");
+=======
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
         addWindowListener(new java.awt.event.WindowAdapter() {
             public void windowActivated(java.awt.event.WindowEvent evt) {
                 formWindowActivated(evt);
             }
         });
 
+<<<<<<< HEAD
+=======
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
+        jLabel1.setText("Paquete espetaculos");
+
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
         tablaPaquetes.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -180,7 +224,11 @@ public class admin extends javax.swing.JFrame {
 
         nombre.setEditable(false);
 
+<<<<<<< HEAD
         jLabel4.setText("D:escuento");
+=======
+        jLabel4.setText("Descuento:");
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
 
         descuento.setEditable(false);
 
@@ -217,7 +265,11 @@ public class admin extends javax.swing.JFrame {
         });
         jScrollPane5.setViewportView(espectaculos);
 
+<<<<<<< HEAD
         jLabel8.setText("Espectaculos");
+=======
+        jLabel8.setText("Espectaculos:");
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
 
         btnAgregarEspectaculo.setText("Agregar espectaculo");
         btnAgregarEspectaculo.addActionListener(new java.awt.event.ActionListener() {
@@ -226,6 +278,29 @@ public class admin extends javax.swing.JFrame {
             }
         });
 
+<<<<<<< HEAD
+=======
+        categorias.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {},
+                {},
+                {},
+                {}
+            },
+            new String [] {
+
+            }
+        ));
+        categorias.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                categoriasMouseClicked(evt);
+            }
+        });
+        jScrollPane6.setViewportView(categorias);
+
+        jLabel7.setText("Categorias:");
+
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -234,6 +309,7 @@ public class admin extends javax.swing.JFrame {
                 .addGap(21, 21, 21)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
+<<<<<<< HEAD
                         .addGap(401, 401, 401)
                         .addComponent(jLabel3)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -273,11 +349,56 @@ public class admin extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addComponent(btnAgregarEspectaculo)))
                         .addGap(37, 37, 37))))
+=======
+                        .addComponent(jLabel1)
+                        .addGap(183, 183, 183)
+                        .addComponent(jLabel3))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addGroup(layout.createSequentialGroup()
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel2)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel5)
+                                            .addGap(18, 18, 18)
+                                            .addComponent(inicio, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addGap(33, 33, 33)
+                                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel4)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                            .addComponent(descuento, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                        .addGroup(layout.createSequentialGroup()
+                                            .addComponent(jLabel6)
+                                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                            .addComponent(fin, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(layout.createSequentialGroup()
+                                    .addComponent(jLabel9)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                    .addComponent(jScrollPane3)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(jLabel8)
+                                    .addComponent(btnAgregarEspectaculo))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 199, javax.swing.GroupLayout.PREFERRED_SIZE))))))
+                .addContainerGap(16, Short.MAX_VALUE))
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
+<<<<<<< HEAD
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -308,6 +429,43 @@ public class admin extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(31, 31, 31))
+=======
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel2)
+                            .addComponent(nombre, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel4)
+                            .addComponent(descuento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jLabel5)
+                            .addComponent(inicio, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel6)
+                            .addComponent(fin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(18, 18, 18)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel9))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel8)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane5, javax.swing.GroupLayout.PREFERRED_SIZE, 248, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jLabel7)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jScrollPane6, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))))
+                    .addComponent(jScrollPane2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(btnAgregarEspectaculo)
+                .addContainerGap())
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
         );
 
         pack();
@@ -353,6 +511,17 @@ public class admin extends javax.swing.JFrame {
         newFrame.setVisible(true);  
     }//GEN-LAST:event_espectaculosMouseClicked
 
+<<<<<<< HEAD
+=======
+    private void categoriasMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_categoriasMouseClicked
+        int fila = espectaculos.getSelectedRow();
+        String nombre = (String) espectaculos.getValueAt(fila, 0);//selecciono de la fila seleccionada la primera
+
+        informacionEspectaculo newFrame = new informacionEspectaculo(nombre);
+        newFrame.setVisible(true);
+    }//GEN-LAST:event_categoriasMouseClicked
+
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
     /**
      * @param args the command line arguments
      */
@@ -390,16 +559,28 @@ public class admin extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregarEspectaculo;
+<<<<<<< HEAD
+=======
+    private javax.swing.JTable categorias;
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
     private javax.swing.JTextArea descripcion;
     private javax.swing.JTextField descuento;
     private javax.swing.JTable espectaculos;
     private javax.swing.JTextField fin;
     private javax.swing.JTextField inicio;
+<<<<<<< HEAD
+=======
+    private javax.swing.JLabel jLabel1;
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+<<<<<<< HEAD
+=======
+    private javax.swing.JLabel jLabel7;
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JScrollPane jScrollPane1;
@@ -407,6 +588,10 @@ public class admin extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
+<<<<<<< HEAD
+=======
+    private javax.swing.JScrollPane jScrollPane6;
+>>>>>>> 2c68efd283358ad6834c5a1e2c6affc39b92eeb7
     private javax.swing.JTable jTable1;
     private javax.swing.JTextField nombre;
     private javax.swing.JTable tablaEspetaculos;
